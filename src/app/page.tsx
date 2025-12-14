@@ -331,8 +331,8 @@ function Footer() {
             </svg>
           </a>
           <div className="flex gap-6 text-sm text-gray-500">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
             <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
         </div>
