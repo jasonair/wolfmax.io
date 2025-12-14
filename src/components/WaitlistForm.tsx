@@ -64,7 +64,7 @@ export function WaitlistForm() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="text-center p-6 rounded-2xl bg-gradient-to-r from-brand-green/20 to-brand-blue/20 border border-brand-green/30"
+            className="text-center p-6 rounded-2xl bg-brand-green/20 border border-brand-green/30"
           >
             <motion.div
               initial={{ scale: 0 }}

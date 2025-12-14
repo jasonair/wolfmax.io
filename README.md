@@ -60,6 +60,68 @@ NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
 
 **Note:** The `.env.local` file is already in `.gitignore` and won't be committed to version control.
 
+### Resend Email Setup (For Contact Form)
+
+This project uses [Resend](https://resend.com) to send emails from the contact form. To set up Resend:
+
+1. **Create a Resend Account:**
+   - Go to [Resend](https://resend.com) and sign up for a free account
+   - The free tier includes 100 emails per day, which is perfect for getting started
+
+2. **Get Your API Key:**
+   - Once logged in, go to the [API Keys](https://resend.com/api-keys) page
+   - Click "Create API Key"
+   - Give it a name (e.g., "Wolfmax Contact Form")
+   - Copy the API key (you'll only see it once!)
+
+3. **Add Environment Variables:**
+   - Copy `.env.example` to `.env.local` (or create `.env.local` if it doesn't exist)
+   - Add your Resend API key and contact email:
+
+```env
+RESEND_API_KEY=re_your_api_key_here
+CONTACT_EMAIL=your-email@example.com
+```
+
+   - `RESEND_API_KEY`: Your Resend API key (starts with `re_`)
+   - `CONTACT_EMAIL`: The email address where you want to receive contact form submissions
+
+4. **Development/Test Mode (No DNS Required!):**
+   - ✅ **Good news:** The contact form works immediately in dev/test mode!
+   - The API route is already configured to use `onboarding@resend.dev`
+   - This works right away without any DNS verification
+   - Just add your `RESEND_API_KEY` and `CONTACT_EMAIL` to `.env.local` and you're ready to test
+   - Emails will be sent from `onboarding@resend.dev` (this is fine for development)
+
+5. **Production Setup (Optional, for later):**
+   - When you're ready for production, you can verify your own domain
+   - Go to [Domains](https://resend.com/domains) in Resend dashboard
+   - Add your domain and follow the DNS verification steps
+   - Once verified, update the `from` field in `src/app/api/contact/route.ts` to use your domain (e.g., `contact@yourdomain.com`)
+
+5. **Update Firestore Security Rules (for Contact Submissions):**
+   - Update your Firestore rules to include the contact-submissions collection:
+   ```javascript
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /waitlist/{document=**} {
+         allow read: if true;
+         allow create: if request.resource.data.email is string && 
+                          request.resource.data.email.matches('.*@.*\\..*');
+       }
+       match /contact-submissions/{document=**} {
+         allow create: if request.resource.data.email is string && 
+                          request.resource.data.email.matches('.*@.*\\..*') &&
+                          request.resource.data.name is string &&
+                          request.resource.data.message is string;
+       }
+     }
+   }
+   ```
+
+**Note:** Contact form submissions are stored in Firebase (for your records) and also sent via email to the address specified in `CONTACT_EMAIL`.
+
 ### Running the Development Server
 
 First, run the development server:

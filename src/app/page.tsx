@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { WolfLogoWithText, WolfLogo } from '@/components/WolfLogo';
 import { WaitlistForm } from '@/components/WaitlistForm';
 import { useRef } from 'react';
+import Link from 'next/link';
 
 // Animated background particles
 function FloatingParticles() {
@@ -332,7 +333,7 @@ function Footer() {
           <div className="flex gap-6 text-sm text-gray-500">
             <a href="#" className="hover:text-white transition-colors">Privacy</a>
             <a href="#" className="hover:text-white transition-colors">Terms</a>
-            <a href="#" className="hover:text-white transition-colors">Contact</a>
+            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
         </div>
       </div>
