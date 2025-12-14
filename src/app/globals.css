@@ -48,10 +48,7 @@ body {
 
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-purple) 50%, var(--brand-red) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--brand-red);
 }
 
 /* Animated gradient background */
@@ -106,4 +103,17 @@ body {
 
 .pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Fix nextjs-portal positioning - ensure it doesn't interfere with layout */
+nextjs-portal {
+  position: fixed !important;
+  left: unset !important;
+  top: unset !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+}
+
+nextjs-portal > * {
+  pointer-events: auto;
 }
