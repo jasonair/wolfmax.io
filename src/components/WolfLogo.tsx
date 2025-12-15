@@ -43,7 +43,7 @@ export function WolfLogoWithText({ className = '' }: WolfLogoWithTextProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <WolfLogo className="w-10 h-10 md:w-[73px] md:h-[90px]" animate={false} />
+      <WolfLogo className="w-[73px] h-[90px]" animate={false} />
       <div className="flex flex-col">
         <motion.span
           className="text-3xl md:text-4xl font-bold text-white tracking-tight"

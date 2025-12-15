@@ -149,7 +149,7 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.6 }}
         >
-          Every capture, every action, every piece of work is provable — creating an auditable trail of authorship in an AI-saturated world.
+          Every capture, every action, every piece of work is provable, creating an auditable trail of authorship in an AI-saturated world.
         </motion.p>
       </div>
 
