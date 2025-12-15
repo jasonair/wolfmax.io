@@ -93,7 +93,7 @@ function GradientOrbs() {
 
 // Hero Section
 function HeroSection() {
-  const words = ['Human', 'Anymore.'];
+  const words = ['Human', 'anymore.'];
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
@@ -115,9 +115,9 @@ function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <span className="block">The Internet Can&apos;t Tell</span>
+          <span className="block">The internet can&apos;t tell</span>
           <span className="block mt-2">
-            What&apos;s{' '}
+            what&apos;s{' '}
             {words.map((word, index) => (
               <motion.span
                 key={word}
@@ -139,7 +139,7 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <span className="text-white font-semibold">Wolfmax</span> is building the proof layer for human work.
+          So we&apos;re building a way to show how work was actually made.
         </motion.p>
 
         {/* Description */}
@@ -149,7 +149,7 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.6 }}
         >
-          Every capture, every action, every piece of work is provable, creating an auditable trail of authorship in an AI-saturated world.
+          Every capture, every action, every piece of work is provable - creating an auditable trail of authorship in an AI-saturated world.
         </motion.p>
       </div>
 
@@ -249,7 +249,7 @@ function CTASection() {
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          Join the Wolfmax waitlist and help define the standard for human authorship.
+          Join the Wolfmax waitlist and help define the standard for authorship in the AI era.
         </motion.p>
 
         {/* Waitlist Form */}
@@ -270,6 +270,15 @@ function CTASection() {
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
+          <motion.p
+            className="text-sm text-gray-500 mb-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+          >
+            For creators, professionals, and students who need trust - with complete privacy.
+          </motion.p>
           <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <svg className="w-4 h-4 text-brand-green" fill="currentColor" viewBox="0 0 20 20">

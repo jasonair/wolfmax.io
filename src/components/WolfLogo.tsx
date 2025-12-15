@@ -47,7 +47,7 @@ export function WolfLogoWithText({ className = '' }: WolfLogoWithTextProps) {
       <div className="flex flex-col">
         <motion.span
           className="text-3xl md:text-4xl font-bold text-white tracking-tight"
-          style={{ fontSize: '65px', lineHeight: '73px' }}
+          style={{ fontSize: '73px', lineHeight: '73px' }}
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
@@ -61,7 +61,7 @@ export function WolfLogoWithText({ className = '' }: WolfLogoWithTextProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.4 }}
         >
-          The Origin Layer for Human+AI work
+          The Origin Layer for Human-Led AI Work
         </motion.span>
       </div>
     </motion.div>
