@@ -3,91 +3,9 @@
 import { motion } from 'framer-motion';
 import { WolfLogoWithText } from '@/components/WolfLogo';
 import Link from 'next/link';
+import { FloatingParticles } from '@/components/FloatingParticles';
+import { GradientOrbs } from '@/components/GradientOrbs';
 
-// Animated background particles (same as homepage)
-function FloatingParticles() {
-  const particles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 4 + 1,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 20 + 10,
-    delay: Math.random() * 5,
-  }));
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-white/5"
-          style={{
-            width: particle.size,
-            height: particle.size,
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            delay: particle.delay,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-// Gradient orbs for visual interest
-function GradientOrbs() {
-  return (
-    <>
-      <motion.div
-        className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-brand-purple/20 blur-[100px]"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-brand-blue/20 blur-[100px]"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: 2,
-        }}
-      />
-      <motion.div
-        className="absolute top-2/3 left-1/3 w-64 h-64 rounded-full bg-brand-red/10 blur-[80px]"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: 4,
-        }}
-      />
-    </>
-  );
-}
 
 export default function PrivacyPage() {
   return (
@@ -136,7 +54,7 @@ export default function PrivacyPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              Last updated: February 8, 2026
             </motion.p>
           </motion.div>
 
@@ -152,12 +70,12 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Introduction</h2>
                 <p>
-                  At Wolfmax (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), we are committed to protecting your privacy. 
-                  This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use 
+                  At Wolfmax (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), we are committed to protecting your privacy.
+                  This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use
                   our services, including our website, platform, and any related services (collectively, the &quot;Service&quot;).
                 </p>
                 <p className="mt-4">
-                  By using our Service, you agree to the collection and use of information in accordance with this policy. 
+                  By using our Service, you agree to the collection and use of information in accordance with this policy.
                   If you do not agree with our policies and practices, please do not use our Service.
                 </p>
               </section>
@@ -165,7 +83,7 @@ export default function PrivacyPage() {
               {/* Information We Collect */}
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Information We Collect</h2>
-                
+
                 <h3 className="text-xl font-semibold text-white mt-6 mb-3">Information You Provide to Us</h3>
                 <ul className="list-disc list-inside space-y-2 ml-4">
                   <li><strong className="text-white">Account Information:</strong> When you create an account, we collect your name, email address, and any other information you choose to provide.</li>
@@ -215,12 +133,12 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Data Security</h2>
                 <p>
-                  We implement appropriate technical and organizational security measures to protect your personal information 
-                  against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over 
+                  We implement appropriate technical and organizational security measures to protect your personal information
+                  against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over
                   the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
                 </p>
                 <p className="mt-4">
-                  We use industry-standard encryption, secure authentication methods, and regular security audits to safeguard 
+                  We use industry-standard encryption, secure authentication methods, and regular security audits to safeguard
                   your data. If you have any concerns about the security of your information, please contact us immediately.
                 </p>
               </section>
@@ -246,13 +164,13 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Data Retention</h2>
                 <p>
-                  We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy 
-                  Policy, unless a longer retention period is required or permitted by law. When you delete your account, we 
-                  will delete or anonymize your personal information, except where we are required to retain it for legal, 
+                  We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy
+                  Policy, unless a longer retention period is required or permitted by law. When you delete your account, we
+                  will delete or anonymize your personal information, except where we are required to retain it for legal,
                   regulatory, or legitimate business purposes.
                 </p>
                 <p className="mt-4">
-                  Note that verifiable proof data created through our Service may be retained indefinitely as part of the 
+                  Note that verifiable proof data created through our Service may be retained indefinitely as part of the
                   immutable proof layer, even after account deletion, to maintain the integrity of the verification system.
                 </p>
               </section>
@@ -261,8 +179,8 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Children&apos;s Privacy</h2>
                 <p>
-                  Our Service is not intended for individuals under the age of 13 (or the applicable age of consent in your 
-                  jurisdiction). We do not knowingly collect personal information from children. If you are a parent or guardian 
+                  Our Service is not intended for individuals under the age of 13 (or the applicable age of consent in your
+                  jurisdiction). We do not knowingly collect personal information from children. If you are a parent or guardian
                   and believe your child has provided us with personal information, please contact us immediately.
                 </p>
               </section>
@@ -271,9 +189,9 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">International Data Transfers</h2>
                 <p>
-                  Your information may be transferred to and processed in countries other than your country of residence. 
-                  These countries may have data protection laws that differ from those in your country. We take appropriate 
-                  measures to ensure that your information receives an adequate level of protection in accordance with this 
+                  Your information may be transferred to and processed in countries other than your country of residence.
+                  These countries may have data protection laws that differ from those in your country. We take appropriate
+                  measures to ensure that your information receives an adequate level of protection in accordance with this
                   Privacy Policy.
                 </p>
               </section>
@@ -282,8 +200,8 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Changes to This Privacy Policy</h2>
                 <p>
-                  We may update this Privacy Policy from time to time. We will notify you of any material changes by posting 
-                  the new Privacy Policy on this page and updating the &quot;Last updated&quot; date. We encourage you to review 
+                  We may update this Privacy Policy from time to time. We will notify you of any material changes by posting
+                  the new Privacy Policy on this page and updating the &quot;Last updated&quot; date. We encourage you to review
                   this Privacy Policy periodically for any changes.
                 </p>
               </section>
@@ -292,7 +210,7 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Contact Us</h2>
                 <p>
-                  If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, 
+                  If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices,
                   please contact us:
                 </p>
                 <ul className="list-none space-y-2 ml-4 mt-4">
@@ -317,4 +235,6 @@ export default function PrivacyPage() {
     </div>
   );
 }
+
+
 

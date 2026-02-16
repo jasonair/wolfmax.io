@@ -3,91 +3,9 @@
 import { motion } from 'framer-motion';
 import { WolfLogoWithText } from '@/components/WolfLogo';
 import Link from 'next/link';
+import { FloatingParticles } from '@/components/FloatingParticles';
+import { GradientOrbs } from '@/components/GradientOrbs';
 
-// Animated background particles (same as homepage)
-function FloatingParticles() {
-  const particles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 4 + 1,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 20 + 10,
-    delay: Math.random() * 5,
-  }));
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-white/5"
-          style={{
-            width: particle.size,
-            height: particle.size,
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            delay: particle.delay,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-// Gradient orbs for visual interest
-function GradientOrbs() {
-  return (
-    <>
-      <motion.div
-        className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-brand-purple/20 blur-[100px]"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-brand-blue/20 blur-[100px]"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: 2,
-        }}
-      />
-      <motion.div
-        className="absolute top-2/3 left-1/3 w-64 h-64 rounded-full bg-brand-red/10 blur-[80px]"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: 4,
-        }}
-      />
-    </>
-  );
-}
 
 export default function TermsPage() {
   return (
@@ -136,7 +54,7 @@ export default function TermsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              Last updated: February 8, 2026
             </motion.p>
           </motion.div>
 
@@ -152,12 +70,12 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Agreement to Terms</h2>
                 <p>
-                  These Terms of Service (&quot;Terms&quot;) constitute a legally binding agreement between you and Wolfmax 
-                  (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) regarding your use of our website, platform, and services 
+                  These Terms of Service (&quot;Terms&quot;) constitute a legally binding agreement between you and Wolfmax
+                  (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) regarding your use of our website, platform, and services
                   (collectively, the &quot;Service&quot;). By accessing or using our Service, you agree to be bound by these Terms.
                 </p>
                 <p className="mt-4">
-                  If you do not agree to these Terms, you may not access or use the Service. We reserve the right to modify 
+                  If you do not agree to these Terms, you may not access or use the Service. We reserve the right to modify
                   these Terms at any time, and such modifications will be effective immediately upon posting.
                 </p>
               </section>
@@ -166,12 +84,12 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Description of Service</h2>
                 <p>
-                  Wolfmax provides a proof layer for human work, enabling users to create verifiable proof of authorship and 
-                  work authenticity. Our Service includes tools for capturing, verifying, and proving the human origin of 
+                  Wolfmax provides a proof layer for human work, enabling users to create verifiable proof of authorship and
+                  work authenticity. Our Service includes tools for capturing, verifying, and proving the human origin of
                   creative and professional work in an AI-saturated world.
                 </p>
                 <p className="mt-4">
-                  We reserve the right to modify, suspend, or discontinue any part of the Service at any time, with or without 
+                  We reserve the right to modify, suspend, or discontinue any part of the Service at any time, with or without
                   notice, and without liability to you.
                 </p>
               </section>
@@ -188,7 +106,7 @@ export default function TermsPage() {
                   <li>Notify us immediately of any unauthorized use of your account</li>
                 </ul>
                 <p className="mt-4">
-                  You are responsible for maintaining the confidentiality of your account credentials. We are not liable for any 
+                  You are responsible for maintaining the confidentiality of your account credentials. We are not liable for any
                   loss or damage arising from your failure to protect your account information.
                 </p>
               </section>
@@ -215,16 +133,16 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">User Content</h2>
                 <p>
-                  You retain ownership of any content you submit, post, or display through the Service (&quot;User Content&quot;). 
-                  By submitting User Content, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, 
+                  You retain ownership of any content you submit, post, or display through the Service (&quot;User Content&quot;).
+                  By submitting User Content, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce,
                   modify, adapt, publish, and distribute such content solely for the purpose of providing and improving the Service.
                 </p>
                 <p className="mt-4">
-                  You represent and warrant that you own or have the necessary rights to all User Content you submit and that 
+                  You represent and warrant that you own or have the necessary rights to all User Content you submit and that
                   such content does not violate any third-party rights or applicable laws.
                 </p>
                 <p className="mt-4">
-                  We reserve the right to remove or refuse to display any User Content that we believe violates these Terms or 
+                  We reserve the right to remove or refuse to display any User Content that we believe violates these Terms or
                   is otherwise objectionable, without prior notice.
                 </p>
               </section>
@@ -248,11 +166,11 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Intellectual Property</h2>
                 <p>
-                  The Service and its original content, features, and functionality are owned by Wolfmax and are protected by 
+                  The Service and its original content, features, and functionality are owned by Wolfmax and are protected by
                   international copyright, trademark, patent, trade secret, and other intellectual property laws.
                 </p>
                 <p className="mt-4">
-                  Our trademarks, service marks, and logos may not be used without our prior written permission. You may not 
+                  Our trademarks, service marks, and logos may not be used without our prior written permission. You may not
                   use our intellectual property in any way that suggests endorsement or affiliation without our consent.
                 </p>
               </section>
@@ -261,11 +179,11 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Payment Terms</h2>
                 <p>
-                  If you purchase any paid features or subscriptions, you agree to pay all fees associated with such purchases. 
+                  If you purchase any paid features or subscriptions, you agree to pay all fees associated with such purchases.
                   Fees are non-refundable unless otherwise required by law or as specified in our refund policy.
                 </p>
                 <p className="mt-4">
-                  We reserve the right to change our pricing at any time. Price changes will not affect existing subscriptions 
+                  We reserve the right to change our pricing at any time. Price changes will not affect existing subscriptions
                   until the next billing cycle, unless otherwise specified.
                 </p>
               </section>
@@ -274,13 +192,13 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Disclaimers</h2>
                 <p>
-                  THE SERVICE IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR 
-                  IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, 
+                  THE SERVICE IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+                  IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
                   AND NON-INFRINGEMENT.
                 </p>
                 <p className="mt-4">
-                  We do not warrant that the Service will be uninterrupted, secure, or error-free, or that defects will be 
-                  corrected. We do not guarantee the accuracy, completeness, or usefulness of any information provided through 
+                  We do not warrant that the Service will be uninterrupted, secure, or error-free, or that defects will be
+                  corrected. We do not guarantee the accuracy, completeness, or usefulness of any information provided through
                   the Service.
                 </p>
               </section>
@@ -289,12 +207,12 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Limitation of Liability</h2>
                 <p>
-                  TO THE MAXIMUM EXTENT PERMITTED BY LAW, WOLFMAX SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, 
-                  CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, 
+                  TO THE MAXIMUM EXTENT PERMITTED BY LAW, WOLFMAX SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
+                  CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY,
                   OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM YOUR USE OF THE SERVICE.
                 </p>
                 <p className="mt-4">
-                  Our total liability to you for all claims arising from or related to the Service shall not exceed the amount 
+                  Our total liability to you for all claims arising from or related to the Service shall not exceed the amount
                   you paid us in the twelve (12) months preceding the claim, or one hundred dollars ($100), whichever is greater.
                 </p>
               </section>
@@ -303,9 +221,9 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Indemnification</h2>
                 <p>
-                  You agree to indemnify, defend, and hold harmless Wolfmax and its officers, directors, employees, and agents 
-                  from and against any claims, liabilities, damages, losses, and expenses, including reasonable attorneys&apos; fees, 
-                  arising out of or in any way connected with your use of the Service, your User Content, or your violation of 
+                  You agree to indemnify, defend, and hold harmless Wolfmax and its officers, directors, employees, and agents
+                  from and against any claims, liabilities, damages, losses, and expenses, including reasonable attorneys&apos; fees,
+                  arising out of or in any way connected with your use of the Service, your User Content, or your violation of
                   these Terms.
                 </p>
               </section>
@@ -314,12 +232,12 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Termination</h2>
                 <p>
-                  We may terminate or suspend your account and access to the Service immediately, without prior notice or liability, 
+                  We may terminate or suspend your account and access to the Service immediately, without prior notice or liability,
                   for any reason, including if you breach these Terms.
                 </p>
                 <p className="mt-4">
-                  Upon termination, your right to use the Service will cease immediately. All provisions of these Terms that by 
-                  their nature should survive termination shall survive, including ownership provisions, warranty disclaimers, 
+                  Upon termination, your right to use the Service will cease immediately. All provisions of these Terms that by
+                  their nature should survive termination shall survive, including ownership provisions, warranty disclaimers,
                   indemnity, and limitations of liability.
                 </p>
               </section>
@@ -328,8 +246,8 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Governing Law</h2>
                 <p>
-                  These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Wolfmax 
-                  operates, without regard to its conflict of law provisions. Any disputes arising from these Terms or the Service 
+                  These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Wolfmax
+                  operates, without regard to its conflict of law provisions. Any disputes arising from these Terms or the Service
                   shall be resolved in the appropriate courts of that jurisdiction.
                 </p>
               </section>
@@ -338,8 +256,8 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Changes to Terms</h2>
                 <p>
-                  We reserve the right to modify these Terms at any time. We will notify you of any material changes by posting 
-                  the updated Terms on this page and updating the &quot;Last updated&quot; date. Your continued use of the Service 
+                  We reserve the right to modify these Terms at any time. We will notify you of any material changes by posting
+                  the updated Terms on this page and updating the &quot;Last updated&quot; date. Your continued use of the Service
                   after such modifications constitutes your acceptance of the updated Terms.
                 </p>
                 <p className="mt-4">
@@ -351,7 +269,7 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Severability</h2>
                 <p>
-                  If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or 
+                  If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or
                   eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.
                 </p>
               </section>
@@ -360,7 +278,7 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Entire Agreement</h2>
                 <p>
-                  These Terms, together with our Privacy Policy, constitute the entire agreement between you and Wolfmax regarding 
+                  These Terms, together with our Privacy Policy, constitute the entire agreement between you and Wolfmax regarding
                   the Service and supersede all prior agreements and understandings.
                 </p>
               </section>
@@ -393,4 +311,6 @@ export default function TermsPage() {
     </div>
   );
 }
+
+
 

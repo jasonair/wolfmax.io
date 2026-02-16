@@ -109,9 +109,79 @@ export function WaitlistForm() {
             className="space-y-4"
           >
             <div className="relative group">
+              {/* Perimeter-Based Aura Blobs with Soft Masking */}
+              <div
+                className="absolute -inset-32 pointer-events-none z-0 overflow-visible"
+                style={{
+                  maskImage: 'radial-gradient(circle at center, black 30%, transparent 70%)',
+                  WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 70%)'
+                }}
+              >
+                {/* Red Blob */}
+                <motion.div
+                  className="absolute w-64 h-64 rounded-full blur-[5rem] opacity-25"
+                  style={{ background: '#FF265E', left: '10%', top: '10%' }}
+                  animate={{
+                    x: ['0%', '150%', '150%', '0%', '0%'],
+                    y: ['0%', '0%', '80%', '80%', '0%'],
+                  }}
+                  transition={{
+                    duration: 14,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                />
+                {/* Purple Blob */}
+                <motion.div
+                  className="absolute w-64 h-64 rounded-full blur-[5rem] opacity-25"
+                  style={{ background: '#8C1BF6', right: '10%', top: '10%' }}
+                  animate={{
+                    x: ['0%', '-150%', '-150%', '0%', '0%'],
+                    y: ['0%', '0%', '80%', '80%', '0%'],
+                  }}
+                  transition={{
+                    duration: 18,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: 2
+                  }}
+                />
+                {/* Blue Blob */}
+                <motion.div
+                  className="absolute w-64 h-64 rounded-full blur-[5rem] opacity-25"
+                  style={{ background: '#5384ED', left: '10%', bottom: '10%' }}
+                  animate={{
+                    x: ['0%', '150%', '150%', '0%', '0%'],
+                    y: ['0%', '0%', '-80%', '-80%', '0%'],
+                  }}
+                  transition={{
+                    duration: 22,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: 4
+                  }}
+                />
+                {/* Green Blob */}
+                <motion.div
+                  className="absolute w-64 h-64 rounded-full blur-[5rem] opacity-25"
+                  style={{ background: '#7EFCD8', right: '10%', bottom: '10%' }}
+                  animate={{
+                    x: ['0%', '-150%', '-150%', '0%', '0%'],
+                    y: ['0%', '0%', '-80%', '-80%', '0%'],
+                  }}
+                  transition={{
+                    duration: 16,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: 1
+                  }}
+                />
+              </div>
+
               <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red via-brand-purple to-brand-blue rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
-              <div className="relative flex flex-col sm:flex-row gap-3 p-1 bg-black rounded-xl border border-white/10">
+              <div className="relative flex flex-col sm:flex-row gap-3 p-1 bg-black rounded-xl border border-white/10 z-10">
                 <input
+                  id="email-input"
                   type="email"
                   value={email}
                   onChange={(e) => {
@@ -119,7 +189,7 @@ export function WaitlistForm() {
                     if (formState === 'error') resetForm();
                   }}
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-transparent text-white placeholder-gray-500 focus:outline-none text-base"
+                  className="flex-1 px-4 py-3 bg-transparent text-white placeholder-gray-500 focus:outline-none text-base w-full sm:w-auto"
                   disabled={formState === 'loading'}
                 />
                 <motion.button

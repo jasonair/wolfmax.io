@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import { Navbar } from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Wolfmax - The Origin Layer for Human+AI Work",
@@ -50,6 +51,7 @@ export default function RootLayout({
             </Script>
           </>
         )}
+        <Navbar />
         {children}
       </body>
     </html>
