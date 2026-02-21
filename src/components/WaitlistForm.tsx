@@ -7,7 +7,7 @@ import { db } from '@/lib/firebase';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error' | 'exists';
 
-export function WaitlistForm() {
+export function WaitlistForm({ buttonText = "Start Protecting Your Process" }: { buttonText?: string }) {
   const [email, setEmail] = useState('');
   const [formState, setFormState] = useState<FormState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -209,7 +209,7 @@ export function WaitlistForm() {
                       Joining...
                     </span>
                   ) : (
-                    'Get Early Access'
+                    buttonText
                   )}
                 </motion.button>
               </div>

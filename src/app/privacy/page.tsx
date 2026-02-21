@@ -1,8 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { WolfLogoWithText } from '@/components/WolfLogo';
-import Link from 'next/link';
 import { FloatingParticles } from '@/components/FloatingParticles';
 import { GradientOrbs } from '@/components/GradientOrbs';
 
@@ -11,27 +9,12 @@ export default function PrivacyPage() {
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
       {/* Background effects */}
-      <div className="fixed inset-0 grid-bg" />
+      <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
       <FloatingParticles />
       <GradientOrbs />
 
-      {/* Navigation */}
-      <nav className="relative z-20 py-6 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/">
-            <WolfLogoWithText className="hover:opacity-80 transition-opacity" />
-          </Link>
-          <Link
-            href="/"
-            className="text-gray-400 hover:text-white transition-colors text-sm"
-          >
-            ← Back to Home
-          </Link>
-        </div>
-      </nav>
-
       {/* Main Content */}
-      <main className="relative z-10 px-4 sm:px-6 lg:px-8 py-12 pb-20">
+      <main className="relative z-10 px-4 sm:px-6 lg:px-8 pt-32 pb-20">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <motion.div

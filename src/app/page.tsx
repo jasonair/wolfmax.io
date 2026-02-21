@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { WolfLogoWithText, WolfLogo } from '@/components/WolfLogo';
 import { WaitlistForm } from '@/components/WaitlistForm';
 import { useRef, useEffect, useState } from 'react';
@@ -32,7 +32,7 @@ function HeroSection() {
       ref={ref}
       className="relative h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 snap-start shrink-0"
     >
-      {isInView && showPulse && <HeartbeatBackground />}
+      {/* {isInView && showPulse && <HeartbeatBackground />} */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Logo */}
         <motion.div
@@ -53,62 +53,29 @@ function HeroSection() {
           viewport={{ once: false, amount: 0.3 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          Show how your <br /> <span className="gradient-text">work was created.</span>
+          Protect your value <br /> <span className="gradient-text">in the AI age.</span>
         </motion.h1>
 
-        <motion.p
-          className="text-sm sm:text-base md:text-lg text-gray-300 mb-6 max-w-3xl mx-auto text-balance"
+        <motion.div
+          className="flex flex-col items-center justify-center max-w-4xl mx-auto mb-10 space-y-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ delay: 0.5, duration: 0.6 }}
         >
-          Wolfmax provides proof of how work was made <span className="text-white">human, AI, or both</span> without collecting your content.
-        </motion.p>
-
-        {/* Description */}
-        <motion.p
-          className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed mb-8 text-balance"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
-        >
-          Your content stays yours. <span className="text-gray-300">Private and local by default.</span>
-        </motion.p>
-
-        {/* Feature Points */}
-        <motion.div
-          className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-8 text-sm sm:text-base text-gray-400 mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-        >
-          <div className="flex items-center justify-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-brand-green shadow-[0_0_10px_rgba(126,252,216,0.5)]"></div>
-            <span>Share proof with anyone</span>
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-brand-blue shadow-[0_0_10px_rgba(83,132,237,0.5)]"></div>
-            <span>Works with humans and AI</span>
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-brand-purple shadow-[0_0_10px_rgba(140,27,246,0.5)]"></div>
-            <span>No uploads, no training</span>
+          {/* Benefit Block */}
+          <div className="text-center space-y-4 pt-4 border-t border-white/5 w-full max-w-3xl">
+            <p className="text-xl sm:text-2xl text-white font-medium">
+              We don&apos;t want your data.
+            </p>
+            <p className="text-gray-400 text-base sm:text-lg whitespace-nowrap">
+              Wolfmax captures how your work was created by humans, AI, or both locally on your device.
+            </p>
+            <p className="text-gray-400 text-base sm:text-lg mt-2 font-medium">
+              Share only what&apos;s needed to protect your credibility.
+            </p>
           </div>
         </motion.div>
-
-        {/* Tagline */}
-        <motion.p
-          className="text-lg font-medium text-white mb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ delay: 1.1, duration: 0.6 }}
-        >
-          Peace of mind in an age of AI.
-        </motion.p>
 
         {/* Hero CTA Items */}
         <motion.div
@@ -149,6 +116,42 @@ function HeroSection() {
 
 
     </section>
+  );
+}
+
+function WhyWolfmaxRotating() {
+  const bullets = [
+    { text: "Protect your reputation", color: "bg-brand-red" },
+    { text: "Avoid false AI accusations", color: "bg-brand-purple" },
+    { text: "Show your process without exposing your work", color: "bg-brand-blue" },
+    { text: "Privately review your process. Improve over time", color: "bg-brand-green" },
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % bullets.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="h-8 flex items-center justify-center overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={index}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="flex items-center gap-3 text-gray-400 font-medium"
+        >
+          <div className={`w-1.5 h-1.5 rounded-full ${bullets[index].color}`} />
+          <span>{bullets[index].text}</span>
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -217,7 +220,7 @@ function CTASection() {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            If your work matters, <span className="text-brand-red font-semibold">proof matters</span>.
+            If your work matters, <span className="text-brand-red font-semibold italic">process</span> matters.
           </motion.p>
 
           <motion.p
@@ -227,7 +230,7 @@ function CTASection() {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Join the Wolfmax waitlist and help define the standard for authorship in the AI era.
+            Join early and protect what makes your work yours.
           </motion.p>
 
           {/* Waitlist Form */}
@@ -242,14 +245,14 @@ function CTASection() {
 
           {/* Trust indicators */}
           <motion.div
-            className="mt-16 pt-8 border-t border-white/10"
+            className="mt-8 pt-6 border-t border-white/10"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
             <motion.p
-              className="text-sm text-gray-500 mb-6"
+              className="text-sm text-gray-500 mb-3"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: false, amount: 0.3 }}
@@ -257,33 +260,21 @@ function CTASection() {
             >
               For creators, professionals, and students who need trust - with complete privacy.
             </motion.p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+            <div className="flex flex-wrap justify-center gap-8 text-sm text-gray-500">
               <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-brand-green" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>Verifiable Proof</span>
+                <div className="w-1 h-1 rounded-full bg-gray-500" />
+                <span>Verifiable Process</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-brand-blue" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fillRule="evenodd"
-                    d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <div className="w-1 h-1 rounded-full bg-gray-500" />
                 <span>Privacy First</span>
               </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-brand-purple" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-                </svg>
-                <span>Human Verified</span>
-              </div>
+            </div>
+
+            {/* Why Wolfmax section */}
+            <div className="mt-8 text-center">
+              <h3 className="text-xl font-bold text-white mb-2">Why Wolfmax?</h3>
+              <WhyWolfmaxRotating />
             </div>
           </motion.div>
         </motion.div>

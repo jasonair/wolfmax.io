@@ -55,13 +55,13 @@ export function WolfLogoWithText({ className = '' }: WolfLogoWithTextProps) {
           Wolfmax
         </motion.span>
         <motion.span
-          className="text-xs md:text-sm text-brand-red font-medium tracking-wide"
-          style={{ lineHeight: '16px', fontSize: '14px' }}
+          className="text-xs md:text-sm text-brand-red font-medium block"
+          style={{ lineHeight: '16px', fontSize: '15.8px', letterSpacing: '0.085em', marginLeft: '4px' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.4 }}
         >
-          The Origin Layer for Human-Led AI Work
+          Show your process. Stay trusted.
         </motion.span>
       </div>
     </motion.div>
