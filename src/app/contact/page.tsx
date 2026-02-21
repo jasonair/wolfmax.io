@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ContactForm } from '@/components/ContactForm';
+import Link from 'next/link';
 import { FloatingParticles } from '@/components/FloatingParticles';
 import { GradientOrbs } from '@/components/GradientOrbs';
 

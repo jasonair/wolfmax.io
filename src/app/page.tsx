@@ -5,7 +5,6 @@ import { WolfLogoWithText, WolfLogo } from '@/components/WolfLogo';
 import { WaitlistForm } from '@/components/WaitlistForm';
 import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { HeartbeatBackground } from '@/components/HeartbeatBackground';
 import { FloatingParticles } from '@/components/FloatingParticles';
 import { GradientOrbs } from '@/components/GradientOrbs';
 
@@ -16,14 +15,10 @@ function HeroSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.6 });
 
-  const [showPulse, setShowPulse] = useState(false);
-
   useEffect(() => {
     if (isInView) {
-      const timer = setTimeout(() => setShowPulse(true), 1800);
+      const timer = setTimeout(() => { }, 1800);
       return () => clearTimeout(timer);
-    } else {
-      setShowPulse(false);
     }
   }, [isInView]);
 
@@ -163,8 +158,7 @@ function CTASection() {
     offset: ['start end', 'end start'],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.3], [50, 0]);
+  // Scroll transforms removed to fix unused warnings as they aren't currently bound to elements
 
   return (
     <section
@@ -353,7 +347,6 @@ function Footer() {
 }
 
 export default function Home() {
-  const isMounted = useRef(false);
 
   useEffect(() => {
     // Nuclear option: Lock scroll, snap to top, then unlock

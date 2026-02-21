@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { FloatingParticles } from '@/components/FloatingParticles';
 import { GradientOrbs } from '@/components/GradientOrbs';
 
@@ -199,15 +200,15 @@ export default function PrivacyPage() {
                 <ul className="list-none space-y-2 ml-4 mt-4">
                   <li>
                     <strong className="text-white">Email:</strong>{' '}
-                    <a href="/contact" className="text-brand-blue hover:text-brand-purple transition-colors">
+                    <Link href="/contact" className="text-brand-blue hover:text-brand-purple transition-colors">
                       Contact us through our contact page
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <strong className="text-white">Website:</strong>{' '}
-                    <a href="/" className="text-brand-blue hover:text-brand-purple transition-colors">
+                    <Link href="/" className="text-brand-blue hover:text-brand-purple transition-colors">
                       wolfmax.io
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </section>

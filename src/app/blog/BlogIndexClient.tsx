@@ -6,7 +6,17 @@ import { GradientOrbs } from "@/components/GradientOrbs";
 import { FloatingParticles } from "@/components/FloatingParticles";
 import { Navbar } from "@/components/Navbar";
 
-export function BlogIndexClient({ posts }: { posts: any[] }) {
+interface Post {
+    id: string;
+    slug: string;
+    title: string;
+    description: string | null;
+    image: string | null;
+    publishedAt: Date | string | null;
+    createdAt: Date | string;
+}
+
+export function BlogIndexClient({ posts }: { posts: Post[] }) {
     return (
         <div className="relative min-h-screen bg-black overflow-hidden selection:bg-brand-purple/30">
             <Navbar />

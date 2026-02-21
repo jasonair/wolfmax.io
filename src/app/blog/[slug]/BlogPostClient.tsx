@@ -7,7 +7,19 @@ import { FloatingParticles } from "@/components/FloatingParticles";
 import { Navbar } from "@/components/Navbar";
 import { WolfLogo } from "@/components/WolfLogo";
 
-export function BlogPostClient({ post }: { post: any }) {
+interface Post {
+    id: string;
+    slug: string;
+    title: string;
+    description: string | null;
+    image: string | null;
+    publishedAt: Date | string | null;
+    createdAt: Date | string;
+    content: string;
+    tags: Array<{ id: string; name: string }>;
+}
+
+export function BlogPostClient({ post }: { post: Post }) {
     return (
         <div className="relative min-h-screen bg-black overflow-hidden selection:bg-brand-purple/30">
             <Navbar />

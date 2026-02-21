@@ -22,12 +22,12 @@ export function Navbar() {
                     <Link href="/blog" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
                         Blog
                     </Link>
-                    <a
+                    <Link
                         href="/#early-access"
                         className="px-5 py-2.5 bg-brand-red text-white text-sm font-bold rounded-full hover:scale-105 transition-transform"
                     >
                         Get Access
-                    </a>
+                    </Link>
                 </div>
             </div>
         </motion.nav>
