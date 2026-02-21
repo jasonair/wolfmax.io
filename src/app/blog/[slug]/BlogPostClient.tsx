@@ -96,7 +96,7 @@ export function BlogPostClient({ post }: { post: Post }) {
                             Join the conversation on the future of human authorship and stay protected in the AI age.
                         </p>
                         <Link
-                            href="/"
+                            href="/#early-access"
                             className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-brand-red text-white font-bold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,51,102,0.3)]"
                         >
                             Join the Waitlist
