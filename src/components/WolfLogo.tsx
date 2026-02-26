@@ -56,12 +56,12 @@ export function WolfLogoWithText({ className = '' }: WolfLogoWithTextProps) {
         </motion.span>
         <motion.span
           className="text-xs md:text-sm text-brand-red font-medium block"
-          style={{ lineHeight: '16px', fontSize: '15.8px', letterSpacing: '0.085em', marginLeft: '4px' }}
+          style={{ lineHeight: '32px', fontSize: '29.5px', letterSpacing: '0.05em', marginLeft: '4px', marginTop: '-6px' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.4 }}
         >
-          Show your process. Stay trusted.
+          Use AI. Stay human.
         </motion.span>
       </div>
     </motion.div>

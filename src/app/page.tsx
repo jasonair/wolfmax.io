@@ -42,17 +42,17 @@ function HeroSection() {
 
         {/* Main Headline */}
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8"
+          className="text-5xl md:text-6xl font-bold text-white leading-[1.1] mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          Protect your value <br /> <span className="gradient-text">in the AI age.</span>
+          Prove your process <br /><span className="text-brand-red">Protect your work</span>
         </motion.h1>
 
         <motion.div
-          className="flex flex-col items-center justify-center max-w-4xl mx-auto mb-10 space-y-8"
+          className="flex flex-col items-center justify-center max-w-4xl mx-auto mb-16 space-y-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -60,15 +60,17 @@ function HeroSection() {
         >
           {/* Benefit Block */}
           <div className="text-center space-y-4 pt-4 border-t border-white/5 w-full max-w-3xl">
-            <p className="text-xl sm:text-2xl text-white font-medium">
-              We don&apos;t want your data.
+            <p className="text-lg text-white font-medium">
+              We don&apos;t want your data
             </p>
-            <p className="text-gray-400 text-base sm:text-lg whitespace-nowrap">
-              Wolfmax captures how your work was created by humans, AI, or both locally on your device.
-            </p>
-            <p className="text-gray-400 text-base sm:text-lg mt-2 font-medium">
-              Share only what&apos;s needed to protect your credibility.
-            </p>
+            <div className="space-y-1">
+              <p className="text-gray-400 text-base whitespace-nowrap">
+                Wolfmax captures how your work was created by humans, AI, or both locally on your device
+              </p>
+              <p className="text-gray-400 text-base font-medium">
+                Share only what&apos;s needed to protect your credibility
+              </p>
+            </div>
           </div>
         </motion.div>
 
@@ -119,7 +121,7 @@ function WhyWolfmaxRotating() {
     { text: "Protect your reputation", color: "bg-brand-red" },
     { text: "Avoid false AI accusations", color: "bg-brand-purple" },
     { text: "Show your process without exposing your work", color: "bg-brand-blue" },
-    { text: "Privately review your process. Improve over time", color: "bg-brand-green" },
+    { text: "Privately review your process and improve over time", color: "bg-brand-green" },
   ];
 
   const [index, setIndex] = useState(0);
@@ -197,7 +199,7 @@ function CTASection() {
 
           {/* CTA Title */}
           <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+            className="text-4xl md:text-5xl font-bold text-white mb-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -208,23 +210,13 @@ function CTASection() {
 
           {/* CTA Description */}
           <motion.p
-            className="text-lg sm:text-xl text-gray-300 mb-3"
+            className="text-lg text-gray-400 mb-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            If your work matters, <span className="text-brand-red font-semibold italic">process</span> matters.
-          </motion.p>
-
-          <motion.p
-            className="text-base text-gray-400 mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            Join early and protect what makes your work yours.
+            If your work matters, your process matters
           </motion.p>
 
           {/* Waitlist Form */}
@@ -245,29 +237,13 @@ function CTASection() {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
-            <motion.p
-              className="text-sm text-gray-500 mb-3"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-            >
-              For creators, professionals, and students who need trust - with complete privacy.
-            </motion.p>
-            <div className="flex flex-wrap justify-center gap-8 text-sm text-gray-500">
-              <div className="flex items-center gap-2">
-                <div className="w-1 h-1 rounded-full bg-gray-500" />
-                <span>Verifiable Process</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1 h-1 rounded-full bg-gray-500" />
-                <span>Privacy First</span>
-              </div>
-            </div>
+            <p className="text-sm text-gray-500 mb-6">
+              For creators, professionals, and students — with complete privacy.
+            </p>
 
             {/* Why Wolfmax section */}
-            <div className="mt-8 text-center">
-              <h3 className="text-xl font-bold text-white mb-2">Why Wolfmax?</h3>
+            <div className="text-center">
+              <h3 className="text-base font-semibold text-white mb-2">Why Wolfmax?</h3>
               <WhyWolfmaxRotating />
             </div>
           </motion.div>
