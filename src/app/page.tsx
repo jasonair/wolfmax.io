@@ -25,16 +25,16 @@ function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 snap-start shrink-0"
+      className="relative min-h-screen min-h-[100dvh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20"
     >
       {/* {isInView && showPulse && <HeartbeatBackground />} */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Logo */}
         <motion.div
-          className="mb-12"
+          className="mb-6 sm:mb-12"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8 }}
         >
           <WolfLogoWithText className="justify-center" />
@@ -42,32 +42,32 @@ function HeroSection() {
 
         {/* Main Headline */}
         <motion.h1
-          className="text-5xl md:text-6xl font-bold text-white leading-[1.1] mb-8"
+          className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-[1.1] mb-4 sm:mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
           Prove your process <br /><span className="text-brand-red">Protect your work</span>
         </motion.h1>
 
         <motion.div
-          className="flex flex-col items-center justify-center max-w-4xl mx-auto mb-16 space-y-8"
+          className="flex flex-col items-center justify-center max-w-4xl mx-auto mb-8 sm:mb-16 space-y-4 sm:space-y-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
         >
           {/* Benefit Block */}
           <div className="text-center space-y-4 pt-4 border-t border-white/5 w-full max-w-3xl">
-            <p className="text-lg text-white font-medium">
+            <p className="text-base sm:text-lg text-white font-medium">
               We don&apos;t want your data
             </p>
             <div className="space-y-1">
-              <p className="text-gray-400 text-base whitespace-nowrap">
-                Wolfmax captures how your work was created by humans, AI, or both locally on your device
+              <p className="text-gray-400 text-sm sm:text-base">
+                Wolfmax captures how your work was created by humans, AI, or both — locally on your device
               </p>
-              <p className="text-gray-400 text-base font-medium">
+              <p className="text-gray-400 text-sm sm:text-base font-medium">
                 Share only what&apos;s needed to protect your credibility
               </p>
             </div>
@@ -78,7 +78,7 @@ function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ delay: 1.2, duration: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
@@ -89,19 +89,15 @@ function HeroSection() {
               const section = document.getElementById('early-access');
               if (section) {
                 section.scrollIntoView({ behavior: 'smooth' });
-                setTimeout(() => {
-                  const input = document.getElementById('email-input');
-                  if (input) input.focus();
-                }, 800);
               }
             }}
-            className="w-full sm:w-auto px-8 py-4 bg-brand-red text-white font-bold rounded-full hover:scale-105 transition-transform pulse-glow cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3 text-sm sm:text-base bg-brand-red text-white font-bold rounded-full hover:scale-105 transition-transform pulse-glow cursor-pointer"
           >
             Join the waitlist
           </a>
           <Link
             href="/blog"
-            className="w-full sm:w-auto px-8 py-4 bg-black text-white font-bold rounded-full border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center gap-2 group"
+            className="w-full sm:w-auto px-6 py-3 text-sm sm:text-base bg-black text-white font-bold rounded-full border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center gap-2 group"
           >
             Read Blog
             <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -166,19 +162,13 @@ function CTASection() {
     <section
       id="early-access"
       ref={ref}
-      className="relative h-screen flex flex-col px-4 sm:px-6 lg:px-8 snap-start shrink-0"
+      className="relative min-h-screen min-h-[100dvh] flex flex-col px-4 sm:px-6 lg:px-8 py-10"
     >
       <div className="flex-1 flex flex-col items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          onViewportEnter={() => {
-            // Small delay to ensure snap is settled
-            setTimeout(() => {
-              document.getElementById('email-input')?.focus();
-            }, 600);
-          }}
-          viewport={{ amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative z-10 max-w-2xl mx-auto text-center"
         >
@@ -199,10 +189,10 @@ function CTASection() {
 
           {/* CTA Title */}
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-white mb-4"
+            className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
           >
             Get Early Access
@@ -210,10 +200,10 @@ function CTASection() {
 
           {/* CTA Description */}
           <motion.p
-            className="text-lg text-gray-400 mb-10"
+            className="text-base sm:text-lg text-gray-400 mb-6 sm:mb-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
             If your work matters, your process matters
@@ -223,7 +213,7 @@ function CTASection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
             <WaitlistForm />
@@ -231,10 +221,10 @@ function CTASection() {
 
           {/* Trust indicators */}
           <motion.div
-            className="mt-8 pt-6 border-t border-white/10"
+            className="mt-4 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
             <p className="text-sm text-gray-500 mb-6">
@@ -342,7 +332,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative h-screen bg-black overflow-y-auto snap-y snap-mandatory scroll-smooth overflow-x-hidden">
+    <div className="relative min-h-screen bg-black overflow-x-hidden">
       {/* Background effects */}
       <div className="fixed inset-0 grid-bg pointer-events-none" />
       <FloatingParticles />

@@ -43,11 +43,10 @@ export function WolfLogoWithText({ className = '' }: WolfLogoWithTextProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <WolfLogo className="w-[73px] h-[90px]" animate={false} />
+      <WolfLogo className="w-[45px] h-[55px] sm:w-[73px] sm:h-[90px]" animate={false} />
       <div className="flex flex-col">
         <motion.span
-          className="text-3xl md:text-4xl font-bold text-white tracking-tight"
-          style={{ fontSize: '73px', lineHeight: '73px' }}
+          className="font-bold text-white tracking-tight text-[40px] leading-[40px] sm:text-[73px] sm:leading-[73px]"
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
@@ -55,8 +54,7 @@ export function WolfLogoWithText({ className = '' }: WolfLogoWithTextProps) {
           Wolfmax
         </motion.span>
         <motion.span
-          className="text-xs md:text-sm text-brand-red font-medium block"
-          style={{ lineHeight: '32px', fontSize: '29.5px', letterSpacing: '0.05em', marginLeft: '4px', marginTop: '-6px' }}
+          className="text-brand-red font-medium block text-[16px] leading-[20px] sm:text-[29.5px] sm:leading-[32px] tracking-[0.05em] ml-1 -mt-1 sm:-mt-1.5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.4 }}
