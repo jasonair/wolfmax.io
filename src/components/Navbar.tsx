@@ -24,6 +24,14 @@ export function Navbar() {
                     </Link>
                     <Link
                         href="/#early-access"
+                        onClick={() => {
+                            // If we're already on the home page, scrolling will happen, so focus input after
+                            if (window.location.pathname === '/') {
+                                setTimeout(() => {
+                                    document.getElementById('email-input')?.focus();
+                                }, 800);
+                            }
+                        }}
                         className="px-5 py-2.5 bg-brand-red text-white text-sm font-bold rounded-full hover:scale-105 transition-transform"
                     >
                         Get Access

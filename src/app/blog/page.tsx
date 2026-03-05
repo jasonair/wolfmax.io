@@ -4,7 +4,7 @@ import { BlogIndexClient } from "./BlogIndexClient";
 
 export const metadata: Metadata = {
     title: "Blog | Wolfmax",
-    description: "Insights on human authorship, AI verification, and the origin layer for work.",
+    description: "Insights on human authorship, AI verification, and protecting your work.",
 };
 
 export default async function BlogPage() {

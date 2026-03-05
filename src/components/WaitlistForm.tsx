@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -11,6 +11,25 @@ export function WaitlistForm({ buttonText = "Start Protecting Your Process" }: {
   const [email, setEmail] = useState('');
   const [formState, setFormState] = useState<FormState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleHashFocus = () => {
+      if (window.location.hash === '#early-access') {
+        // Small delay to allow the smooth scroll to reach the section or start
+        setTimeout(() => {
+          inputRef.current?.focus();
+        }, 800);
+      }
+    };
+
+    // Check on mount
+    handleHashFocus();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashFocus);
+    return () => window.removeEventListener('hashchange', handleHashFocus);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -181,6 +200,7 @@ export function WaitlistForm({ buttonText = "Start Protecting Your Process" }: {
               <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red via-brand-purple to-brand-blue rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
               <div className="relative flex flex-col sm:flex-row gap-3 p-1 bg-black rounded-xl border border-white/10 z-10">
                 <input
+                  ref={inputRef}
                   id="email-input"
                   type="email"
                   value={email}

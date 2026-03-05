@@ -89,6 +89,10 @@ function HeroSection() {
               const section = document.getElementById('early-access');
               if (section) {
                 section.scrollIntoView({ behavior: 'smooth' });
+                // Focus the email input after a short delay for smooth scroll
+                setTimeout(() => {
+                  document.getElementById('email-input')?.focus();
+                }, 800);
               }
             }}
             className="w-full sm:w-auto px-6 py-3 text-sm sm:text-base bg-brand-red text-white font-bold rounded-full hover:scale-105 transition-transform pulse-glow cursor-pointer"

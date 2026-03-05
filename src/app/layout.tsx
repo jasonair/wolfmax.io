@@ -4,8 +4,8 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Wolfmax - The Origin Layer for Human+AI Work",
-  description: "The Internet can't tell what's human anymore. Wolfmax is building the proof layer for human work. Every capture, every action, every piece of work is provable.",
+  title: "Wolfmax - Prove your process. Protect your work.",
+  description: "Wolfmax captures how your work was created by humans, AI, or both — locally on your device. Share only what's needed to protect your credibility.",
   keywords: ["human authorship", "AI verification", "proof of work", "content authenticity", "digital provenance"],
   authors: [{ name: "Wolfmax" }],
   icons: {
@@ -13,15 +13,15 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   openGraph: {
-    title: "Wolfmax - The Origin Layer for Human+AI Work",
-    description: "The Internet can't tell what's human anymore. Wolfmax is building the proof layer for human work.",
+    title: "Wolfmax - Prove your process. Protect your work.",
+    description: "Wolfmax captures how your work was created by humans, AI, or both — locally on your device.",
     type: "website",
     siteName: "Wolfmax",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wolfmax - The Origin Layer for Human+AI Work",
-    description: "The Internet can't tell what's human anymore. Wolfmax is building the proof layer for human work.",
+    title: "Wolfmax - Prove your process. Protect your work.",
+    description: "Wolfmax captures how your work was created by humans, AI, or both — locally on your device.",
   },
 };
 
