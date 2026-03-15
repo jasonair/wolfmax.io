@@ -4,8 +4,9 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://wolfmax.io"),
   title: "Wolfmax - Prove your process. Protect your work.",
-  description: "Wolfmax captures how your work was created by humans, AI, or both — locally on your device. Share only what's needed to protect your credibility.",
+  description: "Wolfmax captures how your work was created by humans, AI, or both locally on your device. Share only what's needed to protect your credibility.",
   keywords: ["human authorship", "AI verification", "proof of work", "content authenticity", "digital provenance"],
   authors: [{ name: "Wolfmax" }],
   icons: {
@@ -14,14 +15,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Wolfmax - Prove your process. Protect your work.",
-    description: "Wolfmax captures how your work was created by humans, AI, or both — locally on your device.",
+    description: "Wolfmax captures how your work was created by humans, AI, or both locally on your device. Share only what's needed to protect your credibility.",
     type: "website",
     siteName: "Wolfmax",
   },
   twitter: {
     card: "summary_large_image",
     title: "Wolfmax - Prove your process. Protect your work.",
-    description: "Wolfmax captures how your work was created by humans, AI, or both — locally on your device.",
+    description: "Wolfmax captures how your work was created by humans, AI, or both locally on your device. Share only what's needed to protect your credibility.",
   },
 };
 

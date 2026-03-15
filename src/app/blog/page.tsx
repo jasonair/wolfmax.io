@@ -5,6 +5,16 @@ import { BlogIndexClient } from "./BlogIndexClient";
 export const metadata: Metadata = {
     title: "Blog | Wolfmax",
     description: "Insights on human authorship, AI verification, and protecting your work.",
+    openGraph: {
+        title: "Blog | Wolfmax",
+        description: "Insights on human authorship, AI verification, and protecting your work.",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Blog | Wolfmax",
+        description: "Insights on human authorship, AI verification, and protecting your work.",
+    },
 };
 
 export default async function BlogPage() {

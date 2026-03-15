@@ -23,6 +23,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                 type: "article",
                 publishedTime: (post.publishedAt || post.createdAt).toISOString(),
             },
+            twitter: {
+                card: "summary_large_image",
+                title: post.title,
+                description: post.description || undefined,
+                images: post.image ? [post.image] : [],
+            },
         };
     } catch (error) {
         return {
