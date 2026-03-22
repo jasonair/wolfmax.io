@@ -305,6 +305,7 @@ function Footer() {
             </a>
             <div className="flex gap-6 text-sm text-gray-600">
               <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+              <Link href="/changelog" className="hover:text-white transition-colors">Changelog</Link>
               <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
               <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
               <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>

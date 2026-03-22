@@ -22,6 +22,9 @@ export function Navbar() {
                     <Link href="/blog" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
                         Blog
                     </Link>
+                    <Link href="/changelog" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+                        Changelog
+                    </Link>
                     <Link
                         href="/#early-access"
                         onClick={() => {
