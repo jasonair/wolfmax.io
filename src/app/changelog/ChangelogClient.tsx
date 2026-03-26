@@ -31,7 +31,7 @@ function parseMarkdown(md: string): string {
         // Links
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-brand-purple hover:underline">$1</a>')
         // Unordered lists
-        .replace(/^[*-] (.+)$/gm, '<li class="flex items-start gap-2 text-gray-300"><span class="text-brand-red mt-1.5 shrink-0">•</span><span>$1</span></li>')
+        .replace(/^[*-] (.+)$/gm, '<li class="flex items-baseline gap-2 text-gray-300"><span class="text-brand-red shrink-0">•</span><span>$1</span></li>')
         // Paragraphs (blank lines)
         .replace(/\n\n/g, '</p><p class="text-gray-300 leading-relaxed mb-4">')
         // Single newlines within content
