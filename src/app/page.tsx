@@ -65,7 +65,7 @@ function HeroSection() {
             </p>
             <div className="space-y-1">
               <p className="text-gray-400 text-sm sm:text-base">
-                Wolfmax captures how your work was created by humans, AI, or both - locally on your device
+                Wolfmax captures how your work was created by humans, AI, or both, locally on your device
               </p>
               <p className="text-gray-400 text-sm sm:text-base font-medium">
                 Share only what&apos;s needed to protect your credibility
@@ -232,7 +232,7 @@ function CTASection() {
             transition={{ delay: 0.6, duration: 0.6 }}
           >
             <p className="text-sm text-gray-500 mb-6">
-              For creators, professionals, and students - with complete privacy.
+              For creators, professionals, and students, with complete privacy.
             </p>
 
             {/* Why Wolfmax section */}
