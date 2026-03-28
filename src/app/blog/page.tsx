@@ -5,6 +5,9 @@ import { BlogIndexClient } from "./BlogIndexClient";
 export const metadata: Metadata = {
     title: "Blog | Wolfmax",
     description: "Insights on human authorship, AI verification, and protecting your work.",
+    alternates: {
+        canonical: "/blog",
+    },
     openGraph: {
         title: "Blog | Wolfmax",
         description: "Insights on human authorship, AI verification, and protecting your work.",

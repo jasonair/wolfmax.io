@@ -16,6 +16,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return {
             title: `${post.title} | Wolfmax Blog`,
             description: post.description || undefined,
+            alternates: {
+                canonical: `/blog/${slug}`,
+            },
             openGraph: {
                 title: post.title,
                 description: post.description || undefined,

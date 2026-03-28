@@ -4,6 +4,9 @@ import { ChangelogClient } from "./ChangelogClient";
 export const metadata: Metadata = {
     title: "Changelog | Wolfmax",
     description: "See what's new in Wolfmax. Latest updates, features, and improvements.",
+    alternates: {
+        canonical: "/changelog",
+    },
     openGraph: {
         title: "Changelog | Wolfmax",
         description: "See what's new in Wolfmax. Latest updates, features, and improvements.",

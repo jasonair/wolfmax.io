@@ -5,6 +5,9 @@ import { Navbar } from "@/components/Navbar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://wolfmax.io"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Wolfmax - Prove your process. Protect your work.",
   description: "Wolfmax captures how your work was created by humans, AI, or both locally on your device. Share only what's needed to protect your credibility.",
   keywords: ["human authorship", "AI verification", "proof of work", "content authenticity", "digital provenance"],
