@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { BlogPostClient } from "./BlogPostClient";
 
+export const revalidate = 3600; // Revalidate every hour
+
 type Props = {
     params: Promise<{ slug: string }>;
 };

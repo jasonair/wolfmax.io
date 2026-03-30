@@ -2,6 +2,8 @@ import { wisp } from "@/lib/wisp";
 import { Metadata } from "next";
 import { BlogIndexClient } from "./BlogIndexClient";
 
+export const revalidate = 3600; // Revalidate every hour
+
 export const metadata: Metadata = {
     title: "Blog | Wolfmax",
     description: "Insights on human authorship, AI verification, and protecting your work.",

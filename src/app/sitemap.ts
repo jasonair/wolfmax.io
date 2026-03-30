@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { wisp } from "@/lib/wisp";
 
+export const revalidate = 3600; // Revalidate every hour
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     {
