@@ -89,7 +89,7 @@ export function ContactForm() {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full">
       <AnimatePresence mode="wait">
         {formState === 'success' ? (
           <motion.div

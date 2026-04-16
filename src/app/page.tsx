@@ -32,7 +32,7 @@ function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-32 pb-16 sm:pt-40 sm:pb-24"
+      className="relative flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-36 pb-20 sm:pt-44 sm:pb-28"
     >
       {/* {isInView && showPulse && <HeartbeatBackground />} */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -49,7 +49,7 @@ function HeroSection() {
 
         {/* Main Headline */}
         <motion.h1
-          className="text-2xl sm:text-4xl md:text-5xl font-bold text-white leading-[1.15] mb-6 sm:mb-10"
+          className="text-4xl sm:text-6xl md:text-7xl font-bold text-white leading-[1.1] mb-6 sm:mb-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -241,84 +241,14 @@ function CTASection() {
           </motion.div>
         </motion.div>
       </div>
-      <Footer />
     </section>
-  );
-}
-
-// Footer
-function Footer() {
-  return (
-    <footer className="relative z-10 py-8 px-4 border-t border-white/5 bg-black">
-      <div className="max-w-4xl mx-auto text-center">
-        {/* Foundation Text */}
-        {/* <div className="space-y-6">
-          <p className="text-xl sm:text-2xl text-gray-300 font-light leading-relaxed">
-            Because if you&apos;re going to protect human work, <span className="text-white font-semibold">the foundation has to be real</span>.
-          </p>
-          <p className="text-xl sm:text-2xl text-gray-300 font-light leading-relaxed">
-            We&apos;re building openly, carefully, and with the people who care most about keeping the human signal alive.
-          </p>
-          <p className="text-xl sm:text-2xl text-gray-300 font-light leading-relaxed">
-            If that sounds like you, you&apos;re in the right place.
-          </p>
-        </div> */}
-
-        {/* Powered by Link */}
-        {/* <div className="pt-4">
-          <a
-            href="https://synscribe.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand-purple hover:opacity-80 transition-opacity font-medium underline underline-offset-4"
-          >
-            Powered by Synscribe
-          </a>
-        </div> */}
-
-
-
-        {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <WolfLogo className="w-8 h-8" animate={false} />
-            <span className="text-gray-600 text-sm" suppressHydrationWarning>© {new Date().getFullYear()} Wolfmax. All rights reserved.</span>
-          </div>
-          <div className="flex items-center gap-6">
-            <a
-              href="https://x.com/WolfmaxLabs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-white transition-colors"
-              aria-label="Follow us on X (Twitter)"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-            <div className="flex gap-6 text-sm text-gray-600">
-              <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-              <Link href="/changelog" className="hover:text-white transition-colors">Changelog</Link>
-              <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-              <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
-              <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
   );
 }
 
 export default function Home() {
 
   return (
-    <div className="relative min-h-screen bg-black overflow-x-hidden">
+    <div className="relative bg-black">
       {/* Background effects */}
       <div className="fixed inset-0 grid-bg pointer-events-none" />
       <FloatingParticles />

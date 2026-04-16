@@ -125,7 +125,7 @@ export function Whitepaper() {
                 transition={{ delay: 0.6, duration: 0.6 }}
               >
                 <a
-                  href="#"
+                  href="/whitepaper"
                   className="inline-flex items-center gap-2 px-6 py-3 text-sm sm:text-base bg-brand-red text-white font-bold rounded-full hover:scale-105 transition-transform pulse-glow group"
                 >
                   Read the Whitepaper

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { GradientOrbs } from "@/components/GradientOrbs";
 import { FloatingParticles } from "@/components/FloatingParticles";
-import { Navbar } from "@/components/Navbar";
 import { WolfLogo } from "@/components/WolfLogo";
 
 interface Post {
@@ -21,11 +20,9 @@ interface Post {
 
 export function BlogPostClient({ post }: { post: Post }) {
     return (
-        <div className="relative min-h-screen bg-black overflow-hidden selection:bg-brand-purple/30">
-            <Navbar />
-
+        <div className="relative bg-black selection:bg-brand-purple/30">
             {/* Background effects */}
-            <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
+            <div className="fixed inset-0 grid-bg pointer-events-none" />
             <GradientOrbs />
             <FloatingParticles />
 

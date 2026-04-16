@@ -58,9 +58,9 @@ export function ChangelogClient({ releases }: { releases: Release[] }) {
     const grouped = groupByMonth(releases);
 
     return (
-        <div className="relative min-h-screen bg-black overflow-hidden selection:bg-brand-purple/30">
+        <div className="relative bg-black selection:bg-brand-purple/30">
             {/* Background effects */}
-            <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
+            <div className="fixed inset-0 grid-bg pointer-events-none" />
             <GradientOrbs />
             <FloatingParticles />
 

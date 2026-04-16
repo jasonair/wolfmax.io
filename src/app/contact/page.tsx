@@ -9,42 +9,29 @@ import { GradientOrbs } from '@/components/GradientOrbs';
 
 export default function ContactPage() {
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
+    <div className="relative bg-black">
       {/* Background effects */}
-      <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
+      <div className="fixed inset-0 grid-bg pointer-events-none" />
       <FloatingParticles />
       <GradientOrbs />
 
       {/* Main Content */}
-      <main className="relative z-10 min-h-[calc(100vh-200px)] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-32 pb-12">
-        <div className="w-full max-w-4xl mx-auto">
+      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-24 sm:pb-32">
+        <div className="w-full">
           {/* Header */}
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: -30 }}
+          <motion.header
+            className="mb-16"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              Get in Touch
-            </motion.h1>
-            <motion.p
-              className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              Have a question or want to learn more about{' '}
-              <span className="text-white font-semibold">Wolfmax</span>?
-              <br />
-              We&apos;d love to hear from you.
-            </motion.p>
-          </motion.div>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+              Get in <span className="text-brand-red">Touch</span>
+            </h1>
+            <p className="text-gray-400 text-xl max-w-2xl leading-relaxed">
+              Have a question or want to learn more about Wolfmax? We&apos;d love to hear from you.
+            </p>
+          </motion.header>
 
           {/* Contact Form */}
           <motion.div

@@ -10,6 +10,7 @@ const navLinks = [
     { label: 'Use Cases', id: 'use-cases' },
     { label: 'Security', id: 'security' },
     { label: 'Whitepaper', id: 'whitepaper' },
+    { label: 'Verify', href: '/verify' },
     { label: 'Blog', href: '/blog' },
 ];
 
