@@ -28,7 +28,7 @@ export function FloatingParticles() {
     }, []);
 
     return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
             {particles.map((particle) => (
                 <motion.div
                     key={particle.id}

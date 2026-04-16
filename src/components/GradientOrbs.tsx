@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export function GradientOrbs() {
     return (
-        <>
+        <div className="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
             <motion.div
                 className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-brand-purple/20 blur-[100px]"
                 animate={{
@@ -43,6 +43,6 @@ export function GradientOrbs() {
                     delay: 4,
                 }}
             />
-        </>
+        </div>
     );
 }

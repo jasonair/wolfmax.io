@@ -1,12 +1,19 @@
 'use client';
 
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { WolfLogoWithText, WolfLogo } from '@/components/WolfLogo';
 import { WaitlistForm } from '@/components/WaitlistForm';
 import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FloatingParticles } from '@/components/FloatingParticles';
 import { GradientOrbs } from '@/components/GradientOrbs';
+import { HowItWorks } from '@/components/HowItWorks';
+import { SeeInAction } from '@/components/SeeInAction';
+import { BuiltForEveryone } from '@/components/BuiltForEveryone';
+import { PrivacySection } from '@/components/PrivacySection';
+import { ProcessVideos } from '@/components/ProcessVideos';
+import { Partnerships } from '@/components/Partnerships';
+import { Whitepaper } from '@/components/Whitepaper';
 
 
 
@@ -25,13 +32,13 @@ function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen min-h-[100dvh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20"
+      className="relative flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-32 pb-16 sm:pt-40 sm:pb-24"
     >
       {/* {isInView && showPulse && <HeartbeatBackground />} */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Logo */}
         <motion.div
-          className="mb-6 sm:mb-12"
+          className="mb-6 sm:mb-10"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -42,7 +49,7 @@ function HeroSection() {
 
         {/* Main Headline */}
         <motion.h1
-          className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-[1.1] mb-4 sm:mb-8"
+          className="text-2xl sm:text-4xl md:text-5xl font-bold text-white leading-[1.15] mb-6 sm:mb-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -52,7 +59,7 @@ function HeroSection() {
         </motion.h1>
 
         <motion.div
-          className="flex flex-col items-center justify-center max-w-4xl mx-auto mb-8 sm:mb-16 space-y-4 sm:space-y-8"
+          className="flex flex-col items-center justify-center max-w-4xl mx-auto mb-8 sm:mb-12 space-y-3 sm:space-y-5"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -154,19 +161,10 @@ function WhyWolfmaxRotating() {
 
 // CTA Section
 function CTASection() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-
-  // Scroll transforms removed to fix unused warnings as they aren't currently bound to elements
-
   return (
     <section
       id="early-access"
-      ref={ref}
-      className="relative min-h-screen min-h-[100dvh] flex flex-col px-4 sm:px-6 lg:px-8 py-10"
+      className="relative flex flex-col px-4 sm:px-6 lg:px-8 py-24 sm:py-32"
     >
       <div className="flex-1 flex flex-col items-center justify-center">
         <motion.div
@@ -319,23 +317,6 @@ function Footer() {
 
 export default function Home() {
 
-  useEffect(() => {
-    // Nuclear option: Lock scroll, snap to top, then unlock
-    document.documentElement.style.scrollBehavior = 'auto';
-    window.scrollTo(0, 0);
-
-    const timer = setTimeout(() => {
-      window.scrollTo(0, 0);
-      document.documentElement.style.scrollBehavior = 'smooth';
-    }, 10);
-
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="relative min-h-screen bg-black overflow-x-hidden">
       {/* Background effects */}
@@ -346,6 +327,13 @@ export default function Home() {
       {/* Content */}
       <main className="relative z-10">
         <HeroSection />
+        <HowItWorks />
+        <SeeInAction />
+        <BuiltForEveryone />
+        <PrivacySection />
+        <ProcessVideos />
+        <Partnerships />
+        <Whitepaper />
         <CTASection />
       </main>
     </div>

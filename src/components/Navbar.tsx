@@ -1,12 +1,41 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { WolfLogo } from './WolfLogo';
 
+const navLinks = [
+    { label: 'How it Works', id: 'how-it-works' },
+    { label: 'Use Cases', id: 'use-cases' },
+    { label: 'Security', id: 'security' },
+    { label: 'Whitepaper', id: 'whitepaper' },
+    { label: 'Blog', href: '/blog' },
+];
+
 export function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const scrollTo = useCallback((id: string) => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, []);
+
+    const handleNavClick = useCallback(
+        (link: (typeof navLinks)[number]) => {
+            setMenuOpen(false);
+            if (link.id) {
+                if (window.location.pathname === '/') {
+                    scrollTo(link.id);
+                } else {
+                    window.location.href = `/#${link.id}`;
+                }
+            }
+        },
+        [scrollTo],
+    );
 
     return (
         <>
@@ -18,22 +47,36 @@ export function Navbar() {
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2 group">
-                    <WolfLogo className="w-10 h-10 transition-transform group-hover:scale-110" />
-                    <span className="text-xl font-bold text-white tracking-tight">Wolfmax</span>
+                    <WolfLogo className="w-7 h-7 transition-transform group-hover:scale-110" />
+                    <span className="text-base font-bold text-white tracking-tight">Wolfmax</span>
                 </Link>
 
                 {/* Desktop nav */}
                 <div className="hidden md:flex items-center gap-8">
-                    <Link href="/blog" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
-                        Blog
-                    </Link>
-                    <Link href="/changelog" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
-                        Changelog
-                    </Link>
+                    {navLinks.map((link) =>
+                        link.href ? (
+                            <Link
+                                key={link.label}
+                                href={link.href}
+                                className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                            >
+                                {link.label}
+                            </Link>
+                        ) : (
+                            <button
+                                key={link.label}
+                                onClick={() => handleNavClick(link)}
+                                className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                            >
+                                {link.label}
+                            </button>
+                        ),
+                    )}
                     <Link
                         href="/#early-access"
                         onClick={() => {
                             if (window.location.pathname === '/') {
+                                scrollTo('early-access');
                                 setTimeout(() => {
                                     document.getElementById('email-input')?.focus();
                                 }, 800);
@@ -70,17 +113,32 @@ export function Navbar() {
                         className="md:hidden fixed inset-0 z-40 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center"
                     >
                         <div className="flex flex-col items-center gap-4">
-                            <Link href="/blog" onClick={() => setMenuOpen(false)} className="text-2xl font-medium text-gray-300 hover:text-white transition-colors py-2">
-                                Blog
-                            </Link>
-                            <Link href="/changelog" onClick={() => setMenuOpen(false)} className="text-2xl font-medium text-gray-300 hover:text-white transition-colors py-2">
-                                Changelog
-                            </Link>
+                            {navLinks.map((link) =>
+                                link.href ? (
+                                    <Link
+                                        key={link.label}
+                                        href={link.href}
+                                        onClick={() => setMenuOpen(false)}
+                                        className="text-2xl font-medium text-gray-300 hover:text-white transition-colors py-2"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ) : (
+                                    <button
+                                        key={link.label}
+                                        onClick={() => handleNavClick(link)}
+                                        className="text-2xl font-medium text-gray-300 hover:text-white transition-colors py-2"
+                                    >
+                                        {link.label}
+                                    </button>
+                                ),
+                            )}
                             <Link
                                 href="/#early-access"
                                 onClick={() => {
                                     setMenuOpen(false);
                                     if (window.location.pathname === '/') {
+                                        scrollTo('early-access');
                                         setTimeout(() => {
                                             document.getElementById('email-input')?.focus();
                                         }, 800);
