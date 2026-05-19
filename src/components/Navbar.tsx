@@ -27,9 +27,6 @@ export function Navbar() {
                     <Link href="/blog" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
                         Blog
                     </Link>
-                    <Link href="/changelog" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
-                        Changelog
-                    </Link>
                     <Link
                         href="/#early-access"
                         onClick={() => {
@@ -72,9 +69,6 @@ export function Navbar() {
                         <div className="flex flex-col items-center gap-4">
                             <Link href="/blog" onClick={() => setMenuOpen(false)} className="text-2xl font-medium text-gray-300 hover:text-white transition-colors py-2">
                                 Blog
-                            </Link>
-                            <Link href="/changelog" onClick={() => setMenuOpen(false)} className="text-2xl font-medium text-gray-300 hover:text-white transition-colors py-2">
-                                Changelog
                             </Link>
                             <Link
                                 href="/#early-access"
