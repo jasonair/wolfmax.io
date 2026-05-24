@@ -94,29 +94,39 @@ export function ContactForm() {
         {formState === 'success' ? (
           <motion.div
             key="success"
-            initial={{ opacity: 0, scale: 0.9 }}
+            role="status"
+            aria-live="polite"
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            className="text-center p-8 rounded-2xl bg-brand-green/20 border border-brand-green/30"
+            exit={{ opacity: 0, scale: 0.96 }}
+            className="text-center p-10 rounded-2xl bg-blue/[0.06] border border-blue/25"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-              className="text-5xl mb-4"
+              className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blue/10 mb-5"
             >
-              ✓
+              <svg
+                className="w-7 h-7 text-blue"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
             </motion.div>
-            <h3 className="text-2xl font-semibold text-white mb-2">
-              Message Sent!
+            <h3 className="font-display text-2xl text-navy mb-2">
+              Message Sent
             </h3>
-            <p className="text-gray-400 text-base mb-6">
-              Thanks for reaching out. We&apos;ll get back to you as soon as
-              possible.
+            <p className="text-mute text-base mb-7">
+              Thanks for reaching out. We&apos;ll get back to you as soon as possible.
             </p>
             <button
               onClick={resetForm}
-              className="px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-brand-blue/90 transition-all"
+              className="btn-blue rounded-full px-6 py-2.5 text-sm font-semibold"
             >
               Send Another Message
             </button>
@@ -132,91 +142,93 @@ export function ContactForm() {
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {/* Name Field */}
-              <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red via-brand-purple to-brand-blue rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
-                <div className="relative">
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your Name"
-                    className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-blue/50 transition-colors"
-                    disabled={formState === 'loading'}
-                    required
-                  />
-                </div>
+              <div>
+                <label htmlFor="name" className="eyebrow block mb-2">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your name"
+                  className="w-full px-4 py-3 bg-white border border-navy/10 rounded-xl text-navy placeholder:text-mute/70 focus:outline-none focus:border-blue transition-colors disabled:opacity-50"
+                  disabled={formState === 'loading'}
+                  required
+                />
               </div>
 
               {/* Email Field */}
-              <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red via-brand-purple to-brand-blue rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
-                <div className="relative">
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Your Email"
-                    className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-blue/50 transition-colors"
-                    disabled={formState === 'loading'}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Subject Field */}
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red via-brand-purple to-brand-blue rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
-              <div className="relative">
+              <div>
+                <label htmlFor="email" className="eyebrow block mb-2">
+                  Email
+                </label>
                 <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
-                  placeholder="Subject (optional)"
-                  className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-blue/50 transition-colors"
-                  disabled={formState === 'loading'}
-                />
-              </div>
-            </div>
-
-            {/* Message Field */}
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red via-brand-purple to-brand-blue rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
-              <div className="relative">
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Your Message"
-                  rows={6}
-                  className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-blue/50 transition-colors resize-none"
+                  placeholder="your@email.com"
+                  className="w-full px-4 py-3 bg-white border border-navy/10 rounded-xl text-navy placeholder:text-mute/70 focus:outline-none focus:border-blue transition-colors disabled:opacity-50"
                   disabled={formState === 'loading'}
                   required
                 />
               </div>
             </div>
 
+            {/* Subject Field */}
+            <div>
+              <label htmlFor="subject" className="eyebrow block mb-2">
+                Subject <span className="normal-case font-normal text-mute/60">(optional)</span>
+              </label>
+              <input
+                id="subject"
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                placeholder="What is this about?"
+                className="w-full px-4 py-3 bg-white border border-navy/10 rounded-xl text-navy placeholder:text-mute/70 focus:outline-none focus:border-blue transition-colors disabled:opacity-50"
+                disabled={formState === 'loading'}
+              />
+            </div>
+
+            {/* Message Field */}
+            <div>
+              <label htmlFor="message" className="eyebrow block mb-2">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Tell us how we can help…"
+                rows={6}
+                className="w-full px-4 py-3 bg-white border border-navy/10 rounded-xl text-navy placeholder:text-mute/70 focus:outline-none focus:border-blue transition-colors resize-none disabled:opacity-50"
+                disabled={formState === 'loading'}
+                required
+              />
+            </div>
+
             {/* Submit Button */}
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red via-brand-purple to-brand-blue rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
+            <div>
               <motion.button
                 type="submit"
                 disabled={formState === 'loading'}
-                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative w-full px-6 py-4 bg-brand-red text-white font-semibold rounded-xl hover:bg-brand-red/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-blue w-full sm:w-auto rounded-full px-8 py-3 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {formState === 'loading' ? (
                   <span className="flex items-center justify-center gap-2">
                     <motion.span
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                      className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                      className="inline-block w-4 h-4 border-2 border-white/40 border-t-white rounded-full"
                     />
-                    Sending...
+                    Sending…
                   </span>
                 ) : (
                   'Send Message'
@@ -227,10 +239,12 @@ export function ContactForm() {
             <AnimatePresence>
               {formState === 'error' && (
                 <motion.p
-                  initial={{ opacity: 0, y: -10 }}
+                  role="alert"
+                  aria-live="assertive"
+                  initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="text-brand-red text-sm text-center"
+                  exit={{ opacity: 0, y: -8 }}
+                  className="text-blue text-sm"
                 >
                   {errorMessage}
                 </motion.p>
@@ -242,6 +256,3 @@ export function ContactForm() {
     </div>
   );
 }
-
-
-

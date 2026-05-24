@@ -1,10 +1,8 @@
 'use client';
 
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useRef, useState } from 'react';
-import Link from 'next/link';
-import { FloatingParticles } from '@/components/FloatingParticles';
-import { GradientOrbs } from '@/components/GradientOrbs';
+import { Button } from '@/components/Button';
 
 const tocItems = [
   { id: 'abstract', label: 'Abstract', num: '' },
@@ -36,14 +34,11 @@ function SectionHeading({ id, num, children }: { id: string; num?: string; child
       transition={{ duration: 0.6 }}
     >
       {num && (
-        <span
-          className="text-xs font-bold tracking-[0.2em] uppercase block mb-3"
-          style={{ color: 'var(--brand-red)' }}
-        >
+        <span className="font-mono text-xs tracking-[0.2em] uppercase block mb-3 text-blue">
           Section {num}
         </span>
       )}
-      <h2 className="text-2xl sm:text-3xl font-bold text-white">
+      <h2 className="font-display text-2xl sm:text-3xl text-navy leading-tight">
         {children}
       </h2>
     </motion.div>
@@ -53,7 +48,7 @@ function SectionHeading({ id, num, children }: { id: string; num?: string; child
 function Prose({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      className="text-gray-300 leading-[1.85] space-y-5 text-[15px] sm:text-base"
+      className="text-navy/80 leading-[1.85] space-y-5 text-[15px] sm:text-base max-w-[70ch]"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -64,44 +59,43 @@ function Prose({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Callout({ children, color = 'var(--brand-red)' }: { children: React.ReactNode; color?: string }) {
+function Callout({ children }: { children: React.ReactNode }) {
   return (
     <motion.blockquote
-      className="relative my-10 pl-6 py-4 border-l-2"
-      style={{ borderColor: color }}
+      className="relative my-10 pl-6 py-4 border-l-2 border-blue"
       initial={{ opacity: 0, x: -10 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <p className="text-lg sm:text-xl font-medium text-white leading-relaxed italic">
+      <p className="text-lg sm:text-xl font-display text-navy leading-relaxed italic">
         {children}
       </p>
     </motion.blockquote>
   );
 }
 
-function KeyStat({ value, label, color }: { value: string; label: string; color: string }) {
+function KeyStat({ value, label, accent = false }: { value: string; label: string; accent?: boolean }) {
   return (
     <motion.div
-      className="text-center"
+      className="text-center py-2"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <span className="text-3xl sm:text-4xl font-black block" style={{ color }}>{value}</span>
-      <span className="text-xs text-gray-500 uppercase tracking-wider mt-1 block">{label}</span>
+      <span className={`text-3xl sm:text-4xl font-bold block font-display ${accent ? 'text-blue' : 'text-navy'}`}>{value}</span>
+      <span className="font-mono text-xs text-mute uppercase tracking-wider mt-1 block">{label}</span>
     </motion.div>
   );
 }
 
 function SectionDivider() {
   return (
-    <div className="my-16 flex items-center justify-center gap-2">
-      <div className="h-px w-12 bg-white/[0.06]" />
-      <div className="w-1.5 h-1.5 rounded-full bg-brand-red/40" />
-      <div className="h-px w-12 bg-white/[0.06]" />
+    <div className="my-16 flex items-center gap-3">
+      <div className="h-px flex-1 bg-navy/10" />
+      <div className="w-1.5 h-1.5 rounded-full bg-blue/40" />
+      <div className="h-px w-8 bg-navy/10" />
     </div>
   );
 }
@@ -109,36 +103,44 @@ function SectionDivider() {
 export default function WhitepaperPage() {
   const contentRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
+  const [activeId, setActiveId] = useState('abstract');
 
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, 'change', (latest) => {
     if (contentRef.current) {
-      const top = contentRef.current.offsetTop - 112; // 7rem navbar offset
+      const top = contentRef.current.offsetTop - 112;
       setIsSticky(latest >= top);
+    }
+
+    // Update active TOC item based on scroll position
+    for (let i = tocItems.length - 1; i >= 0; i--) {
+      const el = document.getElementById(tocItems[i].id);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 140) {
+          setActiveId(tocItems[i].id);
+          break;
+        }
+      }
     }
   });
 
   return (
-    <div className="relative bg-black">
-      <div className="fixed inset-0 grid-bg pointer-events-none" />
-      <FloatingParticles />
-      <GradientOrbs />
+    <div className="bg-cream">
 
-      <main className="relative z-10 pt-32 sm:pt-40 pb-24 sm:pb-32 px-4 sm:px-6 lg:px-8">
-
-        {/* Hero header */}
-        <header className="max-w-4xl mx-auto text-center mb-20 sm:mb-24">
+      {/* Navy hero band */}
+      <header className="surface-navy pt-32 sm:pt-40 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.p
-            className="text-sm font-medium tracking-widest uppercase mb-6"
-            style={{ color: 'var(--brand-red)' }}
+            className="eyebrow text-blue mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Wolfmax Whitepaper
+            Workings Whitepaper
           </motion.p>
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white leading-tight mb-8 max-w-3xl mx-auto"
+            className="font-display text-3xl sm:text-4xl md:text-[2.75rem] text-cream leading-tight mb-8 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}
@@ -151,23 +153,26 @@ export default function WhitepaperPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <span className="text-gray-400">Wolfmax Research Team</span>
-            <span className="w-1 h-1 rounded-full bg-gray-600" />
-            <span className="text-gray-600">March 2026</span>
+            <span className="text-cream/60">Workings Research Team</span>
+            <span className="w-1 h-1 rounded-full bg-cream/20" />
+            <span className="font-mono text-cream/40 text-xs">March 2026</span>
           </motion.div>
-          <motion.a
-            href="#"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-brand-red text-white font-bold rounded-full hover:scale-105 transition-transform pulse-glow"
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 18h16" />
-            </svg>
-            Download PDF
-          </motion.a>
-        </header>
+            <Button variant="blue" href="#">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 18h16" />
+              </svg>
+              Download PDF
+            </Button>
+          </motion.div>
+        </div>
+      </header>
+
+      <main className="pt-16 pb-24 sm:pb-32 px-4 sm:px-6 lg:px-8">
 
         {/* Two-column layout: TOC sidebar + content */}
         <div ref={contentRef} className="max-w-6xl mx-auto flex gap-12 lg:gap-16 relative">
@@ -180,19 +185,30 @@ export default function WhitepaperPage() {
             transition={{ delay: 0.4, duration: 0.6 }}
           >
             <nav className={isSticky ? 'fixed top-28 w-56' : ''}>
-              <p className="text-xs font-bold text-gray-600 uppercase tracking-widest mb-4">Contents</p>
-              <ul className="space-y-2.5 border-l border-white/[0.06] pl-4">
-                {tocItems.map((item) => (
-                  <li key={item.id}>
-                    <a
-                      href={`#${item.id}`}
-                      className="text-sm text-gray-500 hover:text-white transition-colors block leading-snug"
-                    >
-                      {item.num && <span className="text-gray-700 mr-1.5">{item.num}</span>}
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
+              <p className="font-mono text-xs text-mute uppercase tracking-widest mb-4">Contents</p>
+              <ul className="space-y-2.5 border-l border-navy/10 pl-4">
+                {tocItems.map((item) => {
+                  const isActive = activeId === item.id;
+                  return (
+                    <li key={item.id}>
+                      <a
+                        href={`#${item.id}`}
+                        className={`text-sm transition-colors block leading-snug ${
+                          isActive
+                            ? 'text-blue font-medium'
+                            : 'text-mute hover:text-navy'
+                        }`}
+                      >
+                        {item.num && (
+                          <span className={`font-mono mr-1.5 ${isActive ? 'text-blue' : 'text-navy/30'}`}>
+                            {item.num}
+                          </span>
+                        )}
+                        {item.label}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
           </motion.aside>
@@ -252,15 +268,15 @@ export default function WhitepaperPage() {
 
               {/* Stats highlight */}
               <motion.div
-                className="my-10 py-8 px-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] grid grid-cols-3 gap-6"
+                className="my-10 py-8 px-6 rounded-[22px] bg-cream-200 border border-navy/8 grid grid-cols-3 gap-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <KeyStat value="10-30%" label="False positive rate" color="var(--brand-red)" />
-                <KeyStat value="2x" label="Bias against non-native writers" color="var(--brand-purple)" />
-                <KeyStat value="0%" label="Accountability for false flags" color="var(--brand-blue)" />
+                <KeyStat value="10–30%" label="False positive rate" accent />
+                <KeyStat value="2×" label="Bias against non-native writers" />
+                <KeyStat value="0%" label="Accountability for false flags" />
               </motion.div>
 
               <Prose>
@@ -283,7 +299,7 @@ export default function WhitepaperPage() {
                   Verifiable process recording reframes the authenticity problem entirely. Rather than performing post-hoc statistical analysis on a finished artifact, it captures the act of creation as it unfolds. When a writer composes an essay, they produce thousands of micro-events: keystrokes, deletions, pauses, cursor movements, copy-paste actions, tab switches to research sources, and iterative revisions. This behavioural signature is extraordinarily rich and, crucially, extraordinarily difficult to fabricate.
                 </p>
               </Prose>
-              <Callout color="var(--brand-green)">
+              <Callout>
                 The difference is not statistical inference &mdash; it is direct, observable evidence.
               </Callout>
               <Prose>
@@ -291,7 +307,7 @@ export default function WhitepaperPage() {
                   A genuine human writing session exhibits characteristic patterns that reflect cognitive processes &mdash; hesitation before complex ideas, bursts of fluency during well-understood passages, recursive editing that reveals evolving thought, and research detours that inform subsequent paragraphs. An AI-generated document pasted into an editor, by contrast, appears as a single insertion event or a series of rapid paste actions with minimal revision.
                 </p>
                 <p>
-                  Wolfmax implements this concept through a lightweight local recording agent that runs alongside the user&apos;s writing environment. The agent captures process data &mdash; not content &mdash; and produces a structured, encrypted report that the user can choose to share with any requesting party.
+                  Workings implements this concept through a lightweight local recording agent that runs alongside the user&apos;s writing environment. The agent captures process data &mdash; not content &mdash; and produces a structured, encrypted report that the user can choose to share with any requesting party.
                 </p>
               </Prose>
             </section>
@@ -303,32 +319,29 @@ export default function WhitepaperPage() {
               <SectionHeading id="architecture" num="04">Technical Architecture</SectionHeading>
               <Prose>
                 <p>
-                  The Wolfmax system comprises three core components:
+                  The Workings system comprises three core components:
                 </p>
               </Prose>
 
               {/* Architecture cards */}
               <div className="my-8 grid gap-4">
                 {[
-                  { title: 'Local Capture Agent', desc: 'A system-level service that monitors designated writing environments and records process events in a structured event log. Events include keystroke timing, insertion and deletion operations, clipboard activity, window focus changes, and scroll behaviour. All capture occurs on the user\u2019s device.', color: 'var(--brand-red)' },
-                  { title: 'Encryption & Report Layer', desc: 'Transforms the raw event log into a sealed, tamper-evident process report. Each report is cryptographically signed using a key pair generated locally. Hash chains ensure the report cannot be modified after generation without detection.', color: 'var(--brand-blue)' },
-                  { title: 'Verification Interface', desc: 'Allows a third party to review the process report and assess its authenticity. Displays a timeline visualisation, key behavioural metrics, and a confidence assessment based on the richness of the recorded process.', color: 'var(--brand-green)' },
+                  { title: 'Local Capture Agent', desc: 'A system-level service that monitors designated writing environments and records process events in a structured event log. Events include keystroke timing, insertion and deletion operations, clipboard activity, window focus changes, and scroll behaviour. All capture occurs on the user’s device.' },
+                  { title: 'Encryption & Report Layer', desc: 'Transforms the raw event log into a sealed, tamper-evident process report. Each report is cryptographically signed using a key pair generated locally. Hash chains ensure the report cannot be modified after generation without detection.' },
+                  { title: 'Verification Interface', desc: 'Allows a third party to review the process report and assess its authenticity. Displays a timeline visualisation, key behavioural metrics, and a confidence assessment based on the richness of the recorded process.' },
                 ].map((card, i) => (
                   <motion.div
                     key={card.title}
-                    className="relative overflow-hidden rounded-xl bg-white/[0.02] border border-white/[0.06] p-6 flex gap-5"
+                    className="card-on-cream p-6 flex gap-5"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                   >
-                    <div
-                      className="w-1 rounded-full shrink-0"
-                      style={{ background: card.color }}
-                    />
+                    <div className="w-0.5 rounded-full shrink-0 bg-blue" />
                     <div>
-                      <h3 className="text-base font-bold text-white mb-2">{card.title}</h3>
-                      <p className="text-sm text-gray-400 leading-relaxed">{card.desc}</p>
+                      <h3 className="text-base font-semibold text-navy mb-2">{card.title}</h3>
+                      <p className="text-sm text-mute leading-relaxed">{card.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -346,18 +359,18 @@ export default function WhitepaperPage() {
             {/* Section 5 */}
             <section className="mb-16">
               <SectionHeading id="privacy" num="05">Privacy Model</SectionHeading>
-              <Callout color="var(--brand-purple)">
-                Privacy is not a secondary consideration in the Wolfmax architecture &mdash; it is a foundational design constraint.
+              <Callout>
+                Privacy is not a secondary consideration in the Workings architecture &mdash; it is a foundational design constraint.
               </Callout>
               <Prose>
                 <p>
                   The system was built on the principle that proving authorship should never require surrendering intellectual privacy. Writers routinely explore sensitive topics, draft and discard vulnerable passages, and conduct research that they may not wish to disclose.
                 </p>
                 <p>
-                  Wolfmax enforces a strict local-first model. All process data is captured, stored, and processed on the user&apos;s own device. The recording agent never transmits raw event data to any server. When the user generates a process report, they control exactly what level of detail to include: a minimal report contains only aggregate behavioural metrics, while a detailed report may include anonymised revision patterns and session timelines. At no level of detail does the report contain readable content from the user&apos;s work.
+                  Workings enforces a strict local-first model. All process data is captured, stored, and processed on the user&apos;s own device. The recording agent never transmits raw event data to any server. When the user generates a process report, they control exactly what level of detail to include: a minimal report contains only aggregate behavioural metrics, while a detailed report may include anonymised revision patterns and session timelines. At no level of detail does the report contain readable content from the user&apos;s work.
                 </p>
                 <p>
-                  Sharing is always an explicit, user-initiated action. No central database of process recordings exists, and Wolfmax has no ability to access or reconstruct a user&apos;s writing history. This architecture ensures compliance with data protection regulations and, more importantly, respects the fundamental right of creators to control their own creative records.
+                  Sharing is always an explicit, user-initiated action. No central database of process recordings exists, and Workings has no ability to access or reconstruct a user&apos;s writing history. This architecture ensures compliance with data protection regulations and, more importantly, respects the fundamental right of creators to control their own creative records.
                 </p>
               </Prose>
             </section>
@@ -369,9 +382,9 @@ export default function WhitepaperPage() {
               <SectionHeading id="use-cases" num="06">Use Cases</SectionHeading>
 
               {[
-                { num: '6.1', title: 'Education', body: 'Academic integrity is among the most pressing applications for verifiable process recording. Students can run Wolfmax during essay composition and submit a process report alongside their work, providing instructors with evidence of genuine engagement without resorting to unreliable detection tools. This shifts the dynamic from adversarial suspicion to collaborative trust.', color: 'var(--brand-blue)' },
-                { num: '6.2', title: 'Journalism and Publishing', body: 'Newsrooms and publishers face growing pressure to verify that submitted content is genuinely authored by the credited writer. Freelance journalists and contributors can use Wolfmax to provide editors with process evidence that accompanies their submissions. This is particularly valuable for investigative pieces and opinion columns where authorship credibility is paramount.', color: 'var(--brand-purple)' },
-                { num: '6.3', title: 'Creative and Professional Services', body: 'Freelance writers, copywriters, and content professionals increasingly encounter clients who question whether delivered work is human-authored. Wolfmax provides these professionals with a portable, verifiable credential that demonstrates their creative process. A process report restores agency to the creator and provides clients with meaningful assurance.', color: 'var(--brand-green)' },
+                { num: '6.1', title: 'Education', body: 'Academic integrity is among the most pressing applications for verifiable process recording. Students can run Workings during essay composition and submit a process report alongside their work, providing instructors with evidence of genuine engagement without resorting to unreliable detection tools. This shifts the dynamic from adversarial suspicion to collaborative trust.' },
+                { num: '6.2', title: 'Journalism and Publishing', body: 'Newsrooms and publishers face growing pressure to verify that submitted content is genuinely authored by the credited writer. Freelance journalists and contributors can use Workings to provide editors with process evidence that accompanies their submissions. This is particularly valuable for investigative pieces and opinion columns where authorship credibility is paramount.' },
+                { num: '6.3', title: 'Creative and Professional Services', body: 'Freelance writers, copywriters, and content professionals increasingly encounter clients who question whether delivered work is human-authored. Workings provides these professionals with a portable, verifiable credential that demonstrates their creative process. A process report restores agency to the creator and provides clients with meaningful assurance.' },
               ].map((uc, i) => (
                 <motion.div
                   key={uc.num}
@@ -382,10 +395,10 @@ export default function WhitepaperPage() {
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                 >
                   <div className="flex items-baseline gap-3 mb-3">
-                    <span className="text-2xl font-black opacity-30" style={{ color: uc.color }}>{uc.num}</span>
-                    <h3 className="text-xl font-semibold text-white">{uc.title}</h3>
+                    <span className="font-mono text-sm text-blue/50 shrink-0">{uc.num}</span>
+                    <h3 className="text-xl font-display text-navy">{uc.title}</h3>
                   </div>
-                  <p className="text-gray-300 leading-[1.85] text-[15px] sm:text-base">{uc.body}</p>
+                  <p className="text-navy/80 leading-[1.85] text-[15px] sm:text-base max-w-[70ch]">{uc.body}</p>
                 </motion.div>
               ))}
             </section>
@@ -400,7 +413,7 @@ export default function WhitepaperPage() {
                   The challenge of content authenticity in the age of generative AI will not be solved by building better classifiers. The statistical arms race between generators and detectors is structurally unwinnable, and the collateral damage of false accusations is already significant and growing.
                 </p>
                 <p>
-                  Verifiable process recording, as implemented by Wolfmax, offers this alternative. By capturing the rich behavioural signal of human creative work and packaging it in a privacy-preserving, tamper-evident format, it provides institutions, editors, and clients with meaningful assurance of authorship.
+                  Verifiable process recording, as implemented by Workings, offers this alternative. By capturing the rich behavioural signal of human creative work and packaging it in a privacy-preserving, tamper-evident format, it provides institutions, editors, and clients with meaningful assurance of authorship.
                 </p>
               </Prose>
               <Callout>
@@ -409,9 +422,9 @@ export default function WhitepaperPage() {
             </section>
 
             {/* References */}
-            <section className="mb-16 pt-12 border-t border-white/[0.06]">
+            <section className="mb-16 pt-12 border-t border-navy/10">
               <motion.h2
-                className="text-lg font-bold text-white mb-6"
+                className="font-display text-lg text-navy mb-6"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -428,9 +441,9 @@ export default function WhitepaperPage() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05 }}
                   >
-                    <span className="text-gray-600 font-mono shrink-0 w-5 text-right">{i + 1}.</span>
-                    <p className="text-gray-400">
-                      {ref.authors} ({ref.year}). &ldquo;{ref.title}.&rdquo; <em className="text-gray-300">{ref.journal}</em>.
+                    <span className="font-mono text-mute shrink-0 w-5 text-right">{i + 1}.</span>
+                    <p className="text-mute">
+                      {ref.authors} ({ref.year}). &ldquo;{ref.title}.&rdquo; <em className="text-navy/70">{ref.journal}</em>.
                     </p>
                   </motion.div>
                 ))}
@@ -439,22 +452,16 @@ export default function WhitepaperPage() {
 
             {/* Footer CTA */}
             <motion.div
-              className="text-center pt-12 border-t border-white/[0.06]"
+              className="text-center pt-12 border-t border-navy/10"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-gray-500 mb-6">Interested in learning more about Wolfmax?</p>
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 px-8 py-3 bg-brand-red text-white font-bold rounded-full hover:scale-105 transition-transform pulse-glow group"
-              >
+              <p className="text-mute mb-6">Interested in learning more about Workings?</p>
+              <Button variant="ghost-navy" href="/" withArrow>
                 Visit Homepage
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </Link>
+              </Button>
             </motion.div>
 
           </div>

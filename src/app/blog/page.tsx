@@ -5,19 +5,20 @@ import { BlogIndexClient } from "./BlogIndexClient";
 export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
-    title: "Blog | Wolfmax",
+    title: "Blog | Workings",
     description: "Insights on human authorship, AI verification, and protecting your work.",
     alternates: {
         canonical: "/blog",
     },
     openGraph: {
-        title: "Blog | Wolfmax",
+        title: "Blog | Workings",
         description: "Insights on human authorship, AI verification, and protecting your work.",
         type: "website",
+        siteName: "Workings",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Blog | Wolfmax",
+        title: "Blog | Workings",
         description: "Insights on human authorship, AI verification, and protecting your work.",
     },
 };

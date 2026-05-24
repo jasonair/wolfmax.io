@@ -1,26 +1,42 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ------------------------------------------------------------------ */
+/*  Workings brand tokens                                              */
+/* ------------------------------------------------------------------ */
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --w-blue: #0048ff;
+  --w-blue-700: #0036c2;
+  --w-navy: #0c1030;
+  --w-navy-800: #14193f;
+  --w-cream: #f5efe4;
+  --w-cream-200: #ece4d3;
+  --w-peach: #f4b89a;
+  --w-ink: #0c1030;
+  --w-mute: #5b6079;
 
-  /* Brand Colors */
-  --brand-blue: #5384ED;
-  --brand-purple: #8C1BF6;
-  --brand-yellow: #F9DD6E;
-  --brand-green: #7EFCD8;
-  --brand-red: #FF265E;
+  --background: var(--w-cream);
+  --foreground: var(--w-ink);
 }
 
+/* Expose tokens + fonts to Tailwind's utility engine */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-brand-blue: var(--brand-blue);
-  --color-brand-purple: var(--brand-purple);
-  --color-brand-yellow: var(--brand-yellow);
-  --color-brand-green: var(--brand-green);
-  --color-brand-red: var(--brand-red);
+
+  --color-blue: var(--w-blue);
+  --color-blue-700: var(--w-blue-700);
+  --color-navy: var(--w-navy);
+  --color-navy-800: var(--w-navy-800);
+  --color-cream: var(--w-cream);
+  --color-cream-200: var(--w-cream-200);
+  --color-peach: var(--w-peach);
+  --color-ink: var(--w-ink);
+  --color-mute: var(--w-mute);
+
+  --font-sans: var(--font-manrope), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "JetBrains Mono", monospace;
 }
 
 html {
@@ -30,91 +46,157 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-sans);
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Offset anchored sections below the fixed nav */
+section[id] {
+  scroll-margin-top: 5rem;
 }
 
-::-webkit-scrollbar-track {
-  background: #111;
+/* ------------------------------------------------------------------ */
+/*  Section surfaces                                                   */
+/* ------------------------------------------------------------------ */
+.surface-cream {
+  background: var(--w-cream);
+  color: var(--w-ink);
 }
 
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+.surface-navy {
+  background: var(--w-navy);
+  color: var(--w-cream);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.surface-blue {
+  background: var(--w-blue);
+  color: #ffffff;
 }
 
-/* Gradient text utility */
-.gradient-text {
-  color: var(--brand-red);
+/* ------------------------------------------------------------------ */
+/*  Eyebrow / mono label                                               */
+/* ------------------------------------------------------------------ */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-/* Animated gradient background */
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+/* ------------------------------------------------------------------ */
+/*  Serif display headline rhythm                                      */
+/* ------------------------------------------------------------------ */
+.font-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.018em;
 }
 
-.animated-gradient {
-  background: linear-gradient(-45deg, var(--brand-blue), var(--brand-purple), var(--brand-red), var(--brand-green));
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
+/* ------------------------------------------------------------------ */
+/*  CTA pills                                                          */
+/* ------------------------------------------------------------------ */
+.btn-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--w-blue);
+  color: #fff;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 8px 24px rgba(0, 72, 255, 0.18);
+}
+.btn-blue:hover {
+  background: var(--w-blue-700);
+  transform: translateY(-1px);
 }
 
-/* Glow effects */
-.glow-blue {
-  box-shadow: 0 0 20px rgba(83, 132, 237, 0.5);
+.btn-ghost-navy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: var(--w-navy);
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1.5px solid rgba(12, 16, 48, 0.25);
+  transition: border-color 0.15s, background 0.15s;
+}
+.btn-ghost-navy:hover {
+  border-color: var(--w-navy);
+  background: rgba(12, 16, 48, 0.04);
 }
 
-.glow-purple {
-  box-shadow: 0 0 20px rgba(140, 27, 246, 0.5);
+.btn-ghost-cream {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: var(--w-cream);
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1.5px solid rgba(245, 239, 228, 0.3);
+  transition: border-color 0.15s, background 0.15s;
+}
+.btn-ghost-cream:hover {
+  border-color: var(--w-cream);
+  background: rgba(245, 239, 228, 0.06);
 }
 
-.glow-red {
-  box-shadow: 0 0 20px rgba(255, 38, 94, 0.5);
+/* Peach — the warm conversion CTA (navy text on apricot) */
+.btn-peach {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--w-peach);
+  color: var(--w-navy);
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 8px 24px rgba(244, 184, 154, 0.4);
+}
+.btn-peach:hover {
+  background: #efa67f;
+  transform: translateY(-1px);
 }
 
-/* Subtle grid background */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 50px 50px;
+/* ------------------------------------------------------------------ */
+/*  Cards                                                              */
+/* ------------------------------------------------------------------ */
+.card-on-cream {
+  background: #fff;
+  border: 1px solid rgba(12, 16, 48, 0.08);
+  border-radius: 22px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.card-on-cream:hover {
+  border-color: var(--w-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(12, 16, 48, 0.06);
 }
 
-/* Pulse animation for CTA */
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(255, 38, 94, 0.4);
-  }
-
-  50% {
-    box-shadow: 0 0 40px rgba(255, 38, 94, 0.6), 0 0 60px rgba(140, 27, 246, 0.3);
-  }
+.card-on-navy {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(245, 239, 228, 0.12);
+  border-radius: 22px;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
-
-.pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+.card-on-navy:hover {
+  border-color: var(--w-blue);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 /* Fix nextjs-portal positioning - ensure it doesn't interfere with layout */
@@ -126,7 +208,7 @@ nextjs-portal {
   z-index: 9999 !important;
 }
 
-nextjs-portal>* {
+nextjs-portal > * {
   pointer-events: auto;
 }
 
@@ -135,4 +217,22 @@ nextjs-portal>* {
 .prose small:has(a[href*="synscribe.com"]),
 article a[href*="synscribe.com"] {
   display: none !important;
+}
+
+/* Intro overlay — only shown when the pre-paint script opts in ("play").
+   Without JS or when skipped, the overlay never paints and the logo is
+   visible immediately, so the page degrades gracefully. */
+#intro-overlay {
+  display: none;
+}
+html[data-intro="play"] #intro-overlay {
+  display: flex;
+}
+html[data-intro="play"] #nav-logo {
+  opacity: 0;
+}
+/* Snap to full opacity at handoff (no fade) so the real logo sits solid
+   beneath the docked lockup as it fades out — avoids a brightness dip. */
+html[data-intro="done"] #nav-logo {
+  opacity: 1;
 }

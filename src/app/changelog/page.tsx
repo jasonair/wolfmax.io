@@ -2,20 +2,21 @@ import { Metadata } from "next";
 import { ChangelogClient } from "./ChangelogClient";
 
 export const metadata: Metadata = {
-    title: "Changelog | Wolfmax",
-    description: "See what's new in Wolfmax. Latest updates, features, and improvements.",
+    title: "Changelog | Workings",
+    description: "See what's new in Workings. Latest updates, features, and improvements.",
     alternates: {
         canonical: "/changelog",
     },
     openGraph: {
-        title: "Changelog | Wolfmax",
-        description: "See what's new in Wolfmax. Latest updates, features, and improvements.",
+        title: "Changelog | Workings",
+        description: "See what's new in Workings. Latest updates, features, and improvements.",
         type: "website",
+        siteName: "Workings",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Changelog | Wolfmax",
-        description: "See what's new in Wolfmax. Latest updates, features, and improvements.",
+        title: "Changelog | Workings",
+        description: "See what's new in Workings. Latest updates, features, and improvements.",
     },
 };
 

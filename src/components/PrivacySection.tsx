@@ -1,13 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Section } from './Section';
 
 const features = [
   {
-    title: 'End-to-End Encryption',
-    description:
-      'All data is encrypted on your device before it goes anywhere. Only you hold the keys.',
-    color: 'var(--brand-green)',
+    title: 'End-to-end encryption',
+    description: 'All data is encrypted on your device before it goes anywhere. Only you hold the keys.',
     span: 'col-span-1' as const,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -17,10 +16,8 @@ const features = [
     ),
   },
   {
-    title: '100% Local Processing',
-    description:
-      'Everything runs on your machine. Your creative process never leaves your device unless you choose to share it.',
-    color: 'var(--brand-blue)',
+    title: '100% local processing',
+    description: 'Everything runs on your machine. Your creative process never leaves your device unless you choose to share it.',
     span: 'col-span-1 lg:col-span-2' as const,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -31,10 +28,8 @@ const features = [
     ),
   },
   {
-    title: 'Full Anonymity',
-    description:
-      'Use Wolfmax without revealing your identity. Prove your process without proving who you are.',
-    color: 'var(--brand-purple)',
+    title: 'Full anonymity',
+    description: 'Use Workings without revealing your identity. Prove your process without proving who you are.',
     span: 'col-span-1 lg:col-span-2' as const,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -45,10 +40,8 @@ const features = [
     ),
   },
   {
-    title: 'You Control Sharing',
-    description:
-      'You choose what to share, when to share it, and with whom. Granular control over every piece of data.',
-    color: 'var(--brand-red)',
+    title: 'You control sharing',
+    description: 'You choose what to share, when to share it, and with whom. Granular control over every piece of data.',
     span: 'col-span-1' as const,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -58,10 +51,8 @@ const features = [
     ),
   },
   {
-    title: 'Zero-Knowledge Architecture',
-    description:
-      'We literally cannot see your data. Our architecture is designed so we never have access to your content.',
-    color: 'var(--brand-green)',
+    title: 'Zero-knowledge architecture',
+    description: 'We literally cannot see your data. Our architecture is designed so we never have access to your content.',
     span: 'col-span-1 lg:col-span-2' as const,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -71,10 +62,8 @@ const features = [
     ),
   },
   {
-    title: 'Legal Protection',
-    description:
-      'Your Wolfmax reports can serve as evidence of your creative process. Built with legal defensibility in mind.',
-    color: 'var(--brand-yellow)',
+    title: 'Legal protection',
+    description: 'Your Workings reports can serve as evidence of your creative process. Built with legal defensibility in mind.',
     span: 'col-span-1' as const,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -88,72 +77,24 @@ const features = [
   },
 ];
 
-function FeatureCard({
-  item,
-  index,
-}: {
-  item: (typeof features)[number];
-  index: number;
-}) {
+function FeatureCard({ item, index }: { item: (typeof features)[number]; index: number }) {
   const isWide = item.span.includes('col-span-2');
-
   return (
     <motion.div
-      className={`relative group ${item.span}`}
-      initial={{ opacity: 0, y: 40 }}
+      className={`card-on-cream p-8 h-full ${item.span}`}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ delay: index * 0.08, duration: 0.7, ease: 'easeOut' }}
+      transition={{ delay: index * 0.07, duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/[0.06] p-8 h-full transition-all duration-500 group-hover:bg-white/[0.05] group-hover:border-white/[0.12]">
-        {/* Corner gradient accent */}
-        <div
-          className="absolute top-0 right-0 w-32 h-32 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-500"
-          style={{
-            background: `radial-gradient(circle at top right, ${item.color}, transparent 70%)`,
-          }}
-        />
-
-        {/* Wide card layout: side by side. Normal card: stacked */}
-        <div className={isWide ? 'flex items-start gap-6' : ''}>
-          {/* Icon */}
-          <motion.div
-            className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 border shrink-0"
-            style={{
-              borderColor: `color-mix(in srgb, ${item.color} 30%, transparent)`,
-              background: `color-mix(in srgb, ${item.color} 8%, transparent)`,
-              color: item.color,
-            }}
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-          >
-            {item.icon}
-          </motion.div>
-
-          <div>
-            {/* Title */}
-            <h3 className="text-lg font-bold text-white mb-2">
-              {item.title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-gray-400 text-sm leading-relaxed">
-              {item.description}
-            </p>
-          </div>
+      <div className={isWide ? 'flex items-start gap-5' : ''}>
+        <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 border border-blue/25 bg-blue/[0.06] text-blue shrink-0">
+          {item.icon}
         </div>
-
-        {/* Bottom accent line */}
-        <motion.div
-          className="absolute bottom-0 left-8 right-8 h-px"
-          style={{
-            background: `linear-gradient(90deg, transparent, ${item.color}, transparent)`,
-          }}
-          initial={{ scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 0.3 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.08 + 0.5, duration: 0.8 }}
-        />
+        <div>
+          <h3 className="text-lg font-semibold text-navy mb-2">{item.title}</h3>
+          <p className="text-mute text-sm leading-relaxed">{item.description}</p>
+        </div>
       </div>
     </motion.div>
   );
@@ -161,62 +102,18 @@ function FeatureCard({
 
 export function PrivacySection() {
   return (
-    <section id="security" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background glow for section */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(126,252,216,0.06) 0%, transparent 70%)',
-        }}
-      />
-
-      {/* Section header */}
-      <div className="relative max-w-4xl mx-auto text-center mb-16 sm:mb-20">
-        <motion.div
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-6"
-          style={{
-            borderColor: 'color-mix(in srgb, var(--brand-green) 30%, transparent)',
-            background: 'color-mix(in srgb, var(--brand-green) 5%, transparent)',
-          }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          </svg>
-          <span className="text-sm font-medium tracking-wide" style={{ color: 'var(--brand-green)' }}>
-            Privacy first
-          </span>
-        </motion.div>
-
-        <motion.h2
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-        >
-          Your Privacy is Non‑Negotiable
-        </motion.h2>
-        <motion.p
-          className="text-gray-400 text-base sm:text-lg max-w-xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          We built Wolfmax with a radical approach to privacy: we never see your data
-        </motion.p>
-      </div>
-
-      {/* Bento grid */}
-      <div className="relative max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <Section
+      surface="cream"
+      id="security"
+      eyebrow="Privacy first"
+      title="Your privacy is non-negotiable"
+      intro="We built Workings with a radical approach to privacy: we never see your data."
+    >
+      <div className="mt-16 sm:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {features.map((item, i) => (
           <FeatureCard key={item.title} item={item} index={i} />
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

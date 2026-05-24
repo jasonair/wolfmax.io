@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Verify a Report | Wolfmax",
-  description: "Verify the authenticity of a Wolfmax report. Confirm that a creative process report is genuine, untampered, and reflects real human work.",
+  title: "Verify a Report | Workings",
+  description: "Verify the authenticity of a Workings report. Confirm that a creative process report is genuine, untampered, and reflects real human work.",
   alternates: {
     canonical: "/verify",
   },

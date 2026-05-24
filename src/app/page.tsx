@@ -1,12 +1,13 @@
 'use client';
 
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { WolfLogoWithText, WolfLogo } from '@/components/WolfLogo';
+import { motion, AnimatePresence } from 'framer-motion';
 import { WaitlistForm } from '@/components/WaitlistForm';
-import { useRef, useEffect, useState } from 'react';
-import Link from 'next/link';
-import { FloatingParticles } from '@/components/FloatingParticles';
-import { GradientOrbs } from '@/components/GradientOrbs';
+import { useEffect, useState } from 'react';
+import { Logo } from '@/components/Logo';
+import { Wave } from '@/components/Wave';
+import { Squiggle } from '@/components/Squiggle';
+import { Eyebrow } from '@/components/Eyebrow';
+import { Button } from '@/components/Button';
 import { HowItWorks } from '@/components/HowItWorks';
 import { SeeInAction } from '@/components/SeeInAction';
 import { BuiltForEveryone } from '@/components/BuiltForEveryone';
@@ -15,120 +16,83 @@ import { ProcessVideos } from '@/components/ProcessVideos';
 import { Partnerships } from '@/components/Partnerships';
 import { Whitepaper } from '@/components/Whitepaper';
 
-
+function scrollToEarlyAccess() {
+  const section = document.getElementById('early-access');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => document.getElementById('email-input')?.focus(), 800);
+  }
+}
 
 // Hero Section
 function HeroSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.6 });
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => { }, 1800);
-      return () => clearTimeout(timer);
-    }
-  }, [isInView]);
-
   return (
-    <section
-      ref={ref}
-      className="relative flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-36 pb-20 sm:pt-44 sm:pb-28"
-    >
-      {/* {isInView && showPulse && <HeartbeatBackground />} */}
+    <section className="surface-cream relative overflow-hidden pt-36 pb-32 sm:pt-44 sm:pb-40 px-4 sm:px-6 lg:px-8">
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Logo */}
         <motion.div
-          className="mb-6 sm:mb-10"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          <WolfLogoWithText className="justify-center" />
+          <Eyebrow className="text-mute mb-6">The way you work</Eyebrow>
         </motion.div>
 
-        {/* Main Headline */}
         <motion.h1
-          className="text-4xl sm:text-6xl md:text-7xl font-bold text-white leading-[1.1] mb-6 sm:mb-10"
+          className="font-display text-[2.6rem] sm:text-6xl md:text-[4.4rem] text-navy mb-7"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.7 }}
         >
-          Prove your process <br /><span className="text-brand-red">Protect your work</span>
+          Prove your process.
+          <br />
+          Protect your work.
         </motion.h1>
 
-        <motion.div
-          className="flex flex-col items-center justify-center max-w-4xl mx-auto mb-8 sm:mb-12 space-y-3 sm:space-y-5"
+        <motion.p
+          className="text-base sm:text-lg text-mute max-w-2xl mx-auto leading-relaxed mb-9"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25, duration: 0.6 }}
         >
-          {/* Benefit Block */}
-          <div className="text-center space-y-4 pt-4 border-t border-white/5 w-full max-w-3xl">
-            <p className="text-base sm:text-lg text-white font-medium">
-              We don&apos;t want your data
-            </p>
-            <div className="space-y-1">
-              <p className="text-gray-400 text-sm sm:text-base">
-                Wolfmax captures how your work was created by humans, AI, or both, locally on your device
-              </p>
-              <p className="text-gray-400 text-sm sm:text-base font-medium">
-                Share only what&apos;s needed to protect your credibility
-              </p>
-            </div>
-          </div>
-        </motion.div>
+          We don&apos;t want your data. Workings captures how your work was created
+          by humans, AI, or both, locally on your device, and shares only what&apos;s
+          needed to protect your credibility.
+        </motion.p>
 
-        {/* Hero CTA Items */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a
-            href="#early-access"
-            onClick={(e) => {
-              e.preventDefault();
-              const section = document.getElementById('early-access');
-              if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-                // Focus the email input after a short delay for smooth scroll
-                setTimeout(() => {
-                  document.getElementById('email-input')?.focus();
-                }, 800);
-              }
-            }}
-            className="w-full sm:w-auto px-6 py-3 text-sm sm:text-base bg-brand-red text-white font-bold rounded-full hover:scale-105 transition-transform pulse-glow cursor-pointer"
-          >
+          <Button href="/#early-access" variant="peach" onClick={(e) => { e.preventDefault(); scrollToEarlyAccess(); }}>
             Join the waitlist
-          </a>
-          <Link
-            href="/blog"
-            className="w-full sm:w-auto px-6 py-3 text-sm sm:text-base bg-black text-white font-bold rounded-full border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center gap-2 group"
-          >
-            Read Blog
-            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </Link>
+          </Button>
+          <Button href="/blog" variant="ghost-navy" withArrow>
+            Read blog
+          </Button>
         </motion.div>
       </div>
 
-
+      {/* Brand wave */}
+      <motion.div
+        className="absolute left-0 right-0 bottom-0 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6, duration: 1 }}
+      >
+        <Wave className="w-full h-32 sm:h-44 text-blue" strokeWidth={7} />
+      </motion.div>
     </section>
   );
 }
 
-function WhyWolfmaxRotating() {
+function WhyWorkingsRotating() {
   const bullets = [
-    { text: "Protect your reputation", color: "bg-brand-red" },
-    { text: "Avoid false AI accusations", color: "bg-brand-purple" },
-    { text: "Show your process without exposing your work", color: "bg-brand-blue" },
-    { text: "Privately review your process and improve over time", color: "bg-brand-green" },
+    'Protect your reputation',
+    'Avoid false AI accusations',
+    'Show your process without exposing your work',
+    'Privately review your process and improve over time',
   ];
 
   const [index, setIndex] = useState(0);
@@ -138,7 +102,7 @@ function WhyWolfmaxRotating() {
       setIndex((prev) => (prev + 1) % bullets.length);
     }, 3000);
     return () => clearInterval(timer);
-  }, []);
+  }, [bullets.length]);
 
   return (
     <div className="h-8 flex items-center justify-center overflow-hidden">
@@ -148,11 +112,11 @@ function WhyWolfmaxRotating() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="flex items-center gap-3 text-gray-400 font-medium"
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          className="flex items-center gap-3 text-mute font-medium"
         >
-          <div className={`w-1.5 h-1.5 rounded-full ${bullets[index].color}`} />
-          <span>{bullets[index].text}</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-blue" />
+          <span>{bullets[index]}</span>
         </motion.div>
       </AnimatePresence>
     </div>
@@ -162,110 +126,52 @@ function WhyWolfmaxRotating() {
 // CTA Section
 function CTASection() {
   return (
-    <section
-      id="early-access"
-      className="relative flex flex-col px-4 sm:px-6 lg:px-8 py-24 sm:py-32"
-    >
-      <div className="flex-1 flex flex-col items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 max-w-2xl mx-auto text-center"
-        >
-          {/* Floating Wolf Icon */}
-          <motion.div
-            className="mb-4"
-            animate={{
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          >
-            <WolfLogo className="w-20 h-20 mx-auto" animate={false} />
-          </motion.div>
+    <section id="early-access" className="surface-cream px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+        className="max-w-2xl mx-auto text-center"
+      >
+        <div className="mb-6">
+          <Logo iconOnly className="w-14 h-14 mx-auto" />
+        </div>
 
-          {/* CTA Title */}
-          <motion.h2
-            className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
-          >
-            Get Early Access
-          </motion.h2>
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3">
+          Get early access
+        </h2>
+        <p className="text-base sm:text-lg text-mute mb-8">
+          If your work matters, your process matters.
+        </p>
 
-          {/* CTA Description */}
-          <motion.p
-            className="text-base sm:text-lg text-gray-400 mb-6 sm:mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            If your work matters, your process matters
-          </motion.p>
+        <WaitlistForm />
 
-          {/* Waitlist Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <WaitlistForm />
-          </motion.div>
-
-          {/* Trust indicators */}
-          <motion.div
-            className="mt-4 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-          >
-            <p className="text-sm text-gray-500 mb-6">
-              For creators, professionals, and students, with complete privacy.
-            </p>
-
-            {/* Why Wolfmax section */}
-            <div className="text-center">
-              <h3 className="text-base font-semibold text-white mb-2">Why Wolfmax?</h3>
-              <WhyWolfmaxRotating />
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
+        <div className="mt-8">
+          <Squiggle className="w-full h-8 text-blue mb-8" />
+          <p className="text-sm text-mute mb-6">
+            For creators, professionals, and students, with complete privacy.
+          </p>
+          <h3 className="text-base font-semibold text-navy mb-2">Why Workings?</h3>
+          <WhyWorkingsRotating />
+        </div>
+      </motion.div>
     </section>
   );
 }
 
 export default function Home() {
-
   return (
-    <div className="relative bg-black">
-      {/* Background effects */}
-      <div className="fixed inset-0 grid-bg pointer-events-none" />
-      <FloatingParticles />
-      <GradientOrbs />
-
-      {/* Content */}
-      <main className="relative z-10">
-        <HeroSection />
-        <HowItWorks />
-        <SeeInAction />
-        <BuiltForEveryone />
-        <PrivacySection />
-        <ProcessVideos />
-        <Partnerships />
-        <Whitepaper />
-        <CTASection />
-      </main>
-    </div>
+    <main>
+      <HeroSection />
+      <HowItWorks />
+      <SeeInAction />
+      <BuiltForEveryone />
+      <PrivacySection />
+      <ProcessVideos />
+      <Partnerships />
+      <Whitepaper />
+      <CTASection />
+    </main>
   );
 }

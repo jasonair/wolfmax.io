@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         if (!post) return {};
 
         return {
-            title: `${post.title} | Wolfmax Blog`,
+            title: `${post.title} | Workings Blog`,
             description: post.description || undefined,
             alternates: {
                 canonical: `/blog/${slug}`,
@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                 description: post.description || undefined,
                 images: post.image ? [{ url: post.image }] : [],
                 type: "article",
+                siteName: "Workings",
                 publishedTime: (post.publishedAt || post.createdAt).toISOString(),
             },
             twitter: {
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         };
     } catch (error) {
         return {
-            title: "Blog Post | Wolfmax",
+            title: "Blog Post | Workings",
         };
     }
 }

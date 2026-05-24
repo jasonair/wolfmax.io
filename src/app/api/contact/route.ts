@@ -46,13 +46,13 @@ export async function POST(request: NextRequest) {
     const recipientEmail = process.env.CONTACT_EMAIL || 'your-email@example.com';
     
     const { data, error } = await resend.emails.send({
-      from: 'Wolfmax Contact <onboarding@resend.dev>', // Works in dev/test mode without DNS verification
+      from: 'Workings Contact <onboarding@resend.dev>', // Works in dev/test mode without DNS verification
       to: recipientEmail,
       replyTo: email,
       subject: subject ? `Contact Form: ${subject}` : 'New Contact Form Submission',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333; border-bottom: 2px solid #e74c3c; padding-bottom: 10px;">
+          <h2 style="color: #0c1030; border-bottom: 2px solid #0048ff; padding-bottom: 10px;">
             New Contact Form Submission
           </h2>
           <div style="margin-top: 20px;">
@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
             </div>
           </div>
           <p style="margin-top: 20px; color: #666; font-size: 12px;">
-            This email was sent from the Wolfmax contact form.
+            This email was sent from the Workings contact form.
           </p>
         </div>
       `,

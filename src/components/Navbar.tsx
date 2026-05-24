@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { WolfLogo } from './WolfLogo';
+import { Logo } from './Logo';
 
 const navLinks = [
     { label: 'How it Works', id: 'how-it-works' },
@@ -44,12 +44,11 @@ export function Navbar() {
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.6 }}
-            className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-xl border-b border-white/5"
+            className="fixed top-0 left-0 right-0 z-50 bg-cream border-b border-navy/10"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-2 group">
-                    <WolfLogo className="w-7 h-7 transition-transform group-hover:scale-110" />
-                    <span className="text-base font-bold text-white tracking-tight">Wolfmax</span>
+                <Link href="/" id="nav-logo" className="flex items-center group" aria-label="Workings home">
+                    <Logo className="h-7 w-auto transition-transform group-hover:scale-[1.03]" />
                 </Link>
 
                 {/* Desktop nav */}
@@ -59,7 +58,7 @@ export function Navbar() {
                             <Link
                                 key={link.label}
                                 href={link.href}
-                                className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                                className="text-sm font-medium text-navy/65 hover:text-navy transition-colors"
                             >
                                 {link.label}
                             </Link>
@@ -67,7 +66,7 @@ export function Navbar() {
                             <button
                                 key={link.label}
                                 onClick={() => handleNavClick(link)}
-                                className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                                className="text-sm font-medium text-navy/65 hover:text-navy transition-colors"
                             >
                                 {link.label}
                             </button>
@@ -83,7 +82,7 @@ export function Navbar() {
                                 }, 800);
                             }
                         }}
-                        className="px-5 py-2.5 bg-brand-red text-white text-sm font-bold rounded-full hover:scale-105 transition-transform"
+                        className="btn-peach !px-5 !py-2.5 !text-sm"
                     >
                         Get Access
                     </Link>
@@ -95,9 +94,9 @@ export function Navbar() {
                     className="md:hidden relative w-10 h-10 flex items-center justify-center"
                     aria-label="Toggle menu"
                 >
-                    <span className={`absolute block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45' : '-translate-y-[5px]'}`} />
-                    <span className={`absolute block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-                    <span className={`absolute block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45' : 'translate-y-[5px]'}`} />
+                    <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? 'rotate-45' : '-translate-y-[5px]'}`} />
+                    <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+                    <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? '-rotate-45' : 'translate-y-[5px]'}`} />
                 </button>
             </div>
 
@@ -111,7 +110,7 @@ export function Navbar() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="md:hidden fixed inset-0 z-40 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center"
+                        className="md:hidden fixed inset-0 z-40 bg-cream/97 backdrop-blur-xl flex flex-col items-center justify-center"
                     >
                         <div className="flex flex-col items-center gap-4">
                             {navLinks.map((link) =>
@@ -120,7 +119,7 @@ export function Navbar() {
                                         key={link.label}
                                         href={link.href}
                                         onClick={() => setMenuOpen(false)}
-                                        className="text-2xl font-medium text-gray-300 hover:text-white transition-colors py-2"
+                                        className="text-2xl font-medium text-navy/75 hover:text-navy transition-colors py-2"
                                     >
                                         {link.label}
                                     </Link>
@@ -128,7 +127,7 @@ export function Navbar() {
                                     <button
                                         key={link.label}
                                         onClick={() => handleNavClick(link)}
-                                        className="text-2xl font-medium text-gray-300 hover:text-white transition-colors py-2"
+                                        className="text-2xl font-medium text-navy/75 hover:text-navy transition-colors py-2"
                                     >
                                         {link.label}
                                     </button>
@@ -145,7 +144,7 @@ export function Navbar() {
                                         }, 800);
                                     }
                                 }}
-                                className="mt-2 px-6 py-3.5 bg-brand-red text-white text-base font-bold rounded-full hover:scale-105 transition-transform text-center"
+                                className="btn-peach mt-2"
                             >
                                 Get Access
                             </Link>

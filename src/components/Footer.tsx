@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { WolfLogo } from './WolfLogo';
+import { Logo } from './Logo';
 
 const productLinks = [
   { label: 'How it Works', href: '/#how-it-works' },
@@ -32,13 +32,13 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h4 className="text-white font-semibold text-sm mb-4">{title}</h4>
+      <h4 className="text-cream font-semibold text-sm mb-4">{title}</h4>
       <ul className="space-y-2.5">
         {links.map((link) => (
           <li key={link.label}>
             <Link
               href={link.href}
-              className="text-sm text-gray-500 hover:text-white transition-colors"
+              className="text-sm text-cream/55 hover:text-cream transition-colors"
             >
               {link.label}
             </Link>
@@ -51,16 +51,15 @@ function FooterColumn({
 
 export function Footer() {
   return (
-    <footer className="relative z-10 border-t border-white/[0.06] bg-black">
+    <footer className="surface-navy border-t border-cream/10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 sm:gap-8">
           {/* Brand column */}
           <div className="col-span-2 sm:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-2 mb-4 group">
-              <WolfLogo className="w-7 h-7 transition-transform group-hover:scale-110" animate={false} />
-              <span className="text-base font-bold text-white tracking-tight">Wolfmax</span>
+            <Link href="/" className="inline-flex items-center mb-4 group" aria-label="Workings home">
+              <Logo variant="light" className="h-7 w-auto transition-transform group-hover:scale-[1.03]" />
             </Link>
-            <p className="text-sm text-gray-500 leading-relaxed mb-5">
+            <p className="text-sm text-cream/55 leading-relaxed mb-5">
               Prove your process.
               <br />
               Protect your work.
@@ -71,7 +70,7 @@ export function Footer() {
                 href="https://x.com/WolfmaxLabs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-gray-500 hover:text-white hover:border-white/[0.12] hover:bg-white/[0.08] transition-all"
+                className="w-9 h-9 rounded-lg bg-white/[0.04] border border-cream/10 flex items-center justify-center text-cream/55 hover:text-cream hover:border-blue hover:bg-white/[0.08] transition-all"
                 aria-label="Follow us on X"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -88,18 +87,11 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-gray-600 text-sm" suppressHydrationWarning>
-            &copy; {new Date().getFullYear()} Wolfmax. All rights reserved.
+        <div className="mt-12 pt-6 border-t border-cream/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="text-cream/45 text-sm" suppressHydrationWarning>
+            &copy; {new Date().getFullYear()} Workings. All rights reserved.
           </span>
-          <div
-            className="h-px w-8 sm:hidden"
-            style={{
-              background: 'linear-gradient(90deg, transparent, var(--brand-red), transparent)',
-              opacity: 0.3,
-            }}
-          />
-          <span className="text-gray-700 text-xs">
+          <span className="text-cream/35 text-xs">
             Built for creators, by creators.
           </span>
         </div>
