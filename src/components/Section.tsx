@@ -9,7 +9,7 @@ const introColor: Record<Surface, string> = {
 interface SectionProps {
   surface?: Surface;
   id?: string;
-  eyebrow?: string;
+  eyebrow?: React.ReactNode;
   title?: React.ReactNode;
   intro?: React.ReactNode;
   align?: "center" | "left";

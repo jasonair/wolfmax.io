@@ -1,51 +1,31 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { WaitlistForm } from '@/components/WaitlistForm';
-import { useEffect, useState } from 'react';
-import { Logo } from '@/components/Logo';
-import { Wave } from '@/components/Wave';
-import { Squiggle } from '@/components/Squiggle';
+import { motion } from 'framer-motion';
 import { Eyebrow } from '@/components/Eyebrow';
 import { Button } from '@/components/Button';
+import { Wave } from '@/components/Wave';
+import { Squiggle } from '@/components/Squiggle';
 import { HowItWorks } from '@/components/HowItWorks';
-import { SeeInAction } from '@/components/SeeInAction';
-import { BuiltForEveryone } from '@/components/BuiltForEveryone';
+import { WhoWorkingsIsFor } from '@/components/WhoWorkingsIsFor';
 import { PrivacySection } from '@/components/PrivacySection';
-import { ProcessVideos } from '@/components/ProcessVideos';
-import { Partnerships } from '@/components/Partnerships';
-import { Whitepaper } from '@/components/Whitepaper';
+import { useWaitlist } from '@/components/waitlist/WaitlistProvider';
 
-function scrollToEarlyAccess() {
-  const section = document.getElementById('early-access');
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => document.getElementById('email-input')?.focus(), 800);
-  }
-}
-
-// Hero Section
 function HeroSection() {
+  const { open } = useWaitlist();
   return (
-    <section className="surface-cream relative overflow-hidden pt-36 pb-32 sm:pt-44 sm:pb-40 px-4 sm:px-6 lg:px-8">
+    <section className="surface-cream relative overflow-hidden pt-36 pb-56 sm:pt-44 sm:pb-64 px-4 sm:px-6 lg:px-8">
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <Eyebrow className="text-mute mb-6">The way you work</Eyebrow>
         </motion.div>
 
         <motion.h1
-          className="font-display text-[2.6rem] sm:text-6xl md:text-[4.4rem] text-navy mb-7"
+          className="font-display text-[2.4rem] sm:text-6xl md:text-[4.4rem] text-navy mb-7 mx-auto max-w-[18ch]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.7 }}
         >
-          Prove your process.
-          <br />
-          Protect your work.
+          <em className="italic">Workings</em> is an authorship tool designed to privately capture the way you work.
         </motion.h1>
 
         <motion.p
@@ -54,9 +34,9 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.6 }}
         >
-          We don&apos;t want your data. Workings captures how your work was created
-          by humans, AI, or both, locally on your device, and shares only what&apos;s
-          needed to protect your credibility.
+          Create a private, high-fidelity record of how your work was made: by humans, AI, or both. Held locally, on
+          your device. Protect IP, prove it&apos;s genuinely yours, and share only what&apos;s needed to defend
+          credibility.
         </motion.p>
 
         <motion.div
@@ -65,68 +45,42 @@ function HeroSection() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button href="/#early-access" variant="peach" onClick={(e) => { e.preventDefault(); scrollToEarlyAccess(); }}>
+          <Button variant="peach" withArrow onClick={open}>
             Join the waitlist
           </Button>
-          <Button href="/blog" variant="ghost-navy" withArrow>
-            Read blog
+          <Button href="/#how-it-works" variant="ghost-navy">
+            How it works
           </Button>
         </motion.div>
       </div>
 
-      {/* Brand wave */}
       <motion.div
-        className="absolute left-0 right-0 bottom-0 pointer-events-none"
+        className="absolute left-0 right-0 bottom-8 sm:bottom-12 pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 1 }}
       >
-        <Wave className="w-full h-32 sm:h-44 text-blue" strokeWidth={7} />
+        <Wave className="w-full h-28 sm:h-40 text-blue" strokeWidth={7} />
       </motion.div>
     </section>
   );
 }
 
-function WhyWorkingsRotating() {
-  const bullets = [
-    'Protect your reputation',
-    'Avoid false AI accusations',
-    'Show your process without exposing your work',
-    'Privately review your process and improve over time',
-  ];
-
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % bullets.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [bullets.length]);
-
+function WMark() {
   return (
-    <div className="h-8 flex items-center justify-center overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={index}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.5, ease: 'easeInOut' }}
-          className="flex items-center gap-3 text-mute font-medium"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-blue" />
-          <span>{bullets[index]}</span>
-        </motion.div>
-      </AnimatePresence>
-    </div>
+    <svg viewBox="0 0 803 734" aria-hidden="true" className="w-full h-full">
+      <path
+        fill="currentColor"
+        d="M487.526,564.71c-1.764,5.439-4.461,8.737-8.562,8.737s-6.919-3.069-6.613-8.264c1.84-31.281,35.183-268.225,39.942-311.415,7.888-71.589-22.422-116.148-80.645-121.428-46.788-4.243-102.362,15.526-137.162,102.873-14.845,37.261-58.534,137.166-82.861,198.365-1.137,2.86-3.147,6.323-7.45,6.323-5.508,0-5.86-6.1-5.767-11.522.749-43.944,1.937-55.903,2.879-83.817,1.246-36.925,4.229-76.87-27.97-99.315-21.214-14.787-63.692-12.394-87.988,4.02-17.561,11.864-32.343,34.172-42.866,51.409-10.904,17.86-31.047,53.227-40.423,72.234-3.717,7.534-2.98,18.112,7.504,21.061,11.459,3.223,29.89,2.293,40.977-.38,9.865-2.378,20.342-11.874,26.522-21.347,7.611-11.665,21.021-32.149,29.541-46.576,1.192-2.018,2.849-3.949,5.327-3.821,2.793.145,3.27,2.362,3.129,4.334-1.655,23.215-5.39,69.54-6.034,122.316-.713,58.486,22.962,77.798,42.935,91.563,20.918,14.416,107.598,34.657,143.671-47.8,28.26-64.599,91.041-216.968,94.432-225.696,2.566-6.606,12.869-5.257,11.258,2.777-.958,4.775-32.08,158.441-49.384,290.956-17.304,132.515,48.848,170.482,99.979,173.437,62.246,3.597,126.087-28.911,165.263-139.072,32.763-92.13,168.239-498.459,183.954-549.608,6.238-20.304-3.31-38.326-24.149-42.452-14.079-2.788-35.325-3.339-58.084-1.645-25.187,1.874-47.002,18.344-55.896,41.98-10.123,26.904-145.878,430.569-175.46,521.772Z"
+      />
+    </svg>
   );
 }
 
-// CTA Section
-function CTASection() {
+function EarlyAccess() {
+  const { open } = useWaitlist();
   return (
-    <section id="early-access" className="surface-cream px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+    <section id="early-access" className="surface-navy px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -134,27 +88,22 @@ function CTASection() {
         transition={{ duration: 0.7, ease: 'easeOut' }}
         className="max-w-2xl mx-auto text-center"
       >
-        <div className="mb-6">
-          <Logo iconOnly className="w-14 h-14 mx-auto" />
+        <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 text-blue">
+          <WMark />
         </div>
-
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3">
-          Get early access
-        </h2>
-        <p className="text-base sm:text-lg text-mute mb-8">
+        <Eyebrow className="text-cream/55 mb-4">Get early access</Eyebrow>
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-9 mx-auto max-w-[16ch]">
           If your work matters, your process matters.
-        </p>
-
-        <WaitlistForm />
-
-        <div className="mt-8">
-          <Squiggle className="w-full h-8 text-blue mb-8" />
-          <p className="text-sm text-mute mb-6">
-            For creators, professionals, and students, with complete privacy.
-          </p>
-          <h3 className="text-base font-semibold text-navy mb-2">Why Workings?</h3>
-          <WhyWorkingsRotating />
+        </h2>
+        <div className="flex justify-center">
+          <Button variant="peach" withArrow onClick={open} className="!text-base !px-8 !py-4">
+            Join the waitlist
+          </Button>
         </div>
+        <Squiggle className="w-full max-w-2xl h-8 mx-auto mt-16 text-blue opacity-55" />
+        <p className="mt-8 text-sm text-cream/55">
+          For the people doing the real work, whoever they are — private by design.
+        </p>
       </motion.div>
     </section>
   );
@@ -165,13 +114,9 @@ export default function Home() {
     <main>
       <HeroSection />
       <HowItWorks />
-      <SeeInAction />
-      <BuiltForEveryone />
+      <WhoWorkingsIsFor />
       <PrivacySection />
-      <ProcessVideos />
-      <Partnerships />
-      <Whitepaper />
-      <CTASection />
+      <EarlyAccess />
     </main>
   );
 }

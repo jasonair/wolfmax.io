@@ -35,7 +35,7 @@
   --color-mute: var(--w-mute);
 
   --font-sans: var(--font-manrope), system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
   --font-mono: var(--font-jetbrains), ui-monospace, "JetBrains Mono", monospace;
 }
 
@@ -91,7 +91,7 @@ section[id] {
 /* ------------------------------------------------------------------ */
 .font-display {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.04;
   letter-spacing: -0.018em;
 }
@@ -197,6 +197,76 @@ section[id] {
   border-color: var(--w-blue);
   transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.06);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Waitlist form fields                                               */
+/* ------------------------------------------------------------------ */
+.wl-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--w-navy);
+  margin-bottom: 0.5rem;
+}
+.wl-input {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border-radius: 14px;
+  border: 1.5px solid rgba(12, 16, 48, 0.18);
+  background: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--w-navy);
+  transition: border-color 0.15s ease;
+}
+.wl-input::placeholder {
+  color: rgba(91, 96, 121, 0.7);
+}
+.wl-input:focus {
+  outline: 0;
+  border-color: var(--w-blue);
+}
+.wl-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230c1030' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px;
+}
+.wl-err {
+  color: #b21a3b;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+/* Refined, floating scrollbar for the waitlist form body */
+.wl-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(12, 16, 48, 0.22) transparent;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+.wl-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.wl-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.wl-scroll::-webkit-scrollbar-thumb {
+  background: rgba(12, 16, 48, 0.18);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+.wl-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(12, 16, 48, 0.34);
+  background-clip: padding-box;
 }
 
 /* Fix nextjs-portal positioning - ensure it doesn't interfere with layout */

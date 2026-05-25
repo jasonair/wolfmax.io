@@ -1,0 +1,65 @@
+# Workings
+
+> Workings is an authorship tool that privately captures how your work is made — by humans, AI, or both. It runs on your Mac or PC, records your work process locally and encrypted on your device, and produces cryptographically signed, tamper-evident reports and timelapses that prove when and how your work was made.
+
+Workings is a privacy-first alternative to AI detection. Instead of inspecting finished output and guessing whether a human or a machine produced it, Workings captures verifiable evidence of the process at the point of creation. AI detectors are statistically unreliable and disproportionately flag non-native speakers and certain writing styles; Workings avoids guessing entirely by recording how the work actually happened.
+
+The content of your work never leaves your device unless you choose to share it. Workings is built on zero-knowledge architecture — the company literally cannot read your work.
+
+## What it does
+
+- Records your work process locally: periodic screenshots across every app, and your typing rhythm (the timing of how you work, not a keystroke log).
+- Stores everything on your device, end-to-end encrypted with keys only you hold.
+- Generates verifiable reports and timelapses: a cryptographically signed summary of a session — duration, tool usage, AI use, behavioural metrics, a timeline visualisation, and a hash for verification. You control how much detail you share.
+- Lets anyone verify a report independently, with no account required, confirming it is genuine, unaltered, and tied to the specific document it accompanies.
+- Shows AI-tool usage transparently: which applications (including all known AI tools) were active, for how long, and in what order — without reading your content or judging how much of the work came from any tool.
+
+## How it works
+
+1. Install and run Workings on your Mac or PC. You decide when it is running; your work stays on your device.
+2. Work as you normally would. Workings records your process locally. Only an anonymous fingerprint ever leaves your machine, never your work — so tampering always shows.
+3. Generate a report, summary, or timelapse — all independently verifiable. Review privately, and share only what you choose.
+
+## Who it is for
+
+- **Individuals** — students, writers, creators, founders, and anyone whose authorship matters. Prove your process, protect your work, and share verifiable proof when it counts. See https://workings.io/individuals
+- **Educators / academic integrity** — a privacy-first alternative to AI detection for theses, dissertations, essays, exams, and assessments. Students attach a verifiable process report instead of being subjected to detection guesswork or invasive proctoring. Also provides private productivity insights for students and aggregate, anonymised insight into how students use AI, so academic-integrity policy can evolve on real evidence. Currently piloting with universities in the UK and Australia. See https://workings.io/institutions
+- **Businesses** — helps organisations adopt AI responsibly: track AI-policy compliance, learn AI best practice, keep humans in the loop on critical work, and understand where AI helps and where it does not. Aggregate dashboards show patterns, never individual activity — visibility and trust without surveillance. See https://workings.io/institutions
+
+## Privacy & security
+
+- Local-first and end-to-end encrypted; everything runs and stays on your device.
+- Zero-knowledge architecture: Workings never sees your raw content; even aggregate insights for organisations are computed without exposing what is underneath.
+- You stay in control: decide what to share, when, and with whom; wipe your data or whole account at any time. There is no central database of your sessions.
+- Tamper-evident: every record is cryptographically chained, so altering a single detail breaks the chain and is immediately detectable.
+- Sealed at creation: a record cannot be forged after the fact, however good future AI becomes at faking human work.
+- Quantum-strong hashing: every record is hashed with SHA-512.
+
+## Platforms & availability
+
+- Available on Windows PCs (8GB RAM) and Mac (Apple Silicon).
+- Initially available to residents of the UK, Europe, Australia, and the United States.
+- English only at launch.
+- Free during the beta, released May 2026 by invite only, with more users added over time. Join the waitlist at https://workings.io
+
+## Who created Workings
+
+Founded by seasoned product leaders from fintech, cyber, cryptography, consulting, and games. Workings combines expertise in privacy, product design, cryptography, and AI, with patent-filed technology advancing the protection of authorship. The company is Human Workings Ltd.
+
+## Key pages
+
+- [Home](https://workings.io/): what Workings is and how it works.
+- [For individuals](https://workings.io/individuals): students, writers, creators, founders.
+- [For institutions](https://workings.io/institutions): educators (#educators) and businesses (#businesses).
+- [FAQ](https://workings.io/faq): how it works, who it is for, and how data is handled.
+- [Verify a report](https://workings.io/verify): confirm a Workings report is genuine — no account needed.
+- [News](https://workings.io/news): milestones, releases, and updates.
+- [Website Privacy Policy](https://workings.io/privacy)
+- [App Privacy Policy](https://workings.io/app-privacy)
+- [Terms of use](https://workings.io/terms)
+
+## Contact
+
+- General: contact@workings.io
+- Universities: universities@workings.io
+- Business: business@workings.io

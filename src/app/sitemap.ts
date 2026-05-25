@@ -1,60 +1,43 @@
 import { MetadataRoute } from "next";
 import { wisp } from "@/lib/wisp";
+import { SITE_URL } from "@/lib/seo";
 
-export const revalidate = 3600; // Revalidate every hour
+const BASE = SITE_URL;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: "https://wolfmax.io",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: "https://wolfmax.io/blog",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: "https://wolfmax.io/changelog",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.6,
-    },
-    {
-      url: "https://wolfmax.io/contact",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: "https://wolfmax.io/privacy",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: "https://wolfmax.io/terms",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
+  const now = new Date();
+  const routes: { path: string; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]; priority: number }[] = [
+    { path: "", changeFrequency: "weekly", priority: 1 },
+    { path: "/individuals", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/institutions", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/news", changeFrequency: "weekly", priority: 0.7 },
+    { path: "/faq", changeFrequency: "monthly", priority: 0.6 },
+    { path: "/verify", changeFrequency: "monthly", priority: 0.6 },
+    { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/app-privacy", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  // Fetch blog posts for dynamic sitemap entries
-  try {
-    const result = await wisp.getPosts();
-    const blogPages: MetadataRoute.Sitemap = result.posts.map((post) => ({
-      url: `https://wolfmax.io/blog/${post.slug}`,
-      lastModified: new Date(post.updatedAt || post.createdAt),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }));
+  const staticEntries: MetadataRoute.Sitemap = routes.map((r) => ({
+    url: `${BASE}${r.path}`,
+    lastModified: now,
+    changeFrequency: r.changeFrequency,
+    priority: r.priority,
+  }));
 
-    return [...staticPages, ...blogPages];
+  // Dynamic entries for each published news post (sourced from Wisp).
+  let newsEntries: MetadataRoute.Sitemap = [];
+  try {
+    const { posts } = await wisp.getPosts();
+    newsEntries = posts.map((post) => ({
+      url: `${BASE}/news/${post.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }));
   } catch {
-    return staticPages;
+    // If Wisp is unreachable at build time, ship the static sitemap only.
   }
+
+  return [...staticEntries, ...newsEntries];
 }

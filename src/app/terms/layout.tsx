@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Workings",
-  description: "Read the Workings Terms of Service. Understand your rights and responsibilities when using our platform.",
+  title: "Terms — Workings",
+  description: "Terms of use for the workings.io website and pre-launch services — waitlist, demos, and beta access enquiries.",
   alternates: {
     canonical: "/terms",
   },

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Fraunces, Manrope, JetBrains_Mono } from "next/font/google";
+import { Newsreader, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { IntroOverlay } from "@/components/IntroOverlay";
+import { WaitlistProvider } from "@/components/waitlist/WaitlistProvider";
+import { CookieConsent } from "@/components/CookieConsent";
+import { JsonLd } from "@/components/JsonLd";
+import { SITE_URL, siteGraph } from "@/lib/seo";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -12,11 +16,12 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-newsreader",
   display: "swap",
-  axes: ["opsz", "SOFT"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -26,12 +31,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://wolfmax.io"),
+  metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
   },
-  title: "Workings - The way you work.",
-  description: "Workings is an authorship tool that privately captures how your work was made by humans, AI, or both, locally on your device. Prove your process, protect your IP, and share only what's needed.",
+  title: "Workings — The way you work.",
+  description: "Workings is an authorship tool designed to privately capture the way you work. Create a high-fidelity record of how your work was made — by humans, AI, or both — held locally on your device.",
   keywords: ["human authorship", "AI verification", "proof of work", "content authenticity", "digital provenance"],
   authors: [{ name: "Workings" }],
   icons: {
@@ -39,15 +44,16 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   openGraph: {
-    title: "Workings - The way you work.",
-    description: "Workings is an authorship tool that privately captures how your work was made by humans, AI, or both, locally on your device. Prove your process, protect your IP, and share only what's needed.",
+    title: "Workings — The way you work.",
+    description: "Workings is an authorship tool designed to privately capture the way you work. Create a high-fidelity record of how your work was made — by humans, AI, or both — held locally on your device.",
+    url: "/",
     type: "website",
     siteName: "Workings",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Workings - The way you work.",
-    description: "Workings is an authorship tool that privately captures how your work was made by humans, AI, or both, locally on your device. Prove your process, protect your IP, and share only what's needed.",
+    title: "Workings — The way you work.",
+    description: "Workings is an authorship tool designed to privately capture the way you work.",
   },
 };
 
@@ -62,9 +68,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${manrope.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+      className={`${manrope.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
     >
       <body className="antialiased">
+        <JsonLd data={siteGraph} />
         {/* Decide before first paint whether to play the intro, so neither the
             overlay nor the bare logo flashes. Plays on every load; skips only
             when the user prefers reduced motion. */}
@@ -90,9 +97,12 @@ export default function RootLayout({
             </Script>
           </>
         )}
-        <Navbar />
-        {children}
-        <Footer />
+        <WaitlistProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </WaitlistProvider>
+        <CookieConsent />
       </body>
     </html>
   );

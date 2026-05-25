@@ -1,157 +1,158 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Logo } from './Logo';
+import { useWaitlist } from './waitlist/WaitlistProvider';
 
-const navLinks = [
-    { label: 'How it Works', id: 'how-it-works' },
-    { label: 'Use Cases', id: 'use-cases' },
-    { label: 'Security', id: 'security' },
-    { label: 'Whitepaper', id: 'whitepaper' },
-    { label: 'Verify', href: '/verify' },
-    { label: 'Blog', href: '/blog' },
+type NavLink =
+  | { label: string; href: string }
+  | { label: string; href: string; children: { label: string; href: string }[] };
+
+const navLinks: NavLink[] = [
+  { label: 'How it works', href: '/#how-it-works' },
+  { label: 'Individuals', href: '/individuals' },
+  {
+    label: 'Institutions',
+    href: '/institutions',
+    children: [
+      { label: 'Education', href: '/institutions#educators' },
+      { label: 'Business', href: '/institutions#businesses' },
+    ],
+  },
+  { label: 'News', href: '/news' },
 ];
 
 export function Navbar() {
-    const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { open: openWaitlist } = useWaitlist();
 
-    const scrollTo = useCallback((id: string) => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-        }
-    }, []);
+  return (
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="fixed top-0 left-0 right-0 z-50 bg-cream border-b border-navy/10"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[68px] flex items-center justify-between">
+          <Link href="/" id="nav-logo" className="flex items-center group" aria-label="Workings home">
+            <Logo className="h-7 w-auto transition-transform group-hover:scale-[1.03]" />
+          </Link>
 
-    const handleNavClick = useCallback(
-        (link: (typeof navLinks)[number]) => {
-            setMenuOpen(false);
-            if (link.id) {
-                if (window.location.pathname === '/') {
-                    scrollTo(link.id);
-                } else {
-                    window.location.href = `/#${link.id}`;
-                }
-            }
-        },
-        [scrollTo],
-    );
-
-    return (
-        <>
-        <motion.nav
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="fixed top-0 left-0 right-0 z-50 bg-cream border-b border-navy/10"
-        >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-                <Link href="/" id="nav-logo" className="flex items-center group" aria-label="Workings home">
-                    <Logo className="h-7 w-auto transition-transform group-hover:scale-[1.03]" />
-                </Link>
-
-                {/* Desktop nav */}
-                <div className="hidden md:flex items-center gap-8">
-                    {navLinks.map((link) =>
-                        link.href ? (
-                            <Link
-                                key={link.label}
-                                href={link.href}
-                                className="text-sm font-medium text-navy/65 hover:text-navy transition-colors"
-                            >
-                                {link.label}
-                            </Link>
-                        ) : (
-                            <button
-                                key={link.label}
-                                onClick={() => handleNavClick(link)}
-                                className="text-sm font-medium text-navy/65 hover:text-navy transition-colors"
-                            >
-                                {link.label}
-                            </button>
-                        ),
-                    )}
-                    <Link
-                        href="/#early-access"
-                        onClick={() => {
-                            if (window.location.pathname === '/') {
-                                scrollTo('early-access');
-                                setTimeout(() => {
-                                    document.getElementById('email-input')?.focus();
-                                }, 800);
-                            }
-                        }}
-                        className="btn-peach !px-5 !py-2.5 !text-sm"
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-7">
+            {navLinks.map((link) =>
+              'children' in link ? (
+                <div key={link.label} className="relative group">
+                  <Link
+                    href={link.href}
+                    className="flex items-center gap-1 text-sm font-medium text-navy/80 hover:text-navy transition-colors py-5"
+                  >
+                    {link.label}
+                    <svg
+                      width="11"
+                      height="11"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="opacity-70 transition-transform group-hover:rotate-180"
                     >
-                        Get Access
-                    </Link>
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </Link>
+                  <div className="absolute left-0 top-full pt-1 opacity-0 invisible translate-y-1 transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                    <div className="min-w-[200px] rounded-2xl border border-navy/10 bg-cream/98 backdrop-blur-md p-2 shadow-[0_18px_48px_rgba(12,16,48,0.12)]">
+                      {link.children.map((c) => (
+                        <Link
+                          key={c.label}
+                          href={c.href}
+                          className="block rounded-xl px-4 py-2.5 text-sm text-navy/80 hover:bg-blue/[0.08] hover:text-blue transition-colors"
+                        >
+                          {c.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-
-                {/* Mobile hamburger */}
-                <button
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    className="md:hidden relative w-10 h-10 flex items-center justify-center"
-                    aria-label="Toggle menu"
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm font-medium text-navy/80 hover:text-navy transition-colors"
                 >
-                    <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? 'rotate-45' : '-translate-y-[5px]'}`} />
-                    <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-                    <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? '-rotate-45' : 'translate-y-[5px]'}`} />
-                </button>
+                  {link.label}
+                </Link>
+              ),
+            )}
+            <button onClick={openWaitlist} className="btn-peach !px-5 !py-2.5 !text-sm">
+              Join waitlist
+            </button>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden relative w-10 h-10 flex items-center justify-center"
+            aria-label="Toggle menu"
+          >
+            <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? 'rotate-45' : '-translate-y-[5px]'}`} />
+            <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? '-rotate-45' : 'translate-y-[5px]'}`} />
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Full-screen mobile menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed inset-0 z-40 bg-cream/97 backdrop-blur-xl flex flex-col items-center justify-center"
+          >
+            <div className="flex flex-col items-center gap-3">
+              {navLinks.map((link) => (
+                <div key={link.label} className="flex flex-col items-center">
+                  <Link
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-2xl font-medium text-navy/80 hover:text-navy transition-colors py-1.5"
+                  >
+                    {link.label}
+                  </Link>
+                  {'children' in link &&
+                    link.children.map((c) => (
+                      <Link
+                        key={c.label}
+                        href={c.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="text-base text-navy/55 hover:text-navy transition-colors py-1"
+                      >
+                        — {c.label}
+                      </Link>
+                    ))}
+                </div>
+              ))}
+              <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  openWaitlist();
+                }}
+                className="btn-peach mt-4"
+              >
+                Join waitlist
+              </button>
             </div>
-
-        </motion.nav>
-
-            {/* Full-screen mobile menu */}
-            <AnimatePresence>
-                {menuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="md:hidden fixed inset-0 z-40 bg-cream/97 backdrop-blur-xl flex flex-col items-center justify-center"
-                    >
-                        <div className="flex flex-col items-center gap-4">
-                            {navLinks.map((link) =>
-                                link.href ? (
-                                    <Link
-                                        key={link.label}
-                                        href={link.href}
-                                        onClick={() => setMenuOpen(false)}
-                                        className="text-2xl font-medium text-navy/75 hover:text-navy transition-colors py-2"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                ) : (
-                                    <button
-                                        key={link.label}
-                                        onClick={() => handleNavClick(link)}
-                                        className="text-2xl font-medium text-navy/75 hover:text-navy transition-colors py-2"
-                                    >
-                                        {link.label}
-                                    </button>
-                                ),
-                            )}
-                            <Link
-                                href="/#early-access"
-                                onClick={() => {
-                                    setMenuOpen(false);
-                                    if (window.location.pathname === '/') {
-                                        scrollTo('early-access');
-                                        setTimeout(() => {
-                                            document.getElementById('email-input')?.focus();
-                                        }, 800);
-                                    }
-                                }}
-                                className="btn-peach mt-2"
-                            >
-                                Get Access
-                            </Link>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </>
-    );
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }

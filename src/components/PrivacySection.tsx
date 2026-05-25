@@ -3,99 +3,81 @@
 import { motion } from 'framer-motion';
 import { Section } from './Section';
 
-const features = [
+type Feature = { title: string; description: string; icon: React.ReactNode };
+
+const privacy: Feature[] = [
   {
-    title: 'End-to-end encryption',
-    description: 'All data is encrypted on your device before it goes anywhere. Only you hold the keys.',
-    span: 'col-span-1' as const,
+    title: 'Local-first, encrypted',
+    description:
+      'Everything runs and stays on your device, encrypted with keys only you hold. No one else can read it — including us.',
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-      </svg>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
     ),
   },
   {
-    title: '100% local processing',
-    description: 'Everything runs on your machine. Your creative process never leaves your device unless you choose to share it.',
-    span: 'col-span-1 lg:col-span-2' as const,
+    title: 'You stay in control',
+    description:
+      'Decide what to share, when, and with whom. Wipe your data or your whole account whenever you want. Nothing leaves, and nothing lingers, without your say-so.',
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-        <line x1="8" y1="21" x2="16" y2="21" />
-        <line x1="12" y1="17" x2="12" y2="21" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Full anonymity',
-    description: 'Use Workings without revealing your identity. Prove your process without proving who you are.',
-    span: 'col-span-1 lg:col-span-2' as const,
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-        <line x1="12" y1="17" x2="12.01" y2="17" />
-      </svg>
-    ),
-  },
-  {
-    title: 'You control sharing',
-    description: 'You choose what to share, when to share it, and with whom. Granular control over every piece of data.',
-    span: 'col-span-1' as const,
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-        <circle cx="12" cy="12" r="3" />
-      </svg>
+      <>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+      </>
     ),
   },
   {
     title: 'Zero-knowledge architecture',
-    description: 'We literally cannot see your data. Our architecture is designed so we never have access to your content.',
-    span: 'col-span-1 lg:col-span-2' as const,
+    description:
+      "We're built so we never see your raw content. Even the aggregate insights organisations rely on are computed without exposing what's underneath.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <polyline points="9 12 12 15 16 10" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Legal protection',
-    description: 'Your Workings reports can serve as evidence of your creative process. Built with legal defensibility in mind.',
-    span: 'col-span-1' as const,
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <polyline points="14 2 14 8 20 8" />
-        <line x1="16" y1="13" x2="8" y2="13" />
-        <line x1="16" y1="17" x2="8" y2="17" />
-        <polyline points="10 9 9 9 8 9" />
-      </svg>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
     ),
   },
 ];
 
-function FeatureCard({ item, index }: { item: (typeof features)[number]; index: number }) {
-  const isWide = item.span.includes('col-span-2');
+const integrity: Feature[] = [
+  {
+    title: 'Sealed against future AI forgery',
+    description:
+      "Sealed the moment it's made, a record can't be forged after the fact. However good future AI gets at faking human work, it can't reach back.",
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    ),
+  },
+  {
+    title: 'Tamper-evident',
+    description:
+      "Every record is cryptographically chained — altering even a single detail breaks the chain and is immediately detectable. A record either verifies intact, or it doesn't verify.",
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3M9 4.5L4.5 9 9 13.5" />
+    ),
+  },
+  {
+    title: 'Quantum-strong hashing',
+    description:
+      'Every record is hashed with SHA-512, a standard strong enough to stay secure even against quantum computers.',
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+    ),
+  },
+];
+
+function FeatureCard({ item, index }: { item: Feature; index: number }) {
   return (
     <motion.div
-      className={`card-on-cream p-8 h-full ${item.span}`}
+      className="card-on-navy p-7 sm:p-8 h-full"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ delay: index * 0.07, duration: 0.6, ease: 'easeOut' }}
     >
-      <div className={isWide ? 'flex items-start gap-5' : ''}>
-        <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 border border-blue/25 bg-blue/[0.06] text-blue shrink-0">
+      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue/[0.18] text-blue mb-5">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           {item.icon}
-        </div>
-        <div>
-          <h3 className="text-lg font-semibold text-navy mb-2">{item.title}</h3>
-          <p className="text-mute text-sm leading-relaxed">{item.description}</p>
-        </div>
+        </svg>
       </div>
+      <h3 className="text-lg font-bold text-cream mb-2.5 leading-snug">{item.title}</h3>
+      <p className="text-cream/70 text-sm leading-relaxed">{item.description}</p>
     </motion.div>
   );
 }
@@ -103,14 +85,27 @@ function FeatureCard({ item, index }: { item: (typeof features)[number]; index: 
 export function PrivacySection() {
   return (
     <Section
-      surface="cream"
+      surface="navy"
       id="security"
-      eyebrow="Privacy first"
-      title="Your privacy is non-negotiable"
-      intro="We built Workings with a radical approach to privacy: we never see your data."
+      eyebrow="Privacy & security"
+      title="Your privacy is non-negotiable."
+      intro={
+        <>
+          Your work is yours; it&apos;s local, and we can&apos;t read it. <em className="italic">Workings</em> is built
+          not just for today&apos;s threats, but for what comes after.
+        </>
+      }
     >
-      <div className="mt-16 sm:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {features.map((item, i) => (
+      <p className="eyebrow text-cream/55 text-center mt-16 mb-6">Privacy</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+        {privacy.map((item, i) => (
+          <FeatureCard key={item.title} item={item} index={i} />
+        ))}
+      </div>
+
+      <p className="eyebrow text-cream/55 text-center mt-12 mb-6">Integrity &amp; durability</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+        {integrity.map((item, i) => (
           <FeatureCard key={item.title} item={item} index={i} />
         ))}
       </div>

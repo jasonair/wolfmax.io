@@ -1,184 +1,193 @@
 import Link from 'next/link';
+import { LegalShell } from '@/components/LegalShell';
 
 export default function PrivacyPage() {
   return (
-    <div className="surface-cream min-h-screen">
-      <main className="max-w-[72ch] mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-24 sm:pb-32">
-        {/* Header */}
-        <header className="mb-16">
-          <p className="eyebrow mb-4">Legal</p>
-          <h1 className="font-display text-5xl sm:text-6xl text-navy leading-tight mb-6">
-            Privacy Policy
-          </h1>
-          <p className="text-mute text-lg">Last updated: February 8, 2026</p>
-        </header>
+    <LegalShell
+      eyebrow={<>Legal · workings.io</>}
+      title="Website privacy policy."
+      meta="Last updated: 01 April 2026 · Effective immediately"
+      note={
+        <>
+          For the <em>Workings</em> desktop application privacy policy (the local recording engine, encryption,
+          zero-knowledge architecture), see <Link href="/app-privacy">App privacy policy</Link>.
+        </>
+      }
+      lead={
+        <>
+          This policy explains how Human <em>Workings</em> Ltd (&quot;<em>Workings</em>&quot;, &quot;we&quot;,
+          &quot;us&quot;) collects and uses personal data when you visit <strong>workings.io</strong> or interact with us
+          via this website. It is written to comply with the UK General Data Protection Regulation (UK GDPR), the EU
+          General Data Protection Regulation (EU GDPR), and the UK Data Protection Act 2018.
+        </>
+      }
+    >
+      <h2>1. Who we are (data controller)</h2>
+      <p>The data controller for personal information collected through this website is:</p>
+      <p>
+        <strong>Human Workings Ltd</strong>
+        <br />
+        Registered in England &amp; Wales · Company number to be confirmed
+        <br />
+        Contact: <a href="mailto:privacy@workings.io">privacy@workings.io</a>
+      </p>
 
-        {/* Content */}
-        <div className="prose prose-headings:font-display prose-headings:text-navy prose-p:text-navy/80 prose-a:text-blue prose-strong:text-navy prose-li:text-navy/80 prose-lg max-w-none">
-          {/* Introduction */}
-          <section>
-            <h2>Introduction</h2>
-            <p>
-              At Workings (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), we are committed to protecting your privacy.
-              This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use
-              our services, including our website, platform, and any related services (collectively, the &quot;Service&quot;).
-            </p>
-            <p>
-              By using our Service, you agree to the collection and use of information in accordance with this policy.
-              If you do not agree with our policies and practices, please do not use our Service.
-            </p>
-          </section>
+      <h2>2. What we collect</h2>
+      <p>
+        We deliberately collect as little personal data as possible. The only personal data we routinely collect through
+        this website is:
+      </p>
+      <ul>
+        <li>
+          <strong>Waitlist / early-access email address</strong> — when you submit the form on our home page, we store
+          your email address so we can notify you about the Workings beta and product launch.
+        </li>
+        <li>
+          <strong>Email correspondence</strong> — when you email us (contact, careers, universities, security, privacy),
+          we receive your email address and the content of your message.
+        </li>
+        <li>
+          <strong>Consent &amp; preference signals</strong> — a small browser storage record of your cookie / consent
+          choice, so we don&apos;t ask you again.
+        </li>
+      </ul>
+      <p>
+        We do <strong>not</strong> use third-party analytics, advertising trackers, social-media pixels, session replay,
+        fingerprinting, or any cross-site tracking on this website.
+      </p>
 
-          {/* Information We Collect */}
-          <section>
-            <h2>Information We Collect</h2>
+      <h2>3. Lawful basis for processing</h2>
+      <ul>
+        <li>
+          <strong>Waitlist email:</strong> Article 6(1)(a) UK/EU GDPR — your <em>consent</em>, given when you tick the
+          consent box and submit the waitlist form. You may withdraw consent at any time by emailing{' '}
+          <a href="mailto:privacy@workings.io">privacy@workings.io</a> or by unsubscribing from any email we send.
+        </li>
+        <li>
+          <strong>Correspondence you send us:</strong> Article 6(1)(f) — our <em>legitimate interest</em> in responding
+          to your enquiry.
+        </li>
+        <li>
+          <strong>Essential consent storage:</strong> Article 6(1)(f) — legitimate interest in honouring your privacy
+          preferences.
+        </li>
+      </ul>
 
-            <h3>Information You Provide to Us</h3>
-            <ul>
-              <li><strong>Account Information:</strong> When you create an account, we collect your name, email address, and any other information you choose to provide.</li>
-              <li><strong>Contact Information:</strong> When you contact us or join our waitlist, we collect your name, email address, and any message content.</li>
-              <li><strong>Work Content:</strong> When you use our Service to create or verify work, we collect the content you submit, including files, metadata, and associated proof data.</li>
-              <li><strong>Usage Data:</strong> We collect information about how you interact with our Service, including features used, time spent, and actions taken.</li>
-            </ul>
+      <h2>4. Cookies &amp; local storage</h2>
+      <p>
+        This website uses <strong>essential storage only</strong>. We do not set any cookies for analytics, advertising,
+        or tracking.
+      </p>
+      <p>The only data we store in your browser is:</p>
+      <ul>
+        <li>
+          <code>workings_consent</code> — records that you&apos;ve seen and acknowledged our cookie notice (expires after
+          12 months).
+        </li>
+      </ul>
+      <p>
+        You can clear this at any time through your browser&apos;s site-data controls. We will not set any non-essential
+        cookies unless and until we ask you for separate, freely given, specific consent.
+      </p>
 
-            <h3>Automatically Collected Information</h3>
-            <ul>
-              <li><strong>Device Information:</strong> We collect information about your device, including IP address, browser type, operating system, and device identifiers.</li>
-              <li><strong>Log Data:</strong> We automatically collect log information when you use our Service, including access times, pages viewed, and error logs.</li>
-              <li><strong>Cookies and Tracking Technologies:</strong> We use cookies and similar tracking technologies to track activity on our Service and store certain information.</li>
-            </ul>
-          </section>
+      <h2>5. How long we keep your data</h2>
+      <ul>
+        <li>
+          <strong>Waitlist email:</strong> until you ask us to remove it, or for up to 24 months after the public launch
+          of Workings — whichever comes first.
+        </li>
+        <li>
+          <strong>Email correspondence:</strong> for as long as needed to answer your enquiry and for up to 24 months
+          thereafter for service continuity.
+        </li>
+        <li>
+          <strong>Consent storage:</strong> 12 months, then re-prompted.
+        </li>
+      </ul>
 
-          {/* How We Use Your Information */}
-          <section>
-            <h2>How We Use Your Information</h2>
-            <p>We use the information we collect for various purposes, including:</p>
-            <ul>
-              <li>To provide, maintain, and improve our Service</li>
-              <li>To process and verify proof of work and authorship claims</li>
-              <li>To communicate with you about your account, our Service, or updates</li>
-              <li>To respond to your inquiries, comments, or requests</li>
-              <li>To send you marketing communications (with your consent)</li>
-              <li>To detect, prevent, and address technical issues and security threats</li>
-              <li>To comply with legal obligations and enforce our terms</li>
-              <li>To analyze usage patterns and improve user experience</li>
-            </ul>
-          </section>
+      <h2>6. Who we share data with</h2>
+      <p>We use a small number of trusted processors to operate this website and our email list:</p>
+      <ul>
+        <li>
+          <strong>Hosting &amp; CDN provider</strong> — static site hosting and content delivery. Bound by SCCs &amp; UK
+          IDTA where applicable.
+        </li>
+        <li>
+          <strong>Email service provider</strong> — for waitlist and transactional email. Provider to be confirmed
+          before list activation; will be a GDPR-compliant processor with appropriate data-transfer safeguards.
+        </li>
+      </ul>
+      <p>
+        We do <strong>not</strong> sell, rent, or share your personal data with anyone for advertising or marketing
+        purposes.
+      </p>
+      <p>
+        If a processor is located outside the UK / EEA, we ensure appropriate safeguards are in place (Standard
+        Contractual Clauses, UK International Data Transfer Addendum, or an adequacy decision).
+      </p>
 
-          {/* Information Sharing and Disclosure */}
-          <section>
-            <h2>Information Sharing and Disclosure</h2>
-            <p>We do not sell your personal information. We may share your information in the following circumstances:</p>
-            <ul>
-              <li><strong>Service Providers:</strong> We may share information with third-party service providers who perform services on our behalf, such as hosting, analytics, and customer support.</li>
-              <li><strong>Legal Requirements:</strong> We may disclose information if required by law or in response to valid requests by public authorities.</li>
-              <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
-              <li><strong>With Your Consent:</strong> We may share your information with your explicit consent or at your direction.</li>
-              <li><strong>Public Proof Data:</strong> When you create verifiable proof of work, certain cryptographic proofs and metadata may be publicly accessible as part of the verification system.</li>
-            </ul>
-          </section>
+      <h2>7. Your rights</h2>
+      <p>Under UK and EU GDPR, you have the right to:</p>
+      <ul>
+        <li>
+          <strong>Access</strong> the personal data we hold about you
+        </li>
+        <li>
+          <strong>Rectify</strong> inaccurate or incomplete data
+        </li>
+        <li>
+          <strong>Erase</strong> your data (&quot;right to be forgotten&quot;)
+        </li>
+        <li>
+          <strong>Restrict</strong> how we process your data
+        </li>
+        <li>
+          <strong>Port</strong> your data in a structured, machine-readable format
+        </li>
+        <li>
+          <strong>Object</strong> to processing based on legitimate interest
+        </li>
+        <li>
+          <strong>Withdraw consent</strong> at any time, where processing is based on consent
+        </li>
+      </ul>
+      <p>
+        To exercise any of these rights, email <a href="mailto:privacy@workings.io">privacy@workings.io</a>. We will
+        respond within one calendar month.
+      </p>
+      <p>
+        You also have the right to lodge a complaint with the UK Information Commissioner&apos;s Office (
+        <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">
+          ico.org.uk
+        </a>
+        ) or your local EU data protection authority.
+      </p>
 
-          {/* Data Security */}
-          <section>
-            <h2>Data Security</h2>
-            <p>
-              We implement appropriate technical and organizational security measures to protect your personal information
-              against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over
-              the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
-            </p>
-            <p>
-              We use industry-standard encryption, secure authentication methods, and regular security audits to safeguard
-              your data. If you have any concerns about the security of your information, please contact us immediately.
-            </p>
-          </section>
+      <h2>8. Security</h2>
+      <p>
+        We protect your data with TLS in transit, encryption at rest with our hosting and email providers, access
+        controls limited to named team members, and a responsible-disclosure programme. Report security issues to{' '}
+        <a href="mailto:security@workings.io">security@workings.io</a>.
+      </p>
 
-          {/* Your Rights and Choices */}
-          <section>
-            <h2>Your Rights and Choices</h2>
-            <p>Depending on your location, you may have certain rights regarding your personal information:</p>
-            <ul>
-              <li><strong>Access:</strong> You can request access to the personal information we hold about you.</li>
-              <li><strong>Correction:</strong> You can request correction of inaccurate or incomplete information.</li>
-              <li><strong>Deletion:</strong> You can request deletion of your personal information, subject to certain exceptions.</li>
-              <li><strong>Portability:</strong> You can request a copy of your data in a structured, machine-readable format.</li>
-              <li><strong>Opt-Out:</strong> You can opt out of marketing communications at any time by following the unsubscribe instructions.</li>
-              <li><strong>Account Controls:</strong> You can update or delete your account information through your account settings.</li>
-            </ul>
-            <p>
-              To exercise these rights, please contact us using the information provided in the &quot;Contact Us&quot; section below.
-            </p>
-          </section>
+      <h2>9. Children</h2>
+      <p>
+        This website is not directed at children under 16. If you believe a child has provided us with personal data,
+        contact <a href="mailto:privacy@workings.io">privacy@workings.io</a> and we will delete it.
+      </p>
 
-          {/* Data Retention */}
-          <section>
-            <h2>Data Retention</h2>
-            <p>
-              We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy
-              Policy, unless a longer retention period is required or permitted by law. When you delete your account, we
-              will delete or anonymize your personal information, except where we are required to retain it for legal,
-              regulatory, or legitimate business purposes.
-            </p>
-            <p>
-              Note that verifiable proof data created through our Service may be retained indefinitely as part of the
-              immutable proof layer, even after account deletion, to maintain the integrity of the verification system.
-            </p>
-          </section>
+      <h2>10. Changes to this policy</h2>
+      <p>
+        We may update this policy from time to time. The &quot;Last updated&quot; date at the top of this page always
+        reflects the current version. If we make material changes that affect data we already hold (for example, a new
+        processor or a new processing purpose), we will email everyone on our waitlist before the change takes effect.
+      </p>
 
-          {/* Children's Privacy */}
-          <section>
-            <h2>Children&apos;s Privacy</h2>
-            <p>
-              Our Service is not intended for individuals under the age of 13 (or the applicable age of consent in your
-              jurisdiction). We do not knowingly collect personal information from children. If you are a parent or guardian
-              and believe your child has provided us with personal information, please contact us immediately.
-            </p>
-          </section>
-
-          {/* International Data Transfers */}
-          <section>
-            <h2>International Data Transfers</h2>
-            <p>
-              Your information may be transferred to and processed in countries other than your country of residence.
-              These countries may have data protection laws that differ from those in your country. We take appropriate
-              measures to ensure that your information receives an adequate level of protection in accordance with this
-              Privacy Policy.
-            </p>
-          </section>
-
-          {/* Changes to This Privacy Policy */}
-          <section>
-            <h2>Changes to This Privacy Policy</h2>
-            <p>
-              We may update this Privacy Policy from time to time. We will notify you of any material changes by posting
-              the new Privacy Policy on this page and updating the &quot;Last updated&quot; date. We encourage you to review
-              this Privacy Policy periodically for any changes.
-            </p>
-          </section>
-
-          {/* Contact Us */}
-          <section>
-            <h2>Contact Us</h2>
-            <p>
-              If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices,
-              please contact us:
-            </p>
-            <ul className="list-none pl-0">
-              <li>
-                <strong>Email:</strong>{' '}
-                <Link href="/contact">
-                  Contact us through our contact page
-                </Link>
-              </li>
-              <li>
-                <strong>Website:</strong>{' '}
-                <Link href="/">
-                  workings.io
-                </Link>
-              </li>
-            </ul>
-          </section>
-        </div>
-      </main>
-    </div>
+      <h2>11. Contact</h2>
+      <p>Questions, requests, or complaints about this policy or our use of your data:</p>
+      <p>
+        <a href="mailto:privacy@workings.io">privacy@workings.io</a>
+      </p>
+    </LegalShell>
   );
 }

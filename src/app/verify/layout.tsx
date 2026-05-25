@@ -1,17 +1,12 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Verify a Report | Workings",
-  description: "Verify the authenticity of a Workings report. Confirm that a creative process report is genuine, untampered, and reflects real human work.",
-  alternates: {
-    canonical: "/verify",
-  },
+  title: "Verify a report — Workings",
+  description:
+    "Anyone can verify a Workings report is genuine. Confirm its authenticity, integrity, and the creative process behind it — no account needed.",
+  alternates: { canonical: "/verify" },
 };
 
-export default function VerifyLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function VerifyLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

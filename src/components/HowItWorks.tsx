@@ -6,9 +6,13 @@ import { Section } from './Section';
 const steps = [
   {
     number: '01',
-    title: 'Install & run Workings',
+    title: (
+      <>
+        Install &amp; run <em className="italic">Workings</em>
+      </>
+    ),
     description:
-      'Download the app and start it on your device. It runs quietly in the background while you work.',
+      "Download the app and turn it on. You decide when it's running, and your work stays on your device.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -21,7 +25,7 @@ const steps = [
     number: '02',
     title: 'Record your process, privately',
     description:
-      'Workings captures your creative process locally on your device. Nothing leaves your machine without your permission.',
+      'Captures your process locally. Only an anonymous fingerprint leaves, never your work — so tampering always shows.',
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -32,9 +36,9 @@ const steps = [
   },
   {
     number: '03',
-    title: 'Generate a report',
+    title: 'Generate what you need',
     description:
-      'Create a verifiable report that proves how your work was made. Share it with anyone who needs to see your process.',
+      'Turn your record into a report, a summary, or a timelapse — all independently verifiable. Review privately, share what you choose.',
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -55,19 +59,13 @@ function StepCard({ step, index }: { step: (typeof steps)[number]; index: number
       transition={{ delay: index * 0.12, duration: 0.6, ease: 'easeOut' }}
     >
       <div className="flex items-center justify-between mb-8">
-        <span className="font-display text-5xl sm:text-6xl text-blue leading-none">
-          {step.number}
-        </span>
+        <span className="font-display text-5xl sm:text-6xl text-blue leading-none">{step.number}</span>
         <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue/30 text-blue">
           {step.icon}
         </div>
       </div>
-      <h3 className="text-xl sm:text-2xl font-semibold text-cream mb-3 leading-snug">
-        {step.title}
-      </h3>
-      <p className="text-cream/65 text-sm sm:text-base leading-relaxed">
-        {step.description}
-      </p>
+      <h3 className="text-xl sm:text-2xl font-semibold text-cream mb-3 leading-snug">{step.title}</h3>
+      <p className="text-cream/65 text-sm sm:text-base leading-relaxed">{step.description}</p>
     </motion.div>
   );
 }
@@ -88,8 +86,8 @@ export function HowItWorks() {
       surface="navy"
       id="how-it-works"
       eyebrow="How it works"
-      title="Three simple steps"
-      intro="Protect your creative integrity without changing how you work."
+      title="Three steps to prove your work is yours."
+      intro="Run it, work as you always have, and turn your process into a record you can rely on."
     >
       <div className="mt-16 sm:mt-20 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-6 lg:gap-4 items-stretch">
         <StepCard step={steps[0]} index={0} />
