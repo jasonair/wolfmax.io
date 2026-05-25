@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { doc, setDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
 import { WL_PERSONAS, WL_USE_CASES, WL_COUNTRIES, WL_COUNTRIES_TOP } from './data';
 
 const DRAFT_KEY = 'workings_waitlist_draft';
@@ -34,13 +32,6 @@ function readDraft(): Draft {
   } catch {
     return emptyDraft;
   }
-}
-
-// Hex SHA-256, used as the Firestore doc ID so a repeat email overwrites nothing
-// and we never need read access to the collection (see firestore.rules).
-async function sha256Hex(input: string): Promise<string> {
-  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input));
-  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
 const sortedCountries = [...WL_COUNTRIES].sort((a, b) => a[1].localeCompare(b[1]));
@@ -156,32 +147,26 @@ export function WaitlistModal({ isOpen, onClose }: { isOpen: boolean; onClose: (
 
     setSubmitting(true);
     try {
-      const email = draft.email.trim().toLowerCase();
-      // Doc ID = hash of the email. A repeat signup therefore targets an existing
-      // doc, which the create-only rules treat as a denied update — so dedup needs
-      // no read access and the collection stays unreadable from the client.
-      const id = await sha256Hex(email);
-      await setDoc(doc(db, 'waitlist', id), {
-        email,
-        country: draft.country, // ISO 3166-1 alpha-2
-        user_personas: draft.user_personas,
-        user_personas_other: draft.user_personas.includes('other') ? draft.user_personas_other.trim() : null,
-        use_cases: draft.use_cases,
-        use_cases_other: draft.use_cases.includes('other') ? draft.use_cases_other.trim() : null,
-        consent: true,
-        source: 'waitlist-modal',
-        createdAt: new Date().toISOString(),
+      // Server handles dedup (email is UNIQUE; INSERT ... ON CONFLICT DO NOTHING),
+      // so a repeat email is still a 200 and shows the success state.
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: draft.email.trim().toLowerCase(),
+          country: draft.country, // ISO 3166-1 alpha-2
+          user_personas: draft.user_personas,
+          user_personas_other: draft.user_personas.includes('other') ? draft.user_personas_other.trim() : null,
+          use_cases: draft.use_cases,
+          use_cases_other: draft.use_cases.includes('other') ? draft.use_cases_other.trim() : null,
+          consent,
+        }),
       });
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       markDone();
     } catch (err) {
-      // A repeat email hits the denied update path; treat that as "already on the
-      // list". Anything else is a real failure.
-      if ((err as { code?: string }).code === 'permission-denied') {
-        markDone();
-      } else {
-        console.error('Waitlist submit failed:', err);
-        setErrors({ submit: 'Something went wrong. Please try again.' });
-      }
+      console.error('Waitlist submit failed:', err);
+      setErrors({ submit: 'Something went wrong. Please try again.' });
     } finally {
       setSubmitting(false);
     }

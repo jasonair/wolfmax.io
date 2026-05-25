@@ -2,63 +2,33 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-### Firebase Setup
+### Database (Neon Postgres)
 
-This project uses Firebase Firestore to store waitlist signups. To set up Firebase:
+Waitlist signups are stored in Neon Postgres and written **server-side** via the
+`/api/waitlist` route handler — the browser never touches the database directly, so
+there are no client credentials or access rules to maintain.
 
-1. **Create a Firebase Project:**
-   - Go to [Firebase Console](https://console.firebase.google.com/)
-   - Click "Add project" and follow the setup wizard
-   - Enable Google Analytics (optional)
+1. **Provision Neon** through the [Vercel Marketplace](https://vercel.com/marketplace/neon)
+   and connect it to this project. It auto-injects `DATABASE_URL` into the project's
+   environment variables.
 
-2. **Set up Firestore Database:**
-   - In your Firebase project, go to "Firestore Database"
-   - Click "Create database"
-   - Start in "test mode" for development (you can secure it later with rules)
-   - Choose a location for your database
+2. **Local development:** run `vercel env pull .env.local`, or copy the pooled
+   connection string from the Neon console into `.env.local`:
 
-3. **Get Your Firebase Configuration:**
-   - Go to Project Settings (gear icon) → General tab
-   - Scroll down to "Your apps" section
-   - Click the web icon (`</>`) to add a web app
-   - Register your app and copy the Firebase configuration object
-
-4. **Create Environment Variables:**
-   - Create a `.env.local` file in the root of your project
-   - Add the following environment variables with your Firebase config values (no quotes needed):
-
-```env
-NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project-id.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project-id.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
-NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
-```
-
-   **Note:** You don't need quotes around the values. Just use `KEY=value` format directly.
-
-5. **Set up Firestore Security Rules (Recommended for Production):**
-   - Go to Firestore Database → Rules
-   - Update rules to allow writes to the waitlist collection:
-   ```javascript
-   rules_version = '2';
-   service cloud.firestore {
-     match /databases/{database}/documents {
-       match /waitlist/{document=**} {
-         allow read: if true;
-         allow create: if request.resource.data.email is string && 
-                          request.resource.data.email.matches('.*@.*\\..*');
-       }
-     }
-   }
+   ```env
+   DATABASE_URL=postgresql://user:password@host/db?sslmode=require
    ```
 
-6. **Create the Waitlist Collection:**
-   - The collection will be created automatically when the first signup occurs
-   - Or manually create it in Firestore with the name `waitlist`
+3. **Create the table** (idempotent):
 
-**Note:** The `.env.local` file is already in `.gitignore` and won't be committed to version control.
+   ```bash
+   node scripts/migrate.mjs
+   ```
+
+   This creates the `signups` table, with a `UNIQUE` constraint on `email` so repeat
+   signups are deduped via `INSERT ... ON CONFLICT DO NOTHING`.
+
+**Note:** `.env.local` is gitignored and won't be committed.
 
 ### Resend Email Setup (For Contact Form)
 

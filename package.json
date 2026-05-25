@@ -9,9 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@tailwindcss/typography": "^0.5.19",
     "@wisp-cms/client": "^0.0.23",
-    "firebase": "^12.6.0",
     "framer-motion": "^12.23.26",
     "next": "16.0.10",
     "react": "19.2.1",
