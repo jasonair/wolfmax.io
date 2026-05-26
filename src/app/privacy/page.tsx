@@ -6,7 +6,7 @@ export default function PrivacyPage() {
     <LegalShell
       eyebrow={<>Legal · workings.io</>}
       title="Website privacy policy."
-      meta="Last updated: 01 April 2026 · Effective immediately"
+      meta="Last updated: 26 May 2026 · Effective immediately"
       note={
         <>
           For the <em>Workings</em> desktop application privacy policy (the local recording engine, encryption,
@@ -50,10 +50,18 @@ export default function PrivacyPage() {
           <strong>Consent &amp; preference signals</strong> - a small browser storage record of your cookie / consent
           choice, so we don&apos;t ask you again.
         </li>
+        <li>
+          <strong>Analytics data (only if you accept)</strong> - if you consent to analytics, Google Analytics collects
+          standard usage data such as the pages you view, approximate location (country / region, derived from a
+          truncated IP address), and device and browser type. We use it to understand site traffic only; we have not
+          enabled Google Analytics advertising or remarketing features.
+        </li>
       </ul>
       <p>
-        We do <strong>not</strong> use third-party analytics, advertising trackers, social-media pixels, session replay,
-        fingerprinting, or any cross-site tracking on this website.
+        With your consent, we use <strong>Google Analytics</strong> to measure website traffic (see section 4).
+        Analytics stays switched off until you accept it, and you can withdraw at any time. We do <strong>not</strong>{' '}
+        use advertising trackers, social-media pixels, session replay, fingerprinting, or any cross-site tracking on this
+        website.
       </p>
 
       <h2>3. Lawful basis for processing</h2>
@@ -71,23 +79,38 @@ export default function PrivacyPage() {
           <strong>Essential consent storage:</strong> Article 6(1)(f) - legitimate interest in honouring your privacy
           preferences.
         </li>
+        <li>
+          <strong>Analytics (Google Analytics):</strong> Article 6(1)(a) - your <em>consent</em>, given when you choose
+          &quot;Accept&quot; on our cookie notice. No analytics cookies are set before then. You may withdraw consent at
+          any time via the <strong>Cookie preferences</strong> link in the footer, which also clears the analytics
+          cookies from your browser.
+        </li>
       </ul>
 
       <h2>4. Cookies &amp; local storage</h2>
       <p>
-        This website uses <strong>essential storage only</strong>. We do not set any cookies for analytics, advertising,
-        or tracking.
+        <strong>Essential storage</strong> is always present and is never used for tracking:
       </p>
-      <p>The only data we store in your browser is:</p>
       <ul>
         <li>
-          <code>workings_consent</code> - records that you&apos;ve seen and acknowledged our cookie notice (expires after
-          12 months).
+          <code>workings_consent</code> - records your cookie choice (accept or reject) so we don&apos;t ask you again
+          (browser local storage; expires after 12 months).
+        </li>
+        <li>
+          <code>workings_waitlist_draft</code> - temporarily holds your waitlist form entry so it isn&apos;t lost
+          (cleared as soon as you submit).
         </li>
       </ul>
       <p>
-        You can clear this at any time through your browser&apos;s site-data controls. We will not set any non-essential
-        cookies unless and until we ask you for separate, freely given, specific consent.
+        <strong>Analytics cookies</strong> are set <strong>only if you choose &quot;Accept&quot;</strong> on the cookie
+        notice. If you accept, Google Analytics sets cookies such as <code>_ga</code> and <code>_ga_&lt;id&gt;</code>{' '}
+        (typically lasting up to ~13 months) to distinguish visitors and measure traffic. If you reject - or never
+        choose - none of these cookies are set and no Google Analytics script is loaded.
+      </p>
+      <p>
+        You can change your mind at any time via the <strong>Cookie preferences</strong> link in the footer. Choosing
+        &quot;Reject&quot; there records your choice and removes any existing Google Analytics cookies. You can also
+        clear all of this through your browser&apos;s site-data controls.
       </p>
 
       <h2>5. How long we keep your data</h2>
@@ -115,6 +138,11 @@ export default function PrivacyPage() {
         <li>
           <strong>Email service provider</strong> - for waitlist and transactional email. Provider to be confirmed
           before list activation; will be a GDPR-compliant processor with appropriate data-transfer safeguards.
+        </li>
+        <li>
+          <strong>Google Analytics (Google Ireland Ltd / Google LLC)</strong> - website analytics, used{' '}
+          <strong>only with your consent</strong>. Data may be transferred to the United States under Google&apos;s
+          Standard Contractual Clauses and the EU-US / UK-US Data Privacy Framework.
         </li>
       </ul>
       <p>

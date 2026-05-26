@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Newsreader, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
@@ -7,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { IntroOverlay } from "@/components/IntroOverlay";
 import { WaitlistProvider } from "@/components/waitlist/WaitlistProvider";
 import { CookieConsent } from "@/components/CookieConsent";
+import { Analytics } from "@/components/Analytics";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL, siteGraph } from "@/lib/seo";
 
@@ -68,6 +68,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${manrope.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
     >
       <body className="antialiased">
@@ -81,22 +82,7 @@ export default function RootLayout({
           }}
         />
         <IntroOverlay />
-        {gaId && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaId}');
-              `}
-            </Script>
-          </>
-        )}
+        {gaId && <Analytics gaId={gaId} />}
         <WaitlistProvider>
           <Navbar />
           {children}

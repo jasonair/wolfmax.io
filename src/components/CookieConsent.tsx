@@ -3,23 +3,9 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from './Logo';
+import { readConsent, setConsent, COOKIE_PREFS_EVENT } from '@/lib/consent';
 
-const CONSENT_KEY = 'workings_consent';
-const CONSENT_TTL_MS = 365 * 24 * 60 * 60 * 1000; // 12 months
-
-/** Footer "Cookie preferences" link dispatches this to re-open the notice. */
-export const COOKIE_PREFS_EVENT = 'workings:open-cookie-prefs';
-
-function hasValidConsent(): boolean {
-  try {
-    const raw = localStorage.getItem(CONSENT_KEY);
-    if (!raw) return false;
-    const { ts } = JSON.parse(raw);
-    return typeof ts === 'number' && Date.now() - ts < CONSENT_TTL_MS;
-  } catch {
-    return false;
-  }
-}
+export { COOKIE_PREFS_EVENT };
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -27,17 +13,10 @@ export function CookieConsent() {
   useEffect(() => {
     // Defer so it animates in after first paint rather than flashing.
     const t = setTimeout(() => {
-      if (!hasValidConsent()) setVisible(true);
+      if (!readConsent()) setVisible(true);
     }, 600);
 
-    const reopen = () => {
-      try {
-        localStorage.removeItem(CONSENT_KEY);
-      } catch {
-        /* ignore */
-      }
-      setVisible(true);
-    };
+    const reopen = () => setVisible(true);
     window.addEventListener(COOKIE_PREFS_EVENT, reopen);
     return () => {
       clearTimeout(t);
@@ -45,12 +24,8 @@ export function CookieConsent() {
     };
   }, []);
 
-  const accept = () => {
-    try {
-      localStorage.setItem(CONSENT_KEY, JSON.stringify({ acknowledged: true, ts: Date.now() }));
-    } catch {
-      /* ignore */
-    }
+  const choose = (analytics: 'granted' | 'denied') => {
+    setConsent(analytics);
     setVisible(false);
   };
 
@@ -71,16 +46,22 @@ export function CookieConsent() {
               <Logo variant="light" iconOnly className="h-6 w-auto" />
             </div>
             <div className="flex-1 text-sm leading-relaxed text-cream/80">
-              <span className="font-semibold text-cream">Essential storage only.</span>{' '}
-              <em>Workings</em>.io doesn&apos;t use analytics, advertising, or tracking cookies. We store a small record
-              of your consent choice and any waitlist email you submit (with your permission). Read the{' '}
+              <span className="font-semibold text-cream">Your choice on cookies.</span>{' '}
+              We always store a small record of your consent choice and any waitlist email you submit. With your
+              permission we also use <span className="text-cream">Google Analytics</span> to understand site traffic —
+              it stays off unless you accept. Read the{' '}
               <a href="/privacy" className="text-[#7aa6ff] underline underline-offset-2 hover:text-cream">
                 website privacy policy
               </a>.
             </div>
-            <button onClick={accept} className="btn-blue shrink-0 justify-center self-center sm:self-auto">
-              Got it
-            </button>
+            <div className="flex shrink-0 flex-col gap-2.5 self-stretch sm:flex-row sm:self-auto">
+              <button onClick={() => choose('denied')} className="btn-ghost-cream justify-center text-sm">
+                Reject
+              </button>
+              <button onClick={() => choose('granted')} className="btn-blue justify-center text-sm">
+                Accept
+              </button>
+            </div>
           </div>
         </motion.div>
       )}
