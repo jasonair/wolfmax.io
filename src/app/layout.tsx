@@ -35,8 +35,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  title: "Workings — The way you work.",
-  description: "Workings is an authorship tool designed to privately capture the way you work. Create a high-fidelity record of how your work was made — by humans, AI, or both — held locally on your device.",
+  title: "Workings - The way you work.",
+  description: "Workings is an authorship tool designed to privately capture the way you work. Create a high-fidelity record of how your work was made - by humans, AI, or both - stored locally on your computer.",
   keywords: ["human authorship", "AI verification", "proof of work", "content authenticity", "digital provenance"],
   authors: [{ name: "Workings" }],
   icons: {
@@ -44,15 +44,15 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   openGraph: {
-    title: "Workings — The way you work.",
-    description: "Workings is an authorship tool designed to privately capture the way you work. Create a high-fidelity record of how your work was made — by humans, AI, or both — held locally on your device.",
+    title: "Workings - The way you work.",
+    description: "Workings is an authorship tool designed to privately capture the way you work. Create a high-fidelity record of how your work was made - by humans, AI, or both - stored locally on your computer.",
     url: "/",
     type: "website",
     siteName: "Workings",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Workings — The way you work.",
+    title: "Workings - The way you work.",
     description: "Workings is an authorship tool designed to privately capture the way you work.",
   },
 };

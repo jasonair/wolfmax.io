@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAnimate } from 'framer-motion';
 
-/** The W mark — the *exact* blue path from /brand/workings-horiz.svg (the asset
+/** The W mark - the *exact* blue path from /brand/workings-horiz.svg (the asset
  *  the navbar renders), so the big W is the same geometry as the docked one.
  *  Reordered to start at the leftmost point and wind clockwise, so the outline
  *  trace draws from far-left and travels rightward. Same shape → same fill. */
 const ICON_PATH =
   'M1.496,275.08C8.375,261.135,23.151,235.188,31.15,222.085C38.87,209.439,49.713,193.073,62.596,184.369C80.42,172.326,111.581,170.57,127.143,181.419C150.763,197.886,148.575,227.192,147.661,254.282C146.97,274.761,146.098,283.535,145.549,315.775C145.481,319.753,145.74,324.228,149.78,324.228C152.936,324.228,154.411,321.687,155.245,319.589C173.091,274.69,205.141,201.395,216.031,174.058C241.56,109.976,282.328,95.472,316.651,98.585C359.363,102.459,381.597,135.15,375.811,187.672C372.32,219.358,347.86,393.194,346.51,416.143C346.285,419.954,348.352,422.206,351.361,422.206C354.37,422.206,356.348,419.786,357.642,415.796C357.642,415.796,357.643,415.795,357.643,415.795C379.344,348.884,478.932,52.732,486.358,32.994C492.882,15.653,508.885,3.57,527.362,2.195C544.057,0.952,559.643,1.357,569.971,3.402C585.258,6.429,592.262,19.651,587.686,34.547C576.158,72.072,476.775,370.178,452.74,437.77C424.002,518.59,377.169,542.44,331.506,539.801C293.997,537.633,245.469,509.778,258.163,412.558C270.857,315.337,293.687,202.599,294.39,199.096C295.572,193.202,288.014,192.213,286.131,197.059C283.643,203.462,237.588,315.249,216.857,362.642C190.394,423.138,126.807,408.288,111.462,397.711C96.811,387.612,79.443,373.443,79.966,330.535C80.438,291.816,83.178,257.829,84.392,240.797C84.495,239.35,84.145,237.723,82.096,237.617C80.278,237.523,79.062,238.94,78.188,240.42C71.937,251.005,62.1,266.033,56.517,274.591C51.983,281.541,44.298,288.508,37.061,290.253C28.928,292.214,15.407,292.897,7.001,290.532C-0.69,288.368,-1.231,280.608,1.496,275.08Z';
 
-/** Tight bounding box of ICON_PATH (measured via getBBox) — used as the W
+/** Tight bounding box of ICON_PATH (measured via getBBox) - used as the W
  *  svg's viewBox so it fills its box undistorted, and as the dock target. */
 const ICON_BBOX = { x: 0, y: 1.49, w: 589.07, h: 538.5 };
 
@@ -20,7 +20,7 @@ const OUTLINE_WIDTH = 7.5;
 const DRAW_MS = 1500;
 
 /** Layout of /brand/workings-horiz.svg (viewBox 1920×542), measured via
- *  getBBox — used to land the W and wordmark exactly on the navbar logo. */
+ *  getBBox - used to land the W and wordmark exactly on the navbar logo. */
 const HORIZ = {
   icon: ICON_BBOX,
   word: { x: 595.83, y: 145.14, w: 1324.17, h: 287.25 },
@@ -183,7 +183,7 @@ export function IntroOverlay() {
           style={{ transformOrigin: '0 0', willChange: 'transform', overflow: 'visible' }}
           fill="none"
         >
-          {/* the filled mark — hidden until the outline has drawn */}
+          {/* the filled mark - hidden until the outline has drawn */}
           <path ref={fillRef} d={ICON_PATH} fill="#0048ff" style={{ opacity: 0 }} />
           {/* the self-drawing outline of that same mark */}
           <path

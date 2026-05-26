@@ -10,25 +10,25 @@ const works = [
   {
     title: 'Students',
     description:
-      "Your thinking, documented as you work. Submit essays, theses, and projects you can stand behind. And if the question of authorship ever comes up, the answer's already there.",
+      'Your thinking, captured as you work. Submit essays and theses with the whole process behind them, so you can show not just the answer but how you got there. The depth is part of the record.',
     icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
   },
   {
     title: 'Writers',
     description:
-      'Every draft, edit, and rewrite, captured as it happens. Show editors and publishers the work is yours when it matters. The proof sits quietly behind the byline.',
+      "Every draft and rewrite, captured as you write. Walk into the room able to lay out the full arc of the work, from first line to final cut. The byline's yours, and so is the story of how it got there.",
     icon: 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',
   },
   {
     title: 'Creators',
     description:
-      "Your process, recorded from blank page to finished piece. Let the work speak — and let the record show the craft behind it. Authenticity you don't have to argue for.",
+      "Your process, from blank canvas to finished piece. Put the craft forward, the hours and the decisions most people never see. Let the making be part of what you're known for.",
     icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
   },
   {
-    title: 'Founders',
+    title: 'Inventors',
     description:
-      'The real work behind the company, documented as you build. Diligence, IP, the story of how it came together — already evidenced and searchable. Nothing to reconstruct after the fact.',
+      'Your invention documented from first idea to final design. Prove the human contribution behind it, and exactly when it happened - both critical for patent applications in the new AI era.',
     icon: 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
   },
 ];
@@ -59,11 +59,11 @@ export default function IndividualsPage() {
         >
           <Eyebrow className="text-mute mb-5">For individuals</Eyebrow>
           <h1 className="font-display text-[2.4rem] sm:text-6xl text-navy leading-[1.04] mb-6">
-            Prove your process. Protect your work.
+            Record your process, protect your work.
           </h1>
           <p className="text-base sm:text-lg text-mute max-w-xl mx-auto leading-relaxed mb-8">
-            For students, writers, creators, founders and anyone whose authorship matters. Capture how you work —
-            privately, on your device — and share verifiable proof when it counts.
+            For students, writers, creators, inventors and anyone whose authorship matters. Capture how you work -
+            privately, on your device - and share verifiable proof when it counts.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button variant="peach" withArrow onClick={open}>
@@ -124,7 +124,7 @@ export default function IndividualsPage() {
             </h2>
             <p className="text-white/85 max-w-xl mx-auto leading-relaxed mb-8">
               Join the waitlist and we&apos;ll let you know as we open beta access. Three quick questions when you sign
-              up — helps us shape the beta around real users.
+              up - helps us shape the beta around real users.
             </p>
             <button
               onClick={open}

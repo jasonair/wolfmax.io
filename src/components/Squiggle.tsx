@@ -4,7 +4,7 @@ interface SquiggleProps {
 }
 
 /**
- * Tight, regular sine "squiggle" — the same wave used on the product-UI
+ * Tight, regular sine "squiggle" - the same wave used on the product-UI
  * snapshot timeline. Distinct from the big organic hero `Wave`.
  * Colour is inherited via `currentColor` (e.g. add `text-blue`).
  */

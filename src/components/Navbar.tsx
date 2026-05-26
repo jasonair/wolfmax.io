@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
 import { useWaitlist } from './waitlist/WaitlistProvider';
 
@@ -11,6 +12,7 @@ type NavLink =
   | { label: string; href: string; children: { label: string; href: string }[] };
 
 const navLinks: NavLink[] = [
+  { label: 'What it is', href: '/' },
   { label: 'How it works', href: '/#how-it-works' },
   { label: 'Individuals', href: '/individuals' },
   {
@@ -27,6 +29,48 @@ const navLinks: NavLink[] = [
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { open: openWaitlist } = useWaitlist();
+  const pathname = usePathname();
+
+  // Track the URL hash so anchor-style nav items ("How it works", etc.) can
+  // light up the active underline when their section is the current target.
+  // Next.js client navigation updates the hash via history.pushState, which
+  // doesn't fire `hashchange` — so we wrap both methods.
+  const [hash, setHash] = useState('');
+  useEffect(() => {
+    const update = () => setHash(window.location.hash);
+    update();
+    window.addEventListener('hashchange', update);
+    const origPush = history.pushState.bind(history);
+    const origReplace = history.replaceState.bind(history);
+    history.pushState = (...args) => {
+      origPush(...args);
+      update();
+    };
+    history.replaceState = (...args) => {
+      origReplace(...args);
+      update();
+    };
+    return () => {
+      window.removeEventListener('hashchange', update);
+      history.pushState = origPush;
+      history.replaceState = origReplace;
+    };
+  }, []);
+
+  // Active rules:
+  //  - '/#section'  → home page AND hash matches
+  //  - '/'          → home page AND no hash (so "What it is" doesn't fight
+  //                   with "How it works" when the user is mid-page)
+  //  - everything else → page match or sub-route match
+  const isActive = (href: string) => {
+    if (href.startsWith('/#')) {
+      return pathname === '/' && hash === href.slice(1);
+    }
+    if (href === '/') {
+      return pathname === '/' && !hash;
+    }
+    return pathname === href || pathname.startsWith(href + '/');
+  };
 
   return (
     <>
@@ -43,12 +87,15 @@ export function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-7">
-            {navLinks.map((link) =>
-              'children' in link ? (
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              return 'children' in link ? (
                 <div key={link.label} className="relative group">
                   <Link
                     href={link.href}
-                    className="flex items-center gap-1 text-sm font-medium text-navy/80 hover:text-navy transition-colors py-5"
+                    className={`relative flex items-center gap-1 text-sm font-medium transition-colors py-5 ${
+                      active ? 'text-blue' : 'text-navy/80 hover:text-navy'
+                    }`}
                   >
                     {link.label}
                     <svg
@@ -64,6 +111,12 @@ export function Navbar() {
                     >
                       <polyline points="6 9 12 15 18 9" />
                     </svg>
+                    {active && (
+                      <span
+                        aria-hidden="true"
+                        className="absolute left-0 right-4 -bottom-px h-[2px] bg-blue rounded-full"
+                      />
+                    )}
                   </Link>
                   <div className="absolute left-0 top-full pt-1 opacity-0 invisible translate-y-1 transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
                     <div className="min-w-[200px] rounded-2xl border border-navy/10 bg-cream/98 backdrop-blur-md p-2 shadow-[0_18px_48px_rgba(12,16,48,0.12)]">
@@ -83,12 +136,20 @@ export function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-sm font-medium text-navy/80 hover:text-navy transition-colors"
+                  className={`relative py-5 text-sm font-medium transition-colors ${
+                    active ? 'text-blue' : 'text-navy/80 hover:text-navy'
+                  }`}
                 >
                   {link.label}
+                  {active && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-0 right-0 -bottom-px h-[2px] bg-blue rounded-full"
+                    />
+                  )}
                 </Link>
-              ),
-            )}
+              );
+            })}
             <button onClick={openWaitlist} className="btn-peach !px-5 !py-2.5 !text-sm">
               Join waitlist
             </button>
@@ -135,7 +196,7 @@ export function Navbar() {
                         onClick={() => setMenuOpen(false)}
                         className="text-base text-navy/55 hover:text-navy transition-colors py-1"
                       >
-                        — {c.label}
+                        - {c.label}
                       </Link>
                     ))}
                 </div>

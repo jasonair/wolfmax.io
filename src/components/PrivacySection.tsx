@@ -9,7 +9,7 @@ const privacy: Feature[] = [
   {
     title: 'Local-first, encrypted',
     description:
-      'Everything runs and stays on your device, encrypted with keys only you hold. No one else can read it — including us.',
+      'Everything runs and stays on your device, encrypted with keys only you hold. No one else can read it - including us.',
     icon: (
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
     ),
@@ -47,7 +47,7 @@ const integrity: Feature[] = [
   {
     title: 'Tamper-evident',
     description:
-      "Every record is cryptographically chained — altering even a single detail breaks the chain and is immediately detectable. A record either verifies intact, or it doesn't verify.",
+      "Every record is cryptographically chained - altering even a single detail breaks the chain and is immediately detectable. A record either verifies intact, or it doesn't verify.",
     icon: (
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3M9 4.5L4.5 9 9 13.5" />
     ),
@@ -88,11 +88,11 @@ export function PrivacySection() {
       surface="navy"
       id="security"
       eyebrow="Privacy & security"
-      title="Your privacy is non-negotiable."
+      title="We can't see your work. Neither can anyone else."
       intro={
         <>
-          Your work is yours; it&apos;s local, and we can&apos;t read it. <em className="italic">Workings</em> is built
-          not just for today&apos;s threats, but for what comes after.
+          Local-first, zero-knowledge, sealed against forgery. Built not just for today&apos;s threats,
+          but for what comes after.
         </>
       }
     >

@@ -25,7 +25,9 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.7 }}
         >
-          <em className="italic">Workings</em> is an authorship tool designed to privately capture the way you work.
+          Capture your <em className="italic">Workings</em>.
+          <br />
+          A private, tamper-evident record to prove how the work was made.
         </motion.h1>
 
         <motion.p
@@ -34,9 +36,8 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.6 }}
         >
-          Create a private, high-fidelity record of how your work was made: by humans, AI, or both. Held locally, on
-          your device. Protect IP, prove it&apos;s genuinely yours, and share only what&apos;s needed to defend
-          credibility.
+          Review your process locally, search instantly, share verifiable reports &amp; reels, protect your IP. Show
+          whether the work was human, AI, or both.
         </motion.p>
 
         <motion.div
@@ -101,9 +102,6 @@ function EarlyAccess() {
           </Button>
         </div>
         <Squiggle className="w-full max-w-2xl h-8 mx-auto mt-16 text-blue opacity-55" />
-        <p className="mt-8 text-sm text-cream/55">
-          For the people doing the real work, whoever they are — private by design.
-        </p>
       </motion.div>
     </section>
   );

@@ -34,7 +34,7 @@ export default function AppPrivacyPage() {
       <p>
         The content you create, analyze, or process through Workings remains entirely local to your device. Our
         architecture is built on a local-first principle, meaning your files, projects, and workspace data are stored on
-        your machine — not on our servers.
+        your machine - not on our servers.
       </p>
       <p>
         We do not use tracking pixels, fingerprinting techniques, or hidden identifiers. We collect basic, anonymized
@@ -44,8 +44,8 @@ export default function AppPrivacyPage() {
 
       <h2>How Your Data is Processed</h2>
       <p>
-        Workings operates on a zero-knowledge architecture. All data processing — including analysis, transformations,
-        and report generation — happens locally on your device. Your raw data never leaves your machine and is never
+        Workings operates on a zero-knowledge architecture. All data processing - including analysis, transformations,
+        and report generation - happens locally on your device. Your raw data never leaves your machine and is never
         transmitted to our servers.
       </p>
       <p>
@@ -73,7 +73,7 @@ export default function AppPrivacyPage() {
       </p>
       <p>
         Account credentials are hashed using bcrypt with a high work factor before storage. We never store plaintext
-        passwords and have no mechanism to recover them — only to reset them.
+        passwords and have no mechanism to recover them - only to reset them.
       </p>
       <p>
         We conduct regular security audits and maintain a responsible disclosure program. If you discover a
@@ -110,21 +110,21 @@ export default function AppPrivacyPage() {
       <p>Regardless of where you are located, we extend the following rights to all Workings users:</p>
       <ul>
         <li>
-          <strong>Access</strong> — You may request a copy of all personal data we hold about you at any time.
+          <strong>Access</strong> - You may request a copy of all personal data we hold about you at any time.
         </li>
         <li>
-          <strong>Deletion</strong> — You may request the permanent deletion of your account and all associated data
+          <strong>Deletion</strong> - You may request the permanent deletion of your account and all associated data
           from our servers.
         </li>
         <li>
-          <strong>Portability</strong> — You may export all of your local data in standard, open formats at any time
+          <strong>Portability</strong> - You may export all of your local data in standard, open formats at any time
           directly from the application.
         </li>
         <li>
-          <strong>Correction</strong> — You may update or correct any personal information stored in your account.
+          <strong>Correction</strong> - You may update or correct any personal information stored in your account.
         </li>
         <li>
-          <strong>Objection</strong> — You may opt out of anonymized analytics collection through your account settings.
+          <strong>Objection</strong> - You may opt out of anonymized analytics collection through your account settings.
         </li>
       </ul>
       <p>

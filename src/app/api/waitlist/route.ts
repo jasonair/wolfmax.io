@@ -43,7 +43,7 @@ export async function POST(req: Request) {
 
   try {
     const sql = neon(process.env.DATABASE_URL!);
-    // ON CONFLICT keeps signups idempotent — a repeat email is a no-op success.
+    // ON CONFLICT keeps signups idempotent - a repeat email is a no-op success.
     await sql`
       INSERT INTO signups
         (email, country, user_personas, user_personas_other, use_cases, use_cases_other, consent, source)

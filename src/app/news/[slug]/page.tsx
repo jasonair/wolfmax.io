@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!post) return {};
 
     return {
-      title: `${post.title} — Workings News`,
+      title: `${post.title} - Workings News`,
       description: post.description || undefined,
       alternates: {
         canonical: `/news/${slug}`,
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   } catch {
     return {
-      title: "News — Workings",
+      title: "News - Workings",
     };
   }
 }

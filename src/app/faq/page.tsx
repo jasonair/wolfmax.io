@@ -13,7 +13,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         </span>
       </summary>
       <div
-        className="mt-3.5 max-w-[65ch] text-[0.98rem] leading-relaxed text-mute [&_a]:text-blue [&_a]:underline [&_a]:underline-offset-2"
+        className="mt-3.5 max-w-[65ch] text-[0.98rem] leading-relaxed text-mute [&_a]:text-blue [&_a]:underline [&_a]:underline-offset-2 [&_p+p]:mt-3 [&_strong]:font-semibold [&_strong]:text-navy"
         dangerouslySetInnerHTML={{ __html: a }}
       />
     </details>
@@ -28,7 +28,7 @@ export default function FaqPage() {
         <Eyebrow className="text-mute mb-4">FAQ</Eyebrow>
         <h1 className="font-display text-5xl sm:text-6xl text-navy leading-[1.04] mb-6">Questions &amp; answers.</h1>
         <p className="text-base sm:text-lg text-mute max-w-xl mx-auto">
-          Everything you need to know about Workings — how it works, who it&apos;s for, and how we handle your data.
+          Everything you need to know about Workings - how it works, who it&apos;s for, and how we handle your data.
         </p>
       </section>
 
@@ -44,8 +44,8 @@ export default function FaqPage() {
 
         <div className="mt-20 text-center">
           <p className="text-mute mb-4">Still have a question?</p>
-          <a href="mailto:contact@workings.io" className="btn-blue">
-            Contact us
+          <a href="mailto:info@workings.io" className="btn-blue">
+            info@workings.io
           </a>
         </div>
       </section>

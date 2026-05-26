@@ -4,12 +4,12 @@
 export const SITE_URL = "https://workings.io";
 export const SITE_NAME = "Workings";
 export const LEGAL_NAME = "Human Workings Ltd";
-export const CONTACT_EMAIL = "contact@workings.io";
+export const CONTACT_EMAIL = "info@workings.io";
 
 const SITE_DESCRIPTION =
-  "Workings is an authorship tool that privately captures how your work is made — by humans, AI, or both. It records your process locally on your Mac or PC and produces cryptographically signed, tamper-evident reports that prove your work is genuinely yours.";
+  "Workings is an authorship tool that privately captures how your work is made - by humans, AI, or both. It records your process locally on your Mac or PC and produces cryptographically signed, tamper-evident reports that prove your work is genuinely yours.";
 
-// Organization — sitewide identity. Use @id so other nodes can reference it.
+// Organization - sitewide identity. Use @id so other nodes can reference it.
 export const organizationSchema = {
   "@type": "Organization",
   "@id": `${SITE_URL}/#organization`,
@@ -26,7 +26,7 @@ export const organizationSchema = {
   },
 } as const;
 
-// WebSite — sitewide. Links back to the Organization as publisher.
+// WebSite - sitewide. Links back to the Organization as publisher.
 export const websiteSchema = {
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
@@ -36,7 +36,7 @@ export const websiteSchema = {
   publisher: { "@id": `${SITE_URL}/#organization` },
 } as const;
 
-// SoftwareApplication — the product itself. This is the node that answers
+// SoftwareApplication - the product itself. This is the node that answers
 // "what is Workings?" for an AI agent.
 export const softwareApplicationSchema = {
   "@type": "SoftwareApplication",
@@ -46,7 +46,7 @@ export const softwareApplicationSchema = {
   operatingSystem: "macOS (Apple Silicon), Windows",
   url: SITE_URL,
   description:
-    "A desktop application that privately records your work process — periodic screenshots and typing rhythm — locally and encrypted on your device. It generates cryptographically signed, tamper-evident reports and timelapses that prove when and how work was made, with transparent metrics on AI-tool usage. A privacy-first alternative to AI detection: it captures verifiable evidence of process at the point of creation rather than guessing from finished output.",
+    "A desktop application that privately records your work process - periodic screenshots and typing rhythm - locally and encrypted on your device. It generates cryptographically signed, tamper-evident reports and timelapses that prove when and how work was made, with transparent metrics on AI-tool usage. A privacy-first alternative to AI detection: it captures verifiable evidence of process at the point of creation rather than guessing from finished output.",
   publisher: { "@id": `${SITE_URL}/#organization` },
   offers: {
     "@type": "Offer",
@@ -63,7 +63,7 @@ export const softwareApplicationSchema = {
   ],
 } as const;
 
-// FAQPage — built from the FAQ data so questions/answers stay in one place.
+// FAQPage - built from the FAQ data so questions/answers stay in one place.
 export function faqPageSchema(items: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",
@@ -76,7 +76,7 @@ export function faqPageSchema(items: { q: string; a: string }[]) {
   };
 }
 
-// Article — for individual news posts.
+// Article - for individual news posts.
 export function articleSchema(post: {
   slug: string;
   title: string;

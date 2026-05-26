@@ -25,7 +25,7 @@ const steps = [
     number: '02',
     title: 'Record your process, privately',
     description:
-      'Captures your process locally. Only an anonymous fingerprint leaves, never your work — so tampering always shows.',
+      "Captures your process locally. Only an anonymous fingerprint leaves, never your work. Alter it later and the fingerprint won't match.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -38,7 +38,7 @@ const steps = [
     number: '03',
     title: 'Generate what you need',
     description:
-      'Turn your record into a report, a summary, or a timelapse — all independently verifiable. Review privately, share what you choose.',
+      'Turn your record into a report, a summary, or a timelapse - all independently verifiable. Review & redact privately, share what you choose.',
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />

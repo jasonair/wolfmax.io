@@ -1,25 +1,33 @@
 'use client';
 
-import { useCallback, useSyncExternalStore } from 'react';
+import { useSyncExternalStore } from 'react';
+import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { Eyebrow } from '@/components/Eyebrow';
 import { Button } from '@/components/Button';
 
 type Tab = 'educators' | 'businesses';
 
-const HERO: Record<Tab, { eyebrow: string; title: string; sub: string; ctaHref: string; ctaLabel: string; meta: string }> = {
+const HERO: Record<Tab, { eyebrow: string; title: string; sub: ReactNode; ctaHref: string; ctaLabel: string; meta: string }> = {
   educators: {
     eyebrow: 'For educators',
-    title: 'Restore trust in student work.',
-    sub: 'A privacy-first alternative to AI detection — built for academic integrity. Piloting with world-class universities in the UK and Australia.',
+    title: 'Students show their work.',
+    sub: 'And you see the genuine effort behind it - no surveillance, no accusation.',
     ctaHref: 'mailto:universities@workings.io?subject=University%20demo%20request',
     ctaLabel: 'Book a demo',
     meta: 'Currently piloting · UK · Australia',
   },
   businesses: {
     eyebrow: 'For businesses',
-    title: 'Help your organisation adopt AI responsibly.',
-    sub: "Visibility, compliance, and trust — without compromising anyone's privacy. A shared truth about how AI is being used and where humans add value.",
+    title: 'Prove the human work behind everything you deliver.',
+    sub: (
+      <>
+        AI is in every deliverable now. <em className="italic">Workings</em> gives you a verifiable
+        record of how it was used and where your people added value, stored securely and shared only
+        when your team chooses. So when a client, regulator, or your own leadership asks, you answer
+        with evidence, not assurances.
+      </>
+    ),
     ctaHref: 'mailto:business@workings.io?subject=Workings%20for%20business%20-%20demo',
     ctaLabel: 'Book a demo',
     meta: 'Currently piloting · Creative agency · London',
@@ -30,66 +38,116 @@ const EDU_CARDS = [
   {
     title: 'Long-form written work',
     description:
-      'Theses, dissertations, essays, research papers. Students attach a verifiable process report — no detection guesswork required.',
+      'Theses, dissertations, essays, research papers. Students attach a verifiable process report - no detection guesswork required.',
     icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
   },
   {
     title: 'Exams & assessments',
     description:
-      'Timed take-home and open-book exams. A tamper-evident record of the session — without invasive screen or camera proctoring.',
+      'Timed take-home and open-book exams. A tamper-evident record of the session - without invasive screen or camera proctoring.',
     icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
   },
   {
-    title: 'Student productivity insights',
+    title: 'Productivity insights',
     description:
-      'Private feedback for students on research-to-writing ratios, revision patterns, and deep-work stretches — so they build better habits.',
+      'Private feedback for students on research-to-writing ratios, revision patterns, and deep-work stretches - so they build better habits.',
     icon: 'M3 3v18h18M7 14l4-4 4 4 6-6',
   },
   {
     title: 'Understand AI use & evolve policy',
     description:
-      'Aggregate, anonymised insight into how students actually use AI — so academic-integrity policy can evolve with real evidence.',
+      'Aggregate, anonymised insight into how students actually use AI - so academic-integrity policy can evolve with real evidence.',
     icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
   },
 ];
 
-const BIZ_CARDS = [
+// Icons reused from the previous BIZ_CARDS set, remapped to the nearest meaning
+// for each new card (person, clipboard-check, bar chart, lock, lightning, people).
+const BIZ_CARDS_PROOF = [
   {
-    title: 'Track AI policy compliance',
-    description: 'Understand how AI is used across your organisation and ensure teams work within your AI policies.',
-    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
-  },
-  {
-    title: 'Learn AI best practice',
-    description: 'Help your team use AI tools effectively and responsibly, with real data on what works.',
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-  },
-  {
-    title: 'Share your process',
-    description: 'Colleagues learn from each other. Build a culture of transparency, not surveillance.',
-    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
-  },
-  {
-    title: 'Humans in the loop',
-    description: 'Verify that critical work has genuine human oversight and input.',
+    title: 'Prove genuine human authorship.',
+    description:
+      "Show how critical work was made with a timestamped, verifiable record. Establish when work was created, that it was developed independently, and that it's yours.",
     icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
   },
   {
-    title: 'Understand AI usage',
-    description: "Visibility into where AI helps, where it doesn't, and how to improve.",
+    title: "Prove you're following your AI policy.",
+    description:
+      'Demonstrate to clients and regulators that teams work within your rules, backed by evidence rather than a written document.',
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
+  },
+  {
+    title: 'Settle disputes and win pitches.',
+    description:
+      'Resolve billing or scope questions, and stand out in tenders, with a defensible record of who did what and when.',
     icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
   },
   {
-    title: 'Privacy preserved',
-    description: 'No surveillance. Just verifiable process data that teams choose to share.',
+    title: 'Reduce your liability exposure.',
+    description:
+      'A tamper-evident audit trail that supports your regulatory obligations and strengthens professional-indemnity conversations.',
     icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+  },
+];
+
+// "Beyond proof" — utility uses of the same captured-process record. Reuses
+// the existing single-path SVG icon convention (24x24 viewBox, strokeWidth 1.8
+// via CardGrid). Icon picks: search, clock-rewind, users, sparkles, plus.
+const BIZ_CARDS_BEYOND = [
+  {
+    title: 'Find anything.',
+    description:
+      'Search your entire workflow history to find a message, page, or document you saw earlier, whatever app it was in.',
+    icon: 'M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z',
+  },
+  {
+    title: 'Recover lost work.',
+    description:
+      'Scroll back through recent workflows to piece work together again quickly after data loss.',
+    icon: 'M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8M3 3v5h5M12 7v5l4 2',
+  },
+  {
+    title: 'See how your team works.',
+    description:
+      'Understand how long a deliverable took, who contributed what, and where the information came from.',
+    icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75',
+  },
+  {
+    title: "Improve your team's use of AI.",
+    description:
+      'See how people use AI tools as they work, who is getting the most from them, and where there is room to improve.',
+    icon: 'M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5zM18 16l.5 1.5L20 18l-1.5.5L18 20l-.5-1.5L16 18l1.5-.5zM5 15l.5 1.5L7 17l-1.5.5L5 19l-.5-1.5L3 17l1.5-.5z',
+  },
+];
+
+const BIZ_CARDS_BEYOND_WIDE = [
+  {
+    title: '…and more possibilities.',
+    description:
+      'The technology underneath has uses well beyond what Workings does today. Tell us what you would want to build.',
+    icon: 'M12 5v14M5 12h14',
+  },
+];
+
+const BIZ_CARDS_HOW = [
+  {
+    title: 'You set the policy.',
+    description:
+      "Choose what's captured, what stays private, and what your team shares. Run it as a full audit trail, or let staff opt in and share their best AI practice with colleagues. Your compliance needs, your culture, your call.",
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+  },
+  {
+    title: 'Visibility your team consents to.',
+    description:
+      'Everything is captured locally and shared only when people choose. Transparency, not surveillance.',
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
   },
 ];
 
 const EDU_BULLETS = [
   'Direct line to engineering during the pilot',
   'Staff training & report interpretation',
-  'No detection — verifiable process evidence',
+  'No detection - verifiable process evidence',
   'Anonymised institutional insight on AI use',
 ];
 
@@ -176,12 +234,33 @@ function BusinessesPanel() {
       <section className="surface-navy px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <Eyebrow className="text-blue mb-5">AI in the workplace</Eyebrow>
+            <Eyebrow className="text-blue mb-5">Proof, not assurances</Eyebrow>
             <h2 className="font-display text-[1.7rem] sm:text-[2.5rem] leading-[1.1] text-cream">
-              Six ways <em className="italic">Workings</em> supports responsible AI adoption.
+              Proof of the work, control for the people behind it.
             </h2>
           </div>
-          <CardGrid cards={BIZ_CARDS} cols="sm:grid-cols-2 lg:grid-cols-3" />
+
+          {/* Group 1: What you can prove */}
+          <div className="mb-14 sm:mb-16">
+            <Eyebrow className="text-cream/55 mb-6">What you can prove</Eyebrow>
+            <CardGrid cards={BIZ_CARDS_PROOF} cols="sm:grid-cols-2 lg:grid-cols-4" />
+          </div>
+
+          {/* Group 2: Beyond proof — four cards over one full-width card.
+              mt-5 sm:mt-6 between the rows matches CardGrid's internal gap. */}
+          <div className="mb-14 sm:mb-16">
+            <Eyebrow className="text-cream/55 mb-6">Beyond proof</Eyebrow>
+            <CardGrid cards={BIZ_CARDS_BEYOND} cols="sm:grid-cols-2 lg:grid-cols-4" />
+            <div className="mt-5 sm:mt-6">
+              <CardGrid cards={BIZ_CARDS_BEYOND_WIDE} cols="grid-cols-1" />
+            </div>
+          </div>
+
+          {/* Group 3: How it works for everyone */}
+          <div>
+            <Eyebrow className="text-cream/55 mb-6">How it works for everyone</Eyebrow>
+            <CardGrid cards={BIZ_CARDS_HOW} cols="sm:grid-cols-2" />
+          </div>
         </div>
       </section>
 
@@ -194,7 +273,7 @@ function BusinessesPanel() {
                 See how <em className="italic">Workings</em> fits your AI policy.
               </h3>
               <p className="text-white/85 leading-relaxed mb-7">
-                A short call with our team — we&apos;ll walk through reports, policy use-cases, and what an internal
+                A short call with our team - we&apos;ll walk through reports, policy use-cases, and what an internal
                 pilot would look like for your organisation.
               </p>
               <a
@@ -226,7 +305,7 @@ const getServerTabSnapshot = (): Tab => 'educators';
 function subscribeHash(onStoreChange: () => void) {
   let lastHash = window.location.hash;
   const handler = () => {
-    // Ignore history updates that don't change the hash — Next.js calls
+    // Ignore history updates that don't change the hash - Next.js calls
     // replaceState for scroll restoration, and we only care about tab changes.
     if (window.location.hash === lastHash) return;
     lastHash = window.location.hash;
@@ -262,11 +341,6 @@ function subscribeHash(onStoreChange: () => void) {
 export default function InstitutionsPage() {
   const tab = useSyncExternalStore(subscribeHash, getTabSnapshot, getServerTabSnapshot);
 
-  const switchTab = useCallback((next: Tab) => {
-    // Updating the hash notifies the subscription above, which re-derives `tab`.
-    history.replaceState(null, '', `#${next}`);
-  }, []);
-
   // Both heroes and both panels are rendered into the HTML so crawlers and AI
   // agents see the full content for either audience; only the active tab is
   // shown (the inactive one is hidden via the `hidden` attribute).
@@ -275,21 +349,6 @@ export default function InstitutionsPage() {
       {/* Hero */}
       <section className="surface-cream px-4 sm:px-6 lg:px-8 pt-36 pb-16 sm:pt-44 sm:pb-20 text-center">
         <div className="max-w-3xl mx-auto">
-          {/* Segmented toggle */}
-          <div className="inline-flex items-center gap-1 rounded-full border border-navy/12 bg-white/60 p-1 mb-9">
-            {(['educators', 'businesses'] as Tab[]).map((t) => (
-              <button
-                key={t}
-                onClick={() => switchTab(t)}
-                className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-                  tab === t ? 'bg-blue text-white' : 'text-navy/65 hover:text-navy'
-                }`}
-              >
-                {t === 'educators' ? 'Education' : 'Business'}
-              </button>
-            ))}
-          </div>
-
           {(['educators', 'businesses'] as Tab[]).map((t) => {
             const hero = HERO[t];
             return (

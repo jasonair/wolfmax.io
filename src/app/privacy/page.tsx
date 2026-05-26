@@ -39,15 +39,15 @@ export default function PrivacyPage() {
       </p>
       <ul>
         <li>
-          <strong>Waitlist / early-access email address</strong> — when you submit the form on our home page, we store
+          <strong>Waitlist / early-access email address</strong> - when you submit the form on our home page, we store
           your email address so we can notify you about the Workings beta and product launch.
         </li>
         <li>
-          <strong>Email correspondence</strong> — when you email us (contact, careers, universities, security, privacy),
+          <strong>Email correspondence</strong> - when you email us (contact, careers, universities, security, privacy),
           we receive your email address and the content of your message.
         </li>
         <li>
-          <strong>Consent &amp; preference signals</strong> — a small browser storage record of your cookie / consent
+          <strong>Consent &amp; preference signals</strong> - a small browser storage record of your cookie / consent
           choice, so we don&apos;t ask you again.
         </li>
       </ul>
@@ -59,16 +59,16 @@ export default function PrivacyPage() {
       <h2>3. Lawful basis for processing</h2>
       <ul>
         <li>
-          <strong>Waitlist email:</strong> Article 6(1)(a) UK/EU GDPR — your <em>consent</em>, given when you tick the
+          <strong>Waitlist email:</strong> Article 6(1)(a) UK/EU GDPR - your <em>consent</em>, given when you tick the
           consent box and submit the waitlist form. You may withdraw consent at any time by emailing{' '}
           <a href="mailto:privacy@workings.io">privacy@workings.io</a> or by unsubscribing from any email we send.
         </li>
         <li>
-          <strong>Correspondence you send us:</strong> Article 6(1)(f) — our <em>legitimate interest</em> in responding
+          <strong>Correspondence you send us:</strong> Article 6(1)(f) - our <em>legitimate interest</em> in responding
           to your enquiry.
         </li>
         <li>
-          <strong>Essential consent storage:</strong> Article 6(1)(f) — legitimate interest in honouring your privacy
+          <strong>Essential consent storage:</strong> Article 6(1)(f) - legitimate interest in honouring your privacy
           preferences.
         </li>
       </ul>
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
       <p>The only data we store in your browser is:</p>
       <ul>
         <li>
-          <code>workings_consent</code> — records that you&apos;ve seen and acknowledged our cookie notice (expires after
+          <code>workings_consent</code> - records that you&apos;ve seen and acknowledged our cookie notice (expires after
           12 months).
         </li>
       </ul>
@@ -94,7 +94,7 @@ export default function PrivacyPage() {
       <ul>
         <li>
           <strong>Waitlist email:</strong> until you ask us to remove it, or for up to 24 months after the public launch
-          of Workings — whichever comes first.
+          of Workings - whichever comes first.
         </li>
         <li>
           <strong>Email correspondence:</strong> for as long as needed to answer your enquiry and for up to 24 months
@@ -109,11 +109,11 @@ export default function PrivacyPage() {
       <p>We use a small number of trusted processors to operate this website and our email list:</p>
       <ul>
         <li>
-          <strong>Hosting &amp; CDN provider</strong> — static site hosting and content delivery. Bound by SCCs &amp; UK
+          <strong>Hosting &amp; CDN provider</strong> - static site hosting and content delivery. Bound by SCCs &amp; UK
           IDTA where applicable.
         </li>
         <li>
-          <strong>Email service provider</strong> — for waitlist and transactional email. Provider to be confirmed
+          <strong>Email service provider</strong> - for waitlist and transactional email. Provider to be confirmed
           before list activation; will be a GDPR-compliant processor with appropriate data-transfer safeguards.
         </li>
       </ul>

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Individuals — Workings",
+  title: "Individuals - Workings",
   description:
-    "Prove your process. Protect your work. Workings for writers, creatives, developers, founders, students, and anyone whose authorship matters.",
+    "Record your process, protect your work. Workings for writers, creatives, developers, inventors, students, and anyone whose authorship matters.",
   alternates: { canonical: "/individuals" },
 };
 

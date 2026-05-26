@@ -29,7 +29,7 @@ const columns: { title: string; items: FooterItem[] }[] = [
     items: [
       { label: 'News', href: '/news' },
       { label: 'FAQ', href: '/faq' },
-      { label: 'Contact us', href: 'mailto:contact@workings.io', external: true },
+      { label: 'info@workings.io', href: 'mailto:info@workings.io', external: true },
     ],
   },
   {
@@ -93,17 +93,6 @@ export function Footer() {
             <p className="font-display text-2xl text-cream leading-tight mb-5 max-w-[260px]">
               The way you work.
             </p>
-            <a
-              href="https://x.com/WorkingsLabs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-9 h-9 rounded-lg bg-white/[0.04] border border-cream/10 flex items-center justify-center text-cream/55 hover:text-cream hover:border-blue hover:bg-white/[0.08] transition-all"
-              aria-label="Follow Workings on X"
-            >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
           </div>
 
           {/* Link columns */}
@@ -124,11 +113,14 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-cream/10 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs text-cream/45">
           <span>
-            &copy; 2026 Human <em>Workings</em> Ltd{' '}
+            &copy; 2026 Human Workings Ltd{' '}
             <span onClick={onEgg} className="cursor-pointer select-none" title="·">·</span>
           </span>
           <span>All rights reserved</span>
         </div>
+
+        {/* Site signature — appears at the bottom of every page */}
+        <p className="mt-8 text-center text-sm text-cream/55">Properly private.</p>
       </div>
     </footer>
   );

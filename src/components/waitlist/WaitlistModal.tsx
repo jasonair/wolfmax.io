@@ -65,7 +65,7 @@ export function WaitlistModal({ isOpen, onClose }: { isOpen: boolean; onClose: (
     try {
       localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
     } catch {
-      /* storage unavailable — ignore */
+      /* storage unavailable - ignore */
     }
   }, [draft, isOpen]);
 
@@ -294,7 +294,7 @@ export function WaitlistModal({ isOpen, onClose }: { isOpen: boolean; onClose: (
                       <input
                         type="text"
                         maxLength={80}
-                        placeholder="Tell us — max 80 chars"
+                        placeholder="Tell us - max 80 chars"
                         value={draft.user_personas_other}
                         onChange={(e) => setDraft((d) => ({ ...d, user_personas_other: e.target.value }))}
                         className="wl-input mt-2.5"
@@ -321,7 +321,7 @@ export function WaitlistModal({ isOpen, onClose }: { isOpen: boolean; onClose: (
                       <input
                         type="text"
                         maxLength={120}
-                        placeholder="Tell us — max 120 chars"
+                        placeholder="Tell us - max 120 chars"
                         value={draft.use_cases_other}
                         onChange={(e) => setDraft((d) => ({ ...d, use_cases_other: e.target.value }))}
                         className="wl-input mt-2.5"
@@ -348,7 +348,7 @@ export function WaitlistModal({ isOpen, onClose }: { isOpen: boolean; onClose: (
                     </div>
                   </div>
 
-                  {/* Edge fades — hint that fields continue beyond the viewport */}
+                  {/* Edge fades - hint that fields continue beyond the viewport */}
                   <div
                     aria-hidden
                     className={`pointer-events-none absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-cream to-transparent transition-opacity duration-200 ${edge.top ? 'opacity-100' : 'opacity-0'}`}
@@ -359,7 +359,7 @@ export function WaitlistModal({ isOpen, onClose }: { isOpen: boolean; onClose: (
                   />
                 </div>
 
-                {/* Pinned action bar — keeps the CTA in view and anchors the scroll region */}
+                {/* Pinned action bar - keeps the CTA in view and anchors the scroll region */}
                 <div className="shrink-0 border-t border-navy/[0.08] px-6 py-5 sm:px-10">
                   {errors.submit && <p className="wl-err mb-3 text-center">{errors.submit}</p>}
                   <button type="submit" disabled={submitting} className="btn-peach w-full justify-center disabled:opacity-60">

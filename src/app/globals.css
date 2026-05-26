@@ -153,7 +153,7 @@ section[id] {
   background: rgba(245, 239, 228, 0.06);
 }
 
-/* Peach — the warm conversion CTA (navy text on apricot) */
+/* Peach - the warm conversion CTA (navy text on apricot) */
 .btn-peach {
   display: inline-flex;
   align-items: center;
@@ -289,7 +289,7 @@ article a[href*="synscribe.com"] {
   display: none !important;
 }
 
-/* Intro overlay — only shown when the pre-paint script opts in ("play").
+/* Intro overlay - only shown when the pre-paint script opts in ("play").
    Without JS or when skipped, the overlay never paints and the logo is
    visible immediately, so the page degrades gracefully. */
 #intro-overlay {
@@ -302,7 +302,7 @@ html[data-intro="play"] #nav-logo {
   opacity: 0;
 }
 /* Snap to full opacity at handoff (no fade) so the real logo sits solid
-   beneath the docked lockup as it fades out — avoids a brightness dip. */
+   beneath the docked lockup as it fades out - avoids a brightness dip. */
 html[data-intro="done"] #nav-logo {
   opacity: 1;
 }

@@ -17,7 +17,7 @@ export default function TermsPage() {
       <h2>1. About us</h2>
       <p>
         This website is operated by Human Workings Ltd, a company registered in England &amp; Wales. Contact:{' '}
-        <a href="mailto:contact@workings.io">contact@workings.io</a>.
+        <a href="mailto:info@workings.io">info@workings.io</a>.
       </p>
 
       <h2>2. Acceptable use</h2>
@@ -41,7 +41,7 @@ export default function TermsPage() {
 
       <h2>4. Intellectual property</h2>
       <p>
-        All content on this website — including the Workings name, logo, brand marks, copy, and design — is owned by
+        All content on this website - including the Workings name, logo, brand marks, copy, and design - is owned by
         Human Workings Ltd or licensed to us. You may not reproduce, distribute, or create derivative works without our
         written permission, save for fair-use quotation for the purpose of news reporting, review, or academic citation.
       </p>
@@ -74,7 +74,7 @@ export default function TermsPage() {
 
       <h2>9. Contact</h2>
       <p>
-        <a href="mailto:contact@workings.io">contact@workings.io</a>
+        <a href="mailto:info@workings.io">info@workings.io</a>
       </p>
     </LegalShell>
   );

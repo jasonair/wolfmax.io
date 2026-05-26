@@ -14,11 +14,11 @@ export const faqSections: FaqSection[] = [
       },
       {
         q: "What makes Workings different from other tools on the market?",
-        a: "<p>Workings is not an AI detection tool. AI detectors look at the finished output and guess whether a human or a machine wrote it. They are statistically unreliable and disproportionately flag non-native speakers and certain writing styles.</p><p class=\"mt-3\">The only way to avoid guessing is to collect evidence of workflows at the point of creation.</p><p class=\"mt-3\">Workings collects high-fidelity, searchable data as you work — including screenshots, across every app — safe, private, local, and tamper-evident. You control who sees it, and anyone you share with can verify it for themselves. Every one of these features is vital, and Workings is the only point-of-creation tool that provides them all.</p>",
+        a: "<p>Workings is not an AI detection tool. AI detectors look at the finished output and guess whether a human or a machine wrote it. They are statistically unreliable and disproportionately flag non-native speakers and certain writing styles.</p><p class=\"mt-3\">The only way to avoid guessing is to collect evidence of workflows at the point of creation.</p><p class=\"mt-3\">Workings collects high-fidelity, searchable data as you work - including screenshots, across every app - safe, private, local, and tamper-evident. You control who sees it, and anyone you share with can verify it for themselves. Every one of these features is vital, and Workings is the only point-of-creation tool that provides them all.</p>",
       },
       {
         q: "Who is Workings for?",
-        a: "Workings is for where authorship matters — students can demonstrate the thinking and effort behind their work, inventors can show when and how their inventions were made, writers can share how they developed their creations. The core technology, allowing users to collect a database of high-fidelity evidence of workflows, can be developed into a wide array of functions for businesses.",
+        a: "Workings is for wherever authorship matters - students can demonstrate the thinking and effort behind their work, universities can uphold academic integrity and understand how their students actually work, inventors can show when and how their inventions were made, writers can share how they developed their creations. For businesses, Workings provides the core technology to collect a database of high-fidelity evidence of workflows - ready to develop for additional use cases.",
       },
       {
         q: "Who created Workings?",
@@ -35,7 +35,7 @@ export const faqSections: FaqSection[] = [
       },
       {
         q: "What gets recorded?",
-        a: 'Two things, both stored locally on your device: periodic screenshots of your screen, and your typing rhythm — the timing of how you work, not a log of your keystrokes. See the <a href="/privacy">Privacy Policy</a> for more details.',
+        a: 'Two things, both stored locally on your device: periodic screenshots of your screen, and your typing rhythm - the timing of how you work, not a log of your keystrokes. See the <a href="/privacy">Privacy Policy</a> for more details.',
       },
       {
         q: "Can I delete my data?",
@@ -48,19 +48,27 @@ export const faqSections: FaqSection[] = [
     items: [
       {
         q: "What's in a Workings report?",
-        a: "A cryptographically signed summary of your session: duration, tool usage, AI use, behavioural metrics, a timeline visualisation, and a hash for verification. The amount of detail is your choice — you control what level of summary you share.",
+        a: "A cryptographically signed summary of your session: duration, tool usage, AI use, behavioural metrics, a timeline visualisation, and a hash for verification. The amount of detail is your choice - you control what level of summary you share.",
       },
       {
         q: "When a Workings user provides me with their work and a Workings report, how do I know that I can trust them?",
-        a: 'Drop their Workings report into our <a href="/verify">verifier</a> (no account needed). It confirms the report is genuine and unaltered, and that it\'s genuinely tied to the document they gave you — so now you\'re checking real, tamper-evident evidence, not taking their word for it. What that evidence tells you about their work is then yours to judge.',
+        a: 'Drop their Workings report into our <a href="/verify">verifier</a> (no account needed). It confirms the report is genuine and unaltered, and that it\'s genuinely tied to the document they gave you - so now you\'re checking real, tamper-evident evidence, not taking their word for it. What that evidence tells you about their work is then yours to judge.',
       },
       {
         q: "What does the AI / human monitoring in a report mean?",
-        a: "Workings monitors your session continuously and records which applications were active, including all known AI tools — how long you spent in each, and the order you moved between them (research, AI, editing, and so on). The report attests when it was monitoring and any gaps and shows this activity transparently. It doesn't read your content or measure how much of your work came from any tool — it shows how you worked, and proves it covered the whole process.",
+        a: "Workings monitors your session continuously and records which applications were active, including all known AI tools - how long you spent in each, and the order you moved between them (research, AI, editing, and so on). The report attests when it was monitoring and any gaps and shows this activity transparently. It doesn't read your content or measure how much of your work came from any tool - it shows how you worked, and proves it covered the whole process.",
       },
       {
         q: "Will my recordings become more useful over time?",
-        a: "Yes. As you work, Workings lays down a genuine record of your process, locally — layer by layer, in sequence, yours alone. As Workings grows, new tools will draw richer authorship and productivity insight from work you capture today — and you decide if and when to dig in.",
+        a: "Yes. As you work, Workings lays down a genuine record of your process, locally - layer by layer, in sequence, yours alone. As Workings grows, new tools will draw richer authorship and productivity insight from work you capture today - and you decide if and when to dig in.",
+      },
+      {
+        q: "What if I use AI on another device?",
+        a: "Workings only captures the process on the device it's running on. Anything made elsewhere isn't part of that record - so it tends to show up as a break in the progression rather than continuous process. A large paste with no drafting behind it, for example. Workings reflects the process it can see; it doesn't try to police everything you do.",
+      },
+      {
+        q: "Can't someone just fake it?",
+        a: "No system is airtight, and Workings doesn't pretend to be. What it does is move the bar. Today's baseline is no record at all - Workings replaces that with a high-fidelity account of how the work was made, where shortcuts tend to surface as discontinuities. Faking a convincing process - real drafting, revision, the natural rhythm of work - is usually more effort than simply doing the work. The point isn't to police for cheating; it's to make genuine process visible and worth showing.",
       },
     ],
   },
@@ -69,7 +77,7 @@ export const faqSections: FaqSection[] = [
     items: [
       {
         q: "What platforms is Workings available on?",
-        a: "Windows PCs (8GB RAM) and Mac (Apple Silicon).",
+        a: "<p>Workings runs as a desktop app on both Windows and Mac.</p><p><strong>Windows</strong> - Any PC running Windows 11 or higher with at least 8GB of RAM. This covers the vast majority of laptops and desktops sold in recent years.</p><p><strong>Mac</strong> - Macs with Apple Silicon (the M1, M2, M3 and later chips). If you bought your Mac from late 2020 onwards, you're almost certainly covered.</p>",
       },
       {
         q: "Is Workings available in my country?",

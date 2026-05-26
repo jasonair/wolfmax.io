@@ -4,7 +4,7 @@ interface WaveProps {
 }
 
 /**
- * The Workings hand-drawn wave / squiggle — the brand's "journey" motif.
+ * The Workings hand-drawn wave / squiggle - the brand's "journey" motif.
  * Colour is inherited via `currentColor` (e.g. add `text-blue`).
  */
 export function Wave({ className = "", strokeWidth = 8 }: WaveProps) {
@@ -16,12 +16,12 @@ export function Wave({ className = "", strokeWidth = 8 }: WaveProps) {
       preserveAspectRatio="none"
       aria-hidden="true"
     >
-      {/* Organic rolling wave that starts at x=-100 and ends at x=1360 —
-          past both edges of the 0–1200 viewBox — so the end-caps are clipped
+      {/* Organic rolling wave that starts at x=-100 and ends at x=1360 -
+          past both edges of the 0–1200 viewBox - so the end-caps are clipped
           and the line bleeds off-screen rather than showing a tip. Crests
           (y≈28/34) and troughs (y≈92/88) are spaced on an even ~480-wide
           wavelength so no bump is pinched, and each segment's control points
-          sit at its midpoint with horizontal tangents — giving cosine-shaped,
+          sit at its midpoint with horizontal tangents - giving cosine-shaped,
           kink-free curves like the bottom-of-page Squiggle, with a touch of
           height variation to keep the hand-drawn feel. It enters low on the
           left, rolls through two crests, then climbs and exits the top-RIGHT
