@@ -42,13 +42,17 @@ export function Navbar() {
     window.addEventListener('hashchange', update);
     const origPush = history.pushState.bind(history);
     const origReplace = history.replaceState.bind(history);
+    // Next.js calls these during its render/commit cycle (e.g. scroll
+    // restoration), which can land inside React's insertion-effect window.
+    // Setting state synchronously there triggers "useInsertionEffect must not
+    // schedule updates", so defer the read to a microtask — after commit.
     history.pushState = (...args) => {
       origPush(...args);
-      update();
+      queueMicrotask(update);
     };
     history.replaceState = (...args) => {
       origReplace(...args);
-      update();
+      queueMicrotask(update);
     };
     return () => {
       window.removeEventListener('hashchange', update);
