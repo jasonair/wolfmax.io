@@ -125,9 +125,10 @@ export default function PrivacyPage() {
           contacting us at <a href="mailto:privacy@workings.io">privacy@workings.io</a>.
         </li>
         <li>
-          <strong>Legitimate interests (Article 6(1)(f)):</strong> for website analytics, to understand how our website
-          is used and improve it. We have assessed that this does not override your rights and freedoms, given the
-          aggregated nature of the data collected.
+          <strong>Consent (Article 6(1)(a)):</strong> for website analytics. Google Analytics cookies are only set
+          after you accept them via the cookie notice, so we rely on your consent as the basis for this processing. You
+          may withdraw it at any time through the <strong>Cookie preferences</strong> link in the footer, after which no
+          further analytics data is collected.
         </li>
         <li>
           <strong>Legitimate interests (Article 6(1)(f)):</strong> for responding to direct email enquiries.
