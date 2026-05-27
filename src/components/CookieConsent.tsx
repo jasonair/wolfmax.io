@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from './Logo';
 import { readConsent, setConsent, COOKIE_PREFS_EVENT } from '@/lib/consent';
@@ -39,7 +40,7 @@ export function CookieConsent() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-3xl rounded-2xl border border-cream/12 bg-navy/95 text-cream shadow-[0_16px_48px_rgba(12,16,48,0.35)] backdrop-blur-md sm:inset-x-4 sm:bottom-4"
+          className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-5xl rounded-2xl border border-cream/12 bg-navy/95 text-cream shadow-[0_16px_48px_rgba(12,16,48,0.35)] backdrop-blur-md sm:inset-x-4 sm:bottom-4"
         >
           <div className="flex flex-col items-center gap-4 p-5 text-center sm:flex-row sm:items-center sm:gap-6 sm:p-6 sm:text-left">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center">
@@ -50,9 +51,9 @@ export function CookieConsent() {
               We always store a small record of your consent choice and any waitlist email you submit. With your
               permission we also use <span className="text-cream">Google Analytics</span> to understand site traffic —
               it stays off unless you accept. Read the{' '}
-              <a href="/privacy" className="text-[#7aa6ff] underline underline-offset-2 hover:text-cream">
+              <Link href="/privacy" className="text-[#7aa6ff] underline underline-offset-2 hover:text-cream">
                 website privacy policy
-              </a>.
+              </Link>.
             </div>
             <div className="flex shrink-0 flex-col gap-2.5 self-stretch sm:flex-row sm:self-auto">
               <button onClick={() => choose('denied')} className="btn-ghost-cream justify-center text-sm">

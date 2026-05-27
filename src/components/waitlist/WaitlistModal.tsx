@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WL_PERSONAS, WL_USE_CASES, WL_COUNTRIES, WL_COUNTRIES_TOP } from './data';
 
@@ -341,7 +342,7 @@ export function WaitlistModal({ isOpen, onClose }: { isOpen: boolean; onClose: (
                     <span>
                       I agree that <em>Workings</em> can store my email and responses to contact me about beta access and
                       product updates. I can withdraw consent at any time. See the{' '}
-                      <a href="/privacy" className="text-blue underline">privacy policy</a>.
+                      <Link href="/privacy" className="text-blue underline">privacy policy</Link>.
                     </span>
                   </label>
                   {errors.consent && <p className="wl-err">{errors.consent}</p>}
