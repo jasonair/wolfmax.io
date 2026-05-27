@@ -49,11 +49,20 @@ export const metadata: Metadata = {
     url: "/",
     type: "website",
     siteName: "Workings",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 652,
+        alt: "Workings - Capture your Workings. A private, tamper-evident record to prove how the work was made.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Workings - The way you work.",
     description: "Workings is an authorship tool designed to privately capture the way you work.",
+    images: ["/og-image.png"],
   },
 };
 
