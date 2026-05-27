@@ -32,11 +32,11 @@ export function NewsPostClient({ post }: { post: Post }) {
         >
           <div className="flex items-center gap-3 mb-6">
             <Link
-              href="/news"
+              href="/news#blog"
               className="eyebrow text-mute hover:text-blue transition-colors"
-              aria-label="Back to news"
+              aria-label="Back to blog"
             >
-              ← News
+              ← Back to blog
             </Link>
             <span className="text-navy/20" aria-hidden="true">/</span>
             <p className="eyebrow text-mute">
@@ -102,6 +102,16 @@ export function NewsPostClient({ post }: { post: Post }) {
             ))}
           </div>
         )}
+
+        {/* Footer back link — keeps the post navigable without scrolling to top */}
+        <div className="mb-14">
+          <Link
+            href="/news#blog"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-blue hover:underline underline-offset-4"
+          >
+            ← Back to blog
+          </Link>
+        </div>
 
         {/* CTA card */}
         <motion.div

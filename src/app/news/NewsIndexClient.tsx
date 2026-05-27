@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Eyebrow } from '@/components/Eyebrow';
@@ -25,6 +25,28 @@ const TAB_LABEL: Record<Tab, string> = {
 
 export function NewsIndexClient({ posts }: { posts: Post[] }) {
   const [tab, setTab] = useState<Tab>('timeline');
+
+  // Honour ?#blog / ?#timeline in the URL so the back link from a blog post
+  // returns the reader to the tab they came from. Also keeps the URL hash in
+  // sync with the current tab so the choice can be deep-linked or shared.
+  useEffect(() => {
+    const apply = () => {
+      const h = window.location.hash.replace('#', '');
+      if (h === 'blog' || h === 'timeline') setTab(h);
+    };
+    apply();
+    window.addEventListener('hashchange', apply);
+    return () => window.removeEventListener('hashchange', apply);
+  }, []);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const target = `#${tab}`;
+    if (window.location.hash !== target) {
+      // replaceState (not pushState) — we don't want every tab click to add a
+      // back-button entry.
+      history.replaceState(null, '', target);
+    }
+  }, [tab]);
 
   return (
     <main className="surface-cream min-h-screen selection:bg-blue/15">

@@ -29,7 +29,8 @@ const works = [
     title: 'Inventors',
     description:
       'Your invention documented from first idea to final design. Prove the human contribution behind it, and exactly when it happened - both critical for patent applications in the new AI era.',
-    icon: 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
+    // Lightbulb — reads as "idea / invention" at icon size.
+    icon: 'M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 006 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5M9 18h6M10 22h4',
   },
 ];
 
@@ -105,6 +106,9 @@ export default function IndividualsPage() {
               </motion.div>
             ))}
           </div>
+          <p className="mt-10 sm:mt-12 text-center text-cream/75 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            If your work is ever questioned, you hold the evidence of exactly how and when it was created.
+          </p>
         </div>
       </section>
 

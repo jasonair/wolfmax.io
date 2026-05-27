@@ -89,12 +89,11 @@ function EarlyAccess() {
         transition={{ duration: 0.7, ease: 'easeOut' }}
         className="max-w-2xl mx-auto text-center"
       >
-        <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 text-blue">
+        <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-8 text-blue">
           <WMark />
         </div>
-        <Eyebrow className="text-cream/55 mb-4">Get early access</Eyebrow>
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-9 mx-auto max-w-[16ch]">
-          If your work matters, your process matters.
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-10 mx-auto max-w-[14ch]">
+          Capture your <em className="italic">Workings</em>.
         </h2>
         <div className="flex justify-center">
           <Button variant="peach" withArrow onClick={open} className="!text-base !px-8 !py-4">

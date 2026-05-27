@@ -13,7 +13,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         </span>
       </summary>
       <div
-        className="mt-3.5 max-w-[65ch] text-[0.98rem] leading-relaxed text-mute [&_a]:text-blue [&_a]:underline [&_a]:underline-offset-2 [&_p+p]:mt-3 [&_strong]:font-semibold [&_strong]:text-navy"
+        className="mt-3.5 max-w-[65ch] text-[0.98rem] leading-relaxed text-mute [&_a]:text-blue [&_a]:underline [&_a]:underline-offset-2 [&_p+p]:mt-3 [&_strong]:font-semibold [&_strong]:text-navy [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mt-3 [&_li]:mt-1 [&_li]:pl-1 [&_li::marker]:text-blue/60"
         dangerouslySetInnerHTML={{ __html: a }}
       />
     </details>
@@ -25,8 +25,8 @@ export default function FaqPage() {
     <main className="surface-cream min-h-screen">
       <JsonLd data={faqPageSchema(faqItems)} />
       <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-12 text-center">
-        <Eyebrow className="text-mute mb-4">FAQ</Eyebrow>
-        <h1 className="font-display text-5xl sm:text-6xl text-navy leading-[1.04] mb-6">Questions &amp; answers.</h1>
+        <Eyebrow className="text-mute mb-4">Questions &amp; answers</Eyebrow>
+        <h1 className="font-display text-5xl sm:text-6xl text-navy leading-[1.04] mb-6">FAQ</h1>
         <p className="text-base sm:text-lg text-mute max-w-xl mx-auto">
           Everything you need to know about Workings - how it works, who it&apos;s for, and how we handle your data.
         </p>

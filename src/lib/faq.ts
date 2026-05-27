@@ -70,6 +70,10 @@ export const faqSections: FaqSection[] = [
         q: "Can't someone just fake it?",
         a: "No system is airtight, and Workings doesn't pretend to be. What it does is move the bar. Today's baseline is no record at all - Workings replaces that with a high-fidelity account of how the work was made, where shortcuts tend to surface as discontinuities. Faking a convincing process - real drafting, revision, the natural rhythm of work - is usually more effort than simply doing the work. The point isn't to police for cheating; it's to make genuine process visible and worth showing.",
       },
+      {
+        q: "What types of media does Workings work with?",
+        a: "<p>Workings captures whatever you put in scope. That can be art, code, written word, video - any digital work you're producing on screen. Everything captured becomes evidence, and any of it can be turned into a time-lapse of how the work came together.</p><p>The Deliverable Specific Report is narrower. It currently works with English-language text only, supplied as a PDF, Markdown (.md), Word (.doc), or text (.txt) file. A few things fall outside its scope:</p><ul><li><strong>Other languages</strong> - the report supports English only for now.</li><li><strong>Image-based PDFs</strong> - if the text isn't selectable (e.g. a scanned page), the report can't read it.</li><li><strong>Short documents</strong> - anything under 200 words.</li></ul>",
+      },
     ],
   },
   {

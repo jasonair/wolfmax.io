@@ -24,9 +24,9 @@ const audiences = [
   },
   {
     eyebrow: 'Businesses',
-    title: 'Find the human in the loop.',
+    title: 'Finding the human in the loop.',
     description:
-      'See the patterns, not the people. Aggregate insight, never individual surveillance. Evolve your AI policy on real evidence.',
+      'Help your team work with AI, not around it. See where human judgment adds value, and evolve your policy on real evidence - patterns, never individual monitoring.',
     cta: 'Explore for business',
     href: '/institutions#businesses',
   },
