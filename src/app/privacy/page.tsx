@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { LegalShell } from '@/components/LegalShell';
 
 export default function PrivacyPage() {
@@ -7,12 +6,6 @@ export default function PrivacyPage() {
       eyebrow={<>Legal · workings.io</>}
       title="Website privacy policy."
       meta="Last updated: 27 May 2026"
-      note={
-        <>
-          For the Workings desktop application privacy policy (the local recording engine, encryption,
-          zero-knowledge architecture), see <Link href="/app-privacy">App privacy policy</Link>.
-        </>
-      }
       lead={
         <>
           This policy covers only the personal data collected through the <strong>workings.io</strong> website -
