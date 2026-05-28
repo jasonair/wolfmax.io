@@ -4,7 +4,7 @@ export default function PrivacyPage() {
   return (
     <LegalShell
       eyebrow={<>Legal · workings.io</>}
-      title="Website privacy policy."
+      title="Privacy policy."
       meta="Last updated: 27 May 2026"
       lead={
         <>

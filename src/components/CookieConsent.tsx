@@ -52,7 +52,7 @@ export function CookieConsent() {
               permission we also use <span className="text-cream">Google Analytics</span> to understand site traffic —
               it stays off unless you accept. Read the{' '}
               <Link href="/privacy" className="text-[#7aa6ff] underline underline-offset-2 hover:text-cream">
-                website privacy policy
+                privacy policy
               </Link>.
             </div>
             <div className="flex shrink-0 flex-col gap-2.5 self-stretch sm:flex-row sm:self-auto">

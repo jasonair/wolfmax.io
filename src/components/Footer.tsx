@@ -35,7 +35,7 @@ const columns: { title: string; items: FooterItem[] }[] = [
   {
     title: 'Legal',
     items: [
-      { label: 'Website privacy', href: '/privacy' },
+      { label: 'Privacy', href: '/privacy' },
       { label: 'Cookie preferences', action: 'cookie-prefs' },
     ],
   },
