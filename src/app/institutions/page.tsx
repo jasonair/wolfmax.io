@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { Eyebrow } from '@/components/Eyebrow';
@@ -11,7 +11,7 @@ type Tab = 'educators' | 'businesses';
 const HERO: Record<Tab, { eyebrow: string; title: string; sub: ReactNode; ctaHref: string; ctaLabel: string; meta: string }> = {
   educators: {
     eyebrow: 'For educators',
-    title: 'Students show their work.',
+    title: 'Students show their process.',
     sub: 'And you see the genuine effort behind it - no surveillance, no accusation.',
     ctaHref: 'mailto:universities@workings.io?subject=University%20demo%20request',
     ctaLabel: 'Book a demo',
@@ -19,13 +19,13 @@ const HERO: Record<Tab, { eyebrow: string; title: string; sub: ReactNode; ctaHre
   },
   businesses: {
     eyebrow: 'For businesses',
-    title: 'Surface the human work behind everything you deliver.',
+    title: 'Understand AI value. Keep the human in the loop.',
     sub: (
       <>
-        AI is in every deliverable now. <em className="italic">Workings</em> gives you a verifiable
-        record of how it was used and where your people added value, stored securely and shared only
-        when your team chooses. So when a client, regulator, or your own leadership asks, you answer
-        with evidence.
+        AI is in every deliverable now - and leadership wants to know what it&apos;s worth.{' '}
+        <em className="italic">Workings</em> gives you a verifiable record of how it was used and where
+        your people added value, stored securely and shared only when your team chooses. So when your
+        CFO, a client, or a regulator asks, you answer with evidence.
       </>
     ),
     ctaHref: 'mailto:business@workings.io?subject=Workings%20for%20business%20-%20demo',
@@ -68,9 +68,9 @@ const EDU_CARDS = [
 // defensible record, user-check for hires.
 const BIZ_CARDS_PROOF = [
   {
-    title: 'Prove genuine human authorship',
+    title: 'Credit the human in the loop',
     description:
-      "Show how critical work was made, with a timestamped, verifiable record. Establish when it was created, that it was developed independently, and that it's yours.",
+      'Show how critical work was made, with a timestamped, verifiable record. Establish when it was created, and how AI was used. Rapidly share best practice.',
     // Pen / signature — reads as "authorship"
     icon: 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',
   },
@@ -97,24 +97,59 @@ const BIZ_CARDS_PROOF = [
   },
 ];
 
-// "Who it's for" — three audience segments. Rendered as stacked rows (not
-// cards) so they read lighter than the benefit grid above.
-const WHO_ITS_FOR = [
+// Applications matrix on the business page — grouped use-cases. Each
+// cluster carries a "subtitle" line listing typical audiences for that
+// group. Bullets are ReactNode so we can italicise `Workings` mid-sentence
+// where it appears.
+const BIZ_APPLICATIONS: {
+  title: string;
+  subtitle: string;
+  bullets: ReactNode[];
+}[] = [
   {
-    title: 'Creative agencies, studios & media',
-    badge: 'Currently piloting',
-    description:
-      'Show clients the human craft behind the deliverable, and protect your originality, your billables, and your reputation in a market where AI-made work is everywhere.',
+    title: 'Proof where you need it',
+    subtitle:
+      'Common in legal practice, IP advisory, creative studios, R&D-heavy businesses, scientific research, games studios, and journalism.',
+    bullets: [
+      'Establish inventorship and provenance for IP and patents by generating a timestamped, tamper-evident record of how the work was created.',
+      'Substantiate R&D tax claims by maintaining a contemporaneous record of who did the work and when.',
+      'Defend against claims that confidential information was misappropriated by showing that work was independently developed.',
+      'Resolve client billing disputes by showing what was done, when, and how long it took.',
+      'Demonstrate continuous supervision of AI use by junior and support staff (for legal firms) by employing a tool which allows AI use to be clearly identified.',
+    ],
   },
   {
-    title: 'Law firms & consulting',
-    description:
-      'Demonstrate that high-value deliverables are genuine human work product, not AI output billed at premium rates. A defensible record behind every engagement and every invoice.',
+    title: 'Increase efficiency and reduce costs',
+    subtitle:
+      'Useful across professional services firms, distributed teams, businesses negotiating PI insurance, and any organisation running a large SaaS stack.',
+    bullets: [
+      'Optimise AI use across the business by understanding where it is working well and where it is not.',
+      'Eliminate subscriptions for applications no one uses by understanding which tools staff are actually using.',
+      'Streamline recruitment by reducing spam and understanding how applications have been constructed.',
+      'Improve efficiency for staff by giving them a tool that lets them search their entire workflow history instantly — find any document, message, or webpage seen previously or worked on.',
+      'Support PI insurance negotiations by maintaining a defensible workflow audit trail.',
+    ],
   },
   {
-    title: 'R&D-heavy industry',
-    description:
-      'Substantiate R&D tax claims with a contemporaneous record of who did the work and when. Establish inventorship and provenance for the IP and patents that matter.',
+    title: 'Stand out to clients',
+    subtitle:
+      'Useful for creative agencies, freelancers, law firms with public AI use policies, consultancies competing on craft, and journalists.',
+    bullets: [
+      'Certify to clients that your AI use policy was followed for their deliverables by working with us to create an assessable AI use policy.',
+      'Differentiate pitches by showing prospective clients that your process is verifiable, not just stated.',
+      "Demonstrate the human craft behind a deliverable to clients who need to know it wasn't AI-generated by sharing evidence.",
+    ],
+  },
+  {
+    title: 'Stand behind the work',
+    subtitle:
+      'Useful for anyone engaging contractors, creative agencies, law firms, distributed teams, and clients buying AI-assisted deliverables.',
+    bullets: [
+      'Catch AI hallucinations, errors, and unsupported claims before they reach a client — by seeing where AI was used in a deliverable and whether it was checked.',
+      'Understand how a piece of work came together: which collaborators shaped which parts, and where the thinking happened.',
+      'Run honest retrospectives on a real record of how work was produced, rather than reconstructed memory.',
+      'Build a clearer working relationship with contractors: they show their workings, you have a shared basis for trusting the output.',
+    ],
   },
 ];
 
@@ -239,7 +274,7 @@ function BusinessesPanel() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow className="text-blue mb-5">Proof, not assurances</Eyebrow>
             <h2 className="font-display text-[1.7rem] sm:text-[2.5rem] leading-[1.1] text-cream">
-              You set the policy. Visibility your team consents to.
+              Find the balance of privacy &amp; transparency with your team.
             </h2>
           </div>
 
@@ -256,37 +291,40 @@ function BusinessesPanel() {
         </div>
       </section>
 
-      {/* Cream half — single dark→cream seam. Holds the audience segments
-          only; flows straight into the closing cream CTA below. */}
-      <section className="surface-cream px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-12 sm:pb-16">
+      {/* Applications matrix — uses cream-200 tonal shift to denote a new
+          section. Four grouped use-case clusters in a 2x2 grid on md+;
+          each carries a subtitle line listing typical audiences. */}
+      <section className="surface-cream px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-20 sm:pb-24 bg-cream-200">
         <div className="max-w-6xl mx-auto">
-          {/* Who it's for — three audience segments as stacked rows */}
-          <div>
-            <Eyebrow className="text-mute mb-6">Who it&apos;s for</Eyebrow>
-            <ul className="space-y-5 sm:space-y-6">
-              {WHO_ITS_FOR.map((item) => (
-                <li
-                  key={item.title}
-                  className="border-t border-navy/10 pt-5 sm:pt-6 first:border-t-0 first:pt-0"
-                >
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1.5 mb-1.5">
-                    <h3 className="text-navy font-semibold text-base sm:text-[1.05rem] leading-snug">
-                      {item.title}
-                    </h3>
-                    {item.badge && (
-                      <span className="eyebrow inline-flex items-center rounded-md px-2 py-[3px] text-[0.62rem] tracking-[0.12em] bg-peach/25 text-[#a45a31]">
-                        {item.badge}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-mute text-sm sm:text-[0.95rem] leading-relaxed max-w-3xl">
-                    {item.description}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Eyebrow className="text-mute mb-5">Applications</Eyebrow>
+          <p className="font-display text-[1.4rem] sm:text-[1.8rem] leading-snug text-navy max-w-3xl mb-14 sm:mb-16">
+            The cryptographically sealed body of evidence of how work is made has a wide range of applications for
+            business.
+          </p>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 sm:gap-y-14">
+            {BIZ_APPLICATIONS.map((group) => (
+              <div key={group.title}>
+                <h3 className="font-display text-[1.25rem] sm:text-[1.4rem] leading-snug text-navy mb-2 sm:mb-2.5">
+                  {group.title}
+                </h3>
+                <p className="text-mute/85 text-sm leading-relaxed italic mb-5 sm:mb-6">
+                  {group.subtitle}
+                </p>
+                <ul className="space-y-3 sm:space-y-3.5">
+                  {group.bullets.map((bullet, i) => (
+                    <li
+                      key={i}
+                      className="flex gap-3 text-mute text-sm sm:text-[0.95rem] leading-relaxed"
+                    >
+                      <span aria-hidden="true" className="mt-[0.55rem] h-1.5 w-1.5 rounded-full bg-blue/70 shrink-0" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -319,62 +357,65 @@ function BusinessesPanel() {
   );
 }
 
-// Read the active tab from the URL hash. SSR returns the default; client reads
-// the actual hash. Kept as a plain function so both the initial state and the
-// post-mount sync go through the same logic.
+// Read the active tab from the URL hash. SSR safe (returns the default if
+// no window). Used both as the per-render derivation AND inside the change
+// listeners — single source of truth for "what tab should be active".
 const readHashTab = (): Tab =>
   typeof window !== 'undefined' && window.location.hash.replace('#', '') === 'businesses'
     ? 'businesses'
     : 'educators';
 
-// In a browser, useLayoutEffect runs synchronously after mount but BEFORE the
-// browser paints — which means a hash like `#businesses` is picked up before
-// the user sees the page. On the server it's a no-op (so we fall back to
-// useEffect to avoid Next.js's SSR warning).
-const useIsomorphicLayoutEffect =
-  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
-
 export default function InstitutionsPage() {
-  // Default to 'educators' to match the server-rendered HTML; the
-  // useIsomorphicLayoutEffect below syncs to the real hash before paint.
-  const [tab, setTab] = useState<Tab>('educators');
+  // We don't store the tab itself in state — we DERIVE it from
+  // window.location.hash on every render. State only tracks "something
+  // hash-related might have changed, please re-derive". This is more robust
+  // than storing the tab and trying to keep it in sync via effects, because
+  // there's no possible race where the state lags behind the URL.
+  //
+  // First render uses tick=0 → 'educators' (matches server HTML, no hydration
+  // mismatch). The effect bumps tick on mount, which re-renders and pulls
+  // the real hash. Every subsequent listener bump triggers another re-render
+  // and re-read.
+  const [tick, setTick] = useState(0);
 
-  // Initial sync: read the hash as soon as we have a window. Crucial when the
-  // user arrives via a deep link like /institutions#businesses — the prior
-  // useSyncExternalStore version sometimes missed this on first navigation.
-  useIsomorphicLayoutEffect(() => {
-    const next = readHashTab();
-    setTab((cur) => (cur === next ? cur : next));
-  }, []);
-
-  // Ongoing sync: respond to hashchange events AND to Next.js client
-  // navigation (which updates the URL via history.pushState and does NOT fire
-  // a `hashchange` event). Wrapping pushState/replaceState catches both the
-  // navbar dropdown links and any browser back/forward.
   useEffect(() => {
-    const sync = () => {
-      const next = readHashTab();
-      setTab((cur) => (cur === next ? cur : next));
-    };
-    window.addEventListener('hashchange', sync);
+    const bump = () => setTick((n) => n + 1);
+    // Initial sync after mount — covers the case where the page renders with
+    // educators-default but the URL is already /institutions#businesses
+    // (e.g. arriving via the navbar dropdown from another page).
+    bump();
 
+    // hashchange fires for in-document anchor navigation; popstate fires
+    // for browser back/forward. Both are routes the user might take to
+    // switch tabs.
+    window.addEventListener('hashchange', bump);
+    window.addEventListener('popstate', bump);
+
+    // Next.js client navigation (the navbar dropdown's Education/Business
+    // links) updates the URL via history.pushState and does NOT fire
+    // `hashchange`. Wrap the methods so we still get notified.
     const origPush = history.pushState.bind(history);
     const origReplace = history.replaceState.bind(history);
     history.pushState = (...args) => {
       origPush(...args);
-      sync();
+      bump();
     };
     history.replaceState = (...args) => {
       origReplace(...args);
-      sync();
+      bump();
     };
 
     return () => {
-      window.removeEventListener('hashchange', sync);
+      window.removeEventListener('hashchange', bump);
+      window.removeEventListener('popstate', bump);
       history.pushState = origPush;
       history.replaceState = origReplace;
     };
   }, []);
+
+  // Pre-mount: tick=0 → 'educators' (matches SSR output, no hydration
+  // warning). Post-mount: read the live URL on every render.
+  const tab: Tab = tick === 0 ? 'educators' : readHashTab();
 
   // Both heroes and both panels are rendered into the HTML so crawlers and AI
   // agents see the full content for either audience; only the active tab is

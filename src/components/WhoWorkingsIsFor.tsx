@@ -16,7 +16,7 @@ const audiences = [
   },
   {
     eyebrow: 'Educators',
-    title: 'Students show their work.',
+    title: 'Students show their process.',
     description:
       'And you see the genuine effort behind it - no surveillance, no accusation.',
     cta: 'Explore for educators',
@@ -24,9 +24,9 @@ const audiences = [
   },
   {
     eyebrow: 'Businesses',
-    title: 'Finding the human in the loop.',
+    title: 'Exploring ROI on your AI spend.',
     description:
-      'Help your team work with AI, not around it. See where human judgment adds value, and evolve your policy on real evidence - patterns, never individual monitoring.',
+      'Privacy-first. See where AI is adding value to your business and where human judgement still matters.',
     cta: 'Explore for business',
     href: '/institutions#businesses',
   },
@@ -38,6 +38,11 @@ const Arrow = () => (
   </svg>
 );
 
+/**
+ * Single card. `min-h-[320px]` pins a shared minimum so cards stay
+ * aligned regardless of copy length, and `mb-auto` on the body pushes
+ * the CTA to a shared baseline at the bottom of the flex column.
+ */
 function AudienceCard({
   item,
   index,
@@ -55,7 +60,10 @@ function AudienceCard({
       transition={{ delay: index * 0.1, duration: 0.6, ease: 'easeOut' }}
       className="h-full"
     >
-      <Link href={item.href} className="card-on-cream group flex h-full flex-col p-8 sm:p-9">
+      <Link
+        href={item.href}
+        className="card-on-cream group flex h-full min-h-[320px] flex-col p-8 sm:p-9"
+      >
         {eyebrowStyle !== 'hidden' && (
           <span
             className={
@@ -77,8 +85,8 @@ function AudienceCard({
   );
 }
 
-function GroupLabel({ children }: { children: ReactNode }) {
-  return <span className="eyebrow text-blue mb-5 block">{children}</span>;
+function GroupLabel({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return <span className={`eyebrow text-blue mb-5 block ${className}`}>{children}</span>;
 }
 
 export function WhoWorkingsIsFor() {
@@ -96,30 +104,15 @@ export function WhoWorkingsIsFor() {
       title="Built for individuals and the institutions that work with them."
       intro="One privacy-first standard. Designed to support the people who make the work - verifiable by the organisations that need to trust it."
     >
-      {/*
-        Two-zone layout. The container around the institutions pair is the
-        whole approach — it IS the "Institutions" nav item, made visible.
-        - lg: row of [Individuals 1fr | Institutions 2.2fr]. The right side
-          needs the extra width to absorb its own padding so its inner cards
-          end up at least as wide as the lone Individuals card.
-        - sm-lg: zones stack; the Institutions frame is still visible, pair
-          renders 2-up inside it.
-        - <sm: pure stack, 1-up everywhere. The container drops its tint so
-          it isn't doing visual work it doesn't need to — the INSTITUTIONS
-          label is enough at single-column.
-        items-stretch on the outer grid + grid-rows-[auto_1fr] in each zone
-        keeps the row balanced (a lone short card beside a tall container
-        looks lopsided; the card pins its CTA to the bottom instead).
-      */}
-      <div className="mt-16 sm:mt-20 grid gap-y-12 lg:grid-cols-[1fr_2.2fr] lg:gap-x-8 lg:gap-y-0 items-stretch">
-        {/* Individuals zone */}
-        <div className="grid grid-rows-[auto_1fr]">
+      {/* Mobile (default) & tablet (sm) — stack zones vertically. The
+          Institutions container appears at sm+, with the pair side-by-side
+          inside it. Layout below switches to a balanced 3-card row at lg. */}
+      <div className="mt-16 sm:mt-20 lg:hidden grid gap-y-12">
+        <div>
           <GroupLabel>Individuals</GroupLabel>
           <AudienceCard item={individuals} index={0} eyebrowStyle="hidden" />
         </div>
-
-        {/* Institutions zone */}
-        <div className="grid grid-rows-[auto_1fr]">
+        <div>
           <GroupLabel>Institutions</GroupLabel>
           <div className="sm:rounded-[28px] sm:bg-navy/[0.03] sm:p-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 h-full">
@@ -127,6 +120,66 @@ export function WhoWorkingsIsFor() {
               <AudienceCard item={businesses} index={2} eyebrowStyle="demoted" />
             </div>
           </div>
+        </div>
+      </div>
+
+      {/*
+        Desktop (lg+) — 3-card row with asymmetric gutters.
+
+        Grid template columns (left → right):
+          1fr  | 48px       | 16px   | 1fr  | 20px      | 1fr  | 16px
+          ──── outer gap     ── frame  ──── inner gap    ──── frame
+          INDIV                pad-L   EDU    (inst)     BIZ   pad-R
+
+        Three `1fr` tracks → all three cards land on EXACTLY equal widths.
+        The 16px frame-pad cols + the inner-gap col give the Institutions
+        container its visual width (it spans cols 3 through 7) without
+        eating into the cards inside it. Outer gap (48px) is intentionally
+        much larger than the inner gap (20px) so proximity reads as
+        grouping — the pair belongs together, the lone Individuals card
+        stands apart.
+      */}
+      <div
+        className="mt-16 sm:mt-20 hidden lg:grid items-stretch
+                   lg:grid-cols-[1fr_48px_16px_1fr_20px_1fr_16px]
+                   lg:grid-rows-[auto_1.5rem_1rem_1fr_1rem]"
+      >
+        {/*
+          Row 1 — group labels.
+          Row 2 — 24px gap between labels and the container.
+          Row 3 — 16px top frame-pad (only the BG occupies this row).
+          Row 4 — the cards (1fr, stretches to tallest card).
+          Row 5 — 16px bottom frame-pad (only the BG occupies this row).
+
+          INDIVIDUALS sits tight over the lone card.
+          INSTITUTIONS spans the container's full width (cols 3-7).
+        */}
+        <div className="lg:col-start-1 lg:row-start-1">
+          <GroupLabel className="!mb-0">Individuals</GroupLabel>
+        </div>
+        <div className="lg:col-start-3 lg:col-end-8 lg:row-start-1 lg:pl-1">
+          <GroupLabel className="!mb-0">Institutions</GroupLabel>
+        </div>
+
+        {/* Institutions container background — spans rows 3-5 so it has
+            matching ~16px frame-pad on every side of the card pair. */}
+        <div
+          aria-hidden="true"
+          className="lg:col-start-3 lg:col-end-8 lg:row-start-3 lg:row-end-6 lg:rounded-[28px] lg:bg-navy/[0.03]"
+        />
+
+        {/* Cards — placed in row 4 (the 1fr row). Individuals card matches
+            the height of the institution cards; the BG extends 16px above
+            and below the card row, so the container reads as a deliberate
+            frame around the pair. */}
+        <div className="lg:col-start-1 lg:row-start-4">
+          <AudienceCard item={individuals} index={0} eyebrowStyle="hidden" />
+        </div>
+        <div className="lg:col-start-4 lg:row-start-4">
+          <AudienceCard item={educators} index={1} eyebrowStyle="demoted" />
+        </div>
+        <div className="lg:col-start-6 lg:row-start-4">
+          <AudienceCard item={businesses} index={2} eyebrowStyle="demoted" />
         </div>
       </div>
     </Section>
