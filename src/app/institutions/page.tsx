@@ -39,61 +39,47 @@ const EDU_CARDS = [
     title: 'Long-form written work',
     description:
       'Theses, dissertations, essays, research papers. Students attach a verifiable process report - no detection guesswork required.',
-    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
   },
   {
     title: 'Exams & assessments',
     description:
       'Timed take-home and open-book exams. A tamper-evident record of the session - without invasive screen or camera proctoring.',
-    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
   },
   {
     title: 'Productivity insights',
     description:
       'Private feedback for students on research-to-writing ratios, revision patterns, and deep-work stretches - so they build better habits.',
-    icon: 'M3 3v18h18M7 14l4-4 4 4 6-6',
   },
   {
     title: 'Understand AI use & evolve policy',
     description:
       'Aggregate, anonymised insight into how students actually use AI - so academic-integrity policy can evolve with real evidence.',
-    icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
   },
 ];
 
 // "What you can prove" — four benefit cards. Order: authorship, merged
 // policy/compliance, disputes/pitches, then verify hires (promoted from the
-// old recruitment footnote). Icons refreshed to match each card's meaning:
-// pen for authorship, shield-check for regulatory compliance, bar chart for
-// defensible record, user-check for hires.
+// old recruitment footnote).
 const BIZ_CARDS_PROOF = [
   {
     title: 'Credit the human in the loop',
     description:
       'Show how critical work was made, with a timestamped, verifiable record. Establish when it was created, and how AI was used. Rapidly share best practice.',
-    // Pen / signature — reads as "authorship"
-    icon: 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',
   },
   {
     title: 'Prove policy and regulatory compliance',
     description:
       "Give clients and regulators a tamper-evident record of how your team's work was produced - clear evidence when questions arise about process or authorship.",
-    // Shield-check — protection + verified compliance
-    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
   },
   {
     title: 'Settle disputes and win pitches',
     description:
       'Resolve billing or scope questions, and stand out in tenders, with a defensible record of who did what, and when.',
-    // Bar chart — defensible record / evidence
-    icon: 'M3 3v18h18M8 17V9M13 17V5M18 17v-3',
   },
   {
     title: 'Fix hiring funnel',
     description:
       'Candidates work as normal for remote assessment, sharing a verified record of their process - preventing spam and enabling them to differentiate their application.',
-    // User-check — verified person
-    icon: 'M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM16 11l2 2 4-4',
   },
 ];
 
@@ -165,27 +151,24 @@ function CardGrid({
   cols,
   surface = 'navy',
 }: {
-  cards: { title: string; description: string; icon: string }[];
+  cards: { title: string; description: string }[];
   cols: string;
   surface?: 'navy' | 'cream';
 }) {
-  // Cream variant uses the existing .card-on-cream class with navy text/mute
-  // body to stay legible on light backgrounds; icon container drops to a
-  // lighter blue tint so it doesn't punch on cream.
+  // Cream variant uses .card-on-cream with navy text/mute body to stay legible
+  // on light backgrounds; the leading hairline rule also flips to a navy tint
+  // so it reads on cream (cream/12 is invisible there).
   const cardClass =
-    surface === 'cream' ? 'card-on-cream p-7 sm:p-8 h-full' : 'card-on-navy p-7 sm:p-8 h-full';
+    surface === 'cream' ? 'card-on-cream group p-7 sm:p-8 h-full' : 'card-on-navy group p-7 sm:p-8 h-full';
   const titleClass =
     surface === 'cream'
-      ? 'text-base font-bold text-navy mb-2.5 leading-snug'
-      : 'text-base font-bold text-cream mb-2.5 leading-snug';
+      ? 'text-[1.4rem] font-bold text-navy mb-3 leading-[1.15] tracking-tight'
+      : 'text-[1.4rem] font-bold text-cream mb-3 leading-[1.15] tracking-tight';
   const bodyClass =
     surface === 'cream'
       ? 'text-mute text-sm leading-relaxed'
-      : 'text-cream/70 text-sm leading-relaxed';
-  const iconWrapClass =
-    surface === 'cream'
-      ? 'flex h-11 w-11 items-center justify-center rounded-xl bg-blue/[0.10] text-blue mb-5'
-      : 'flex h-11 w-11 items-center justify-center rounded-xl bg-blue/[0.18] text-blue mb-5';
+      : 'text-cream/65 text-sm leading-relaxed';
+  const ruleClass = surface === 'cream' ? 'bg-navy/10' : 'bg-cream/12';
 
   return (
     <div className={`grid grid-cols-1 ${cols} gap-5 sm:gap-6`}>
@@ -198,10 +181,9 @@ function CardGrid({
           viewport={{ once: true, amount: 0.3 }}
           transition={{ delay: i * 0.06, duration: 0.55, ease: 'easeOut' }}
         >
-          <div className={iconWrapClass}>
-            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d={c.icon} />
-            </svg>
+          <div className="flex items-center gap-4 mb-6">
+            <span className="h-[3px] w-9 rounded-full bg-blue transition-all duration-300 group-hover:w-12" />
+            <span className={`h-px flex-1 ${ruleClass} transition-colors group-hover:bg-blue/40`} />
           </div>
           <h3 className={titleClass}>{c.title}</h3>
           <p className={bodyClass}>{c.description}</p>

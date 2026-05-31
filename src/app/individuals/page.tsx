@@ -11,26 +11,21 @@ const works = [
     title: 'Students',
     description:
       'Your thinking, captured as you work. Submit essays and theses with the whole process behind them, so you can show not just the answer but how you got there. The depth is part of the record.',
-    icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
   },
   {
     title: 'Writers',
     description:
       "Every draft and rewrite, captured as you write. Walk into the room able to lay out the full arc of the work, from first line to final cut. The byline's yours, and so is the story of how it got there.",
-    icon: 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',
   },
   {
     title: 'Creators',
     description:
       "Your process, from blank canvas to finished piece. Put the craft forward, the hours and the decisions most people never see. Let the making be part of what you're known for.",
-    icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
   },
   {
     title: 'Inventors',
     description:
       'Your invention documented from first idea to final design. Prove the human contribution behind it, and exactly when it happened - both critical for patent applications in the new AI era.',
-    // Lightbulb — reads as "idea / invention" at icon size.
-    icon: 'M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 006 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5M9 18h6M10 22h4',
   },
 ];
 
@@ -90,19 +85,18 @@ export default function IndividualsPage() {
             {works.map((w, i) => (
               <motion.div
                 key={w.title}
-                className="card-on-navy p-7 sm:p-8 h-full"
+                className="card-on-navy group p-7 sm:p-8 h-full"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: i * 0.08, duration: 0.6, ease: 'easeOut' }}
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue/[0.18] text-blue mb-5">
-                  <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d={w.icon} />
-                  </svg>
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="h-[3px] w-9 rounded-full bg-blue transition-all duration-300 group-hover:w-12" />
+                  <span className="h-px flex-1 bg-cream/12 transition-colors group-hover:bg-blue/40" />
                 </div>
-                <h3 className="text-lg font-bold text-cream mb-2.5">{w.title}</h3>
-                <p className="text-cream/70 text-sm leading-relaxed">{w.description}</p>
+                <h3 className="text-[1.4rem] font-bold text-cream mb-3 leading-[1.15] tracking-tight">{w.title}</h3>
+                <p className="text-cream/65 text-sm leading-relaxed">{w.description}</p>
               </motion.div>
             ))}
           </div>
