@@ -6,6 +6,17 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
 import { useWaitlist } from './waitlist/WaitlistProvider';
+import { useIntroReady } from '@/lib/useIntroReady';
+
+// After the intro lands the logo, the nav items cascade in one after another.
+const navItemsStagger = {
+  hidden: {},
+  show: { transition: { delayChildren: 0.4, staggerChildren: 0.07 } },
+};
+const navItem = {
+  hidden: { opacity: 0, y: -8 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+} as const;
 
 type NavLink =
   | { label: string; href: string }
@@ -30,6 +41,7 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { open: openWaitlist } = useWaitlist();
   const pathname = usePathname();
+  const ready = useIntroReady();
 
   // Track the URL hash so anchor-style nav items ("How it works", etc.) can
   // light up the active underline when their section is the current target.
@@ -78,23 +90,31 @@ export function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-cream border-b border-navy/10"
-      >
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-cream">
+        {/* The nav line - drawn across left-to-right once the logo lands. */}
+        <motion.span
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 right-0 h-px bg-navy/10 origin-left"
+          initial={{ scaleX: 0 }}
+          animate={ready ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
+        />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[68px] flex items-center justify-between">
           <Link href="/" id="nav-logo" className="flex items-center group" aria-label="Workings home">
             <Logo className="h-7 w-auto transition-transform group-hover:scale-[1.03]" />
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-7">
+          <motion.div
+            className="hidden md:flex items-center gap-7"
+            variants={navItemsStagger}
+            initial="hidden"
+            animate={ready ? 'show' : 'hidden'}
+          >
             {navLinks.map((link) => {
               const active = isActive(link.href);
               return 'children' in link ? (
-                <div key={link.label} className="relative group">
+                <motion.div key={link.label} variants={navItem} className="relative group">
                   <Link
                     href={link.href}
                     className={`relative flex items-center gap-1 text-sm font-medium transition-colors py-5 ${
@@ -135,42 +155,48 @@ export function Navbar() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ) : (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={`relative py-5 text-sm font-medium transition-colors ${
-                    active ? 'text-blue' : 'text-navy/80 hover:text-navy'
-                  }`}
-                >
-                  {link.label}
-                  {active && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute left-0 right-0 -bottom-px h-[2px] bg-blue rounded-full"
-                    />
-                  )}
-                </Link>
+                <motion.div key={link.label} variants={navItem}>
+                  <Link
+                    href={link.href}
+                    className={`relative py-5 text-sm font-medium transition-colors ${
+                      active ? 'text-blue' : 'text-navy/80 hover:text-navy'
+                    }`}
+                  >
+                    {link.label}
+                    {active && (
+                      <span
+                        aria-hidden="true"
+                        className="absolute left-0 right-0 -bottom-px h-[2px] bg-blue rounded-full"
+                      />
+                    )}
+                  </Link>
+                </motion.div>
               );
             })}
-            <button onClick={openWaitlist} className="btn-peach !px-5 !py-2.5 !text-sm">
-              Join waitlist
-            </button>
-          </div>
+            <motion.div variants={navItem}>
+              <button onClick={openWaitlist} className="btn-peach !px-5 !py-2.5 !text-sm">
+                Join waitlist
+              </button>
+            </motion.div>
+          </motion.div>
 
           {/* Mobile hamburger */}
-          <button
+          <motion.button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden relative w-10 h-10 flex items-center justify-center"
             aria-label="Toggle menu"
+            initial={{ opacity: 0 }}
+            animate={ready ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
           >
             <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? 'rotate-45' : '-translate-y-[5px]'}`} />
             <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
             <span className={`absolute block w-5 h-0.5 bg-navy transition-all duration-300 ${menuOpen ? '-rotate-45' : 'translate-y-[5px]'}`} />
-          </button>
+          </motion.button>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Full-screen mobile menu */}
       <AnimatePresence>

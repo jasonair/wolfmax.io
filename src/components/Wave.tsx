@@ -1,40 +1,79 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
 interface WaveProps {
   className?: string;
   strokeWidth?: number;
+  /** When provided, the line draws itself across left-to-right (true) or
+   *  stays hidden until it flips true. Omit for a plain static wave. */
+  draw?: boolean;
+  drawDelay?: number;
+  drawDuration?: number;
 }
 
 /**
  * The Workings hand-drawn wave / squiggle - the brand's "journey" motif.
  * Colour is inherited via `currentColor` (e.g. add `text-blue`).
  */
-export function Wave({ className = "", strokeWidth = 8 }: WaveProps) {
+export function Wave({
+  className = "",
+  strokeWidth = 8,
+  draw,
+  drawDelay = 0,
+  drawDuration = 1.4,
+}: WaveProps) {
+  // Lazy, low-frequency rolling wave - two broad humps with relaxed, flowing
+  // S-curves, matching the brand reference. Generated as a Catmull-Rom spline
+  // through hand-placed anchors (crest1≈345,26 · trough1≈548,99 · crest2≈893,31
+  // · trough2≈1042,86), so the tangents are natural rather than forced-flat -
+  // no pinching. It enters low at the left edge and climbs off the top-RIGHT
+  // corner, with the end anchors set just past x=-40 / x=1492 so the round caps
+  // clip off-screen and the line reaches BOTH edges. The viewBox is ~12:1
+  // (1440×120) to match the hero's display aspect, so `preserveAspectRatio
+  // ="none"` stretches it almost uniformly - keeping the curve smooth - while
+  // `non-scaling-stroke` holds an even thickness at any width.
+  const d =
+    "M-40 96 C54 77 247 26 345 26 C443 26 457 98 548 99 C639 100 811 33 893 31 C975 29 942 90 1042 86 C1142 82 1389 28 1492 6";
+
+  const path = (
+    <path
+      d={d}
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      vectorEffect="non-scaling-stroke"
+      fill="none"
+    />
+  );
+
+  // Static usages (e.g. the 404 page) render a plain, full-width path.
+  if (draw === undefined) {
+    return (
+      <svg className={className} viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none" aria-hidden="true">
+        {path}
+      </svg>
+    );
+  }
+
+  // The "draw across" reveal is a left→right clip-path wipe rather than a
+  // stroke-dash animation. A dash animation combined with `non-scaling-stroke`
+  // freezes the dash length in screen pixels, so widening the window leaves the
+  // line stopping short of the edge. A clip is relative to the element box, so
+  // once it finishes it stays fully open through any resize - the line always
+  // reaches both edges - and the stroke keeps its even, non-scaling thickness.
   return (
-    <svg
+    <motion.svg
       className={className}
-      viewBox="0 0 1200 120"
+      viewBox="0 0 1440 120"
       fill="none"
       preserveAspectRatio="none"
       aria-hidden="true"
+      initial={{ clipPath: 'inset(0 100% 0 0)' }}
+      animate={draw ? { clipPath: 'inset(0 0% 0 0)' } : { clipPath: 'inset(0 100% 0 0)' }}
+      transition={{ duration: drawDuration, ease: 'easeInOut', delay: drawDelay }}
     >
-      {/* Organic rolling wave that starts at x=-100 and ends at x=1360 -
-          past both edges of the 0–1200 viewBox - so the end-caps are clipped
-          and the line bleeds off-screen rather than showing a tip. Crests
-          (y≈28/34) and troughs (y≈92/88) are spaced on an even ~480-wide
-          wavelength so no bump is pinched, and each segment's control points
-          sit at its midpoint with horizontal tangents - giving cosine-shaped,
-          kink-free curves like the bottom-of-page Squiggle, with a touch of
-          height variation to keep the hand-drawn feel. It enters low on the
-          left, rolls through two crests, then climbs and exits the top-RIGHT
-          corner. `non-scaling-stroke` keeps the line an even thickness despite
-          the non-uniform (preserveAspectRatio="none") stretch. */}
-      <path
-        d="M-100 96 C50 96 50 28 200 28 C320 28 320 92 440 92 C560 92 560 34 680 34 C800 34 800 88 920 88 C1090 88 1280 4 1360 -32"
-        stroke="currentColor"
-        strokeWidth={strokeWidth}
-        strokeLinecap="round"
-        vectorEffect="non-scaling-stroke"
-        fill="none"
-      />
-    </svg>
+      {path}
+    </motion.svg>
   );
 }

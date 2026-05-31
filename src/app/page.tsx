@@ -9,21 +9,30 @@ import { HowItWorks } from '@/components/HowItWorks';
 import { WhoWorkingsIsFor } from '@/components/WhoWorkingsIsFor';
 import { PrivacySection } from '@/components/PrivacySection';
 import { useWaitlist } from '@/components/waitlist/WaitlistProvider';
+import { useIntroReady } from '@/lib/useIntroReady';
 
 function HeroSection() {
   const { open } = useWaitlist();
+  const ready = useIntroReady();
+  // Hero text cascades in after the nav line + items (which start ~T+0.4s),
+  // then the wave draws across last.
+  const reveal = (delay: number, y = 20) => ({
+    initial: { opacity: 0, y },
+    animate: ready ? { opacity: 1, y: 0 } : { opacity: 0, y },
+    transition: { delay, duration: 0.6 },
+  });
+
   return (
     <section className="surface-cream relative overflow-hidden pt-36 pb-56 sm:pt-44 sm:pb-64 px-4 sm:px-6 lg:px-8">
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <motion.div {...reveal(0.75, 16)}>
           <Eyebrow className="text-mute mb-6">The way you work</Eyebrow>
         </motion.div>
 
         <motion.h1
           className="font-display text-[2.4rem] sm:text-6xl md:text-[4.4rem] text-navy mb-7 mx-auto max-w-[18ch]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.7 }}
+          {...reveal(0.87)}
+          transition={{ delay: 0.87, duration: 0.7 }}
         >
           Capture your <em className="italic">Workings</em>.
           <br />
@@ -32,20 +41,13 @@ function HeroSection() {
 
         <motion.p
           className="text-base sm:text-lg text-mute max-w-2xl mx-auto leading-relaxed mb-9"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.6 }}
+          {...reveal(1.0)}
         >
           Review your process locally, search instantly, share verifiable reports &amp; reels, protect your IP. Show
           whether the work was human, AI, or both.
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
+        <motion.div {...reveal(1.13)} className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button variant="peach" withArrow onClick={open}>
             Join the waitlist
           </Button>
@@ -55,14 +57,9 @@ function HeroSection() {
         </motion.div>
       </div>
 
-      <motion.div
-        className="absolute left-0 right-0 bottom-8 sm:bottom-12 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 1 }}
-      >
-        <Wave className="w-full h-28 sm:h-40 text-blue" strokeWidth={7} />
-      </motion.div>
+      <div className="absolute left-0 right-0 bottom-8 sm:bottom-12 pointer-events-none">
+        <Wave className="w-full h-28 sm:h-40 text-blue" strokeWidth={7} draw={ready} drawDelay={1.35} drawDuration={1.5} />
+      </div>
     </section>
   );
 }
@@ -100,7 +97,7 @@ function EarlyAccess() {
             Join the waitlist
           </Button>
         </div>
-        <Squiggle className="w-full max-w-2xl h-8 mx-auto mt-16 text-blue opacity-55" />
+        <Squiggle className="w-full max-w-2xl h-8 mx-auto mt-16 text-blue opacity-55" draw />
       </motion.div>
     </section>
   );

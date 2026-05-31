@@ -276,7 +276,7 @@ function BusinessesPanel() {
       {/* Applications matrix — uses cream-200 tonal shift to denote a new
           section. Four grouped use-case clusters in a 2x2 grid on md+;
           each carries a subtitle line listing typical audiences. */}
-      <section className="surface-cream px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-20 sm:pb-24 bg-cream-200">
+      <section className="surface-cream px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-14 sm:pb-16 bg-cream-200">
         <div className="max-w-6xl mx-auto">
           <Eyebrow className="text-mute mb-5">Applications</Eyebrow>
           <p className="font-display text-[1.4rem] sm:text-[1.8rem] leading-snug text-navy max-w-3xl mb-14 sm:mb-16">
@@ -284,22 +284,29 @@ function BusinessesPanel() {
             business.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 sm:gap-y-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
             {BIZ_APPLICATIONS.map((group) => (
-              <div key={group.title}>
-                <h3 className="font-display text-[1.25rem] sm:text-[1.4rem] leading-snug text-navy mb-2 sm:mb-2.5">
+              <div
+                key={group.title}
+                className="group flex h-full flex-col rounded-[22px] bg-white border border-navy/10 p-7 sm:p-9"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="h-[3px] w-9 rounded-full bg-blue shrink-0 transition-all duration-300 group-hover:w-12" />
+                  <span className="h-px flex-1 bg-navy/10 transition-colors group-hover:bg-blue/40" />
+                </div>
+                <h3 className="font-display text-[1.3rem] sm:text-[1.5rem] leading-[1.15] text-navy mb-3">
                   {group.title}
                 </h3>
-                <p className="text-mute/85 text-sm leading-relaxed italic mb-5 sm:mb-6">
+                <p className="text-mute/80 text-sm leading-relaxed italic mb-6 pb-6 border-b border-navy/8">
                   {group.subtitle}
                 </p>
-                <ul className="space-y-3 sm:space-y-3.5">
+                <ul className="space-y-3.5">
                   {group.bullets.map((bullet, i) => (
                     <li
                       key={i}
                       className="flex gap-3 text-mute text-sm sm:text-[0.95rem] leading-relaxed"
                     >
-                      <span aria-hidden="true" className="mt-[0.55rem] h-1.5 w-1.5 rounded-full bg-blue/70 shrink-0" />
+                      <span aria-hidden="true" className="mt-[0.5rem] h-1.5 w-1.5 rounded-full bg-blue/70 shrink-0" />
                       <span>{bullet}</span>
                     </li>
                   ))}
@@ -310,7 +317,7 @@ function BusinessesPanel() {
         </div>
       </section>
 
-      <section className="surface-cream px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
+      <section className="surface-cream px-4 sm:px-6 lg:px-8 pt-14 pb-24 sm:pt-16 sm:pb-28">
         <div className="max-w-5xl mx-auto">
           <div className="surface-blue rounded-[28px] px-8 py-12 sm:px-12 sm:py-16 text-center text-white">
             <div className="max-w-2xl mx-auto">
@@ -375,16 +382,20 @@ export default function InstitutionsPage() {
 
     // Next.js client navigation (the navbar dropdown's Education/Business
     // links) updates the URL via history.pushState and does NOT fire
-    // `hashchange`. Wrap the methods so we still get notified.
+    // `hashchange`. Wrap the methods so we still get notified. Next calls
+    // these during its render/commit cycle, which can land inside React's
+    // insertion-effect window — bumping state synchronously there triggers
+    // "useInsertionEffect must not schedule updates", so defer to a
+    // microtask (after commit).
     const origPush = history.pushState.bind(history);
     const origReplace = history.replaceState.bind(history);
     history.pushState = (...args) => {
       origPush(...args);
-      bump();
+      queueMicrotask(bump);
     };
     history.replaceState = (...args) => {
       origReplace(...args);
-      bump();
+      queueMicrotask(bump);
     };
 
     return () => {

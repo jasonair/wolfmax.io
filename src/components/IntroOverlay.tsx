@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useAnimate } from 'framer-motion';
+import { INTRO_DONE_EVENT } from '@/lib/useIntroReady';
 
 /** The W mark - the *exact* blue path from /brand/workings-horiz.svg (the asset
  *  the navbar renders), so the big W is the same geometry as the docked one.
@@ -53,6 +54,8 @@ export function IntroOverlay() {
 
     const finish = () => {
       root.dataset.intro = 'done'; // navbar logo fades in (see globals.css)
+      // Cue the rest of the page to cascade in (nav line → items → hero → wave).
+      window.dispatchEvent(new Event(INTRO_DONE_EVENT));
     };
 
     const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
