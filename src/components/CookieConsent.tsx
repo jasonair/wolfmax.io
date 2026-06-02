@@ -49,7 +49,7 @@ export function CookieConsent() {
             <div className="flex-1 text-sm leading-relaxed text-cream/80">
               <span className="font-semibold text-cream">Your choice on cookies.</span>{' '}
               We always store a small record of your consent choice and any waitlist email you submit. With your
-              permission we also use <span className="text-cream">Google Analytics</span> to understand site traffic —
+              permission we also use <span className="text-cream">Google Analytics</span> to understand site traffic -
               it stays off unless you accept. Read the{' '}
               <Link href="/privacy" className="text-[#7aa6ff] underline underline-offset-2 hover:text-cream">
                 privacy policy

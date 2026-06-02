@@ -10,12 +10,24 @@ type Tab = 'educators' | 'businesses';
 
 const HERO: Record<Tab, { eyebrow: string; title: string; sub: ReactNode; ctaHref: string; ctaLabel: string; meta: string }> = {
   educators: {
-    eyebrow: 'For educators',
-    title: 'Students show their process.',
-    sub: 'And you see the genuine effort behind it - no surveillance, no accusation.',
+    eyebrow: 'For heads of learning & teaching',
+    title: 'Detection asks the wrong question.',
+    sub: (
+      <>
+        <p>
+          The finished essay used to prove the work. Now it proves nothing - detectors guess at the output,
+          proctoring polices the student.
+        </p>
+        <p>
+          <em className="italic">Workings</em> asks: How did the work actually get made? It keeps a private
+          record - in the wild, held by the student, verifiable by the institution.
+        </p>
+        <p className="font-semibold text-navy/85">Tech in service of pedagogy.</p>
+      </>
+    ),
     ctaHref: 'mailto:universities@workings.io?subject=University%20demo%20request',
     ctaLabel: 'Book a demo',
-    meta: 'Currently piloting · UK · Australia',
+    meta: 'Currently planning pilots in UK and Australia',
   },
   businesses: {
     eyebrow: 'For businesses',
@@ -38,48 +50,22 @@ const EDU_CARDS = [
   {
     title: 'Long-form written work',
     description:
-      'Theses, dissertations, essays, research papers. Students attach a verifiable process report - no detection guesswork required.',
+      'How did this thesis, essay, or research paper actually come together? Students attach a verifiable record of their process - drafting, sourcing, revising, AI use, the lot. You assess the work and the workings.',
   },
   {
     title: 'Exams & assessments',
     description:
-      'Timed take-home and open-book exams. A tamper-evident record of the session - without invasive screen or camera proctoring.',
+      "Take-home and open-book exams without invasive proctoring. A tamper-evident record of the session sits with the student. If integrity is ever questioned, the evidence is there. If it isn't, no one ever looks at it.",
   },
   {
     title: 'Productivity insights',
     description:
-      'Private feedback for students on research-to-writing ratios, revision patterns, and deep-work stretches - so they build better habits.',
+      "Private feedback to students on their own research-to-writing ratios, revision patterns, and deep-work stretches. They see how they actually learn. They build better habits. You didn't have to mark another rubric.",
   },
   {
     title: 'Understand AI use & evolve policy',
     description:
-      'Aggregate, anonymised insight into how students actually use AI - so academic-integrity policy can evolve with real evidence.',
-  },
-];
-
-// "What you can prove" — four benefit cards. Order: authorship, merged
-// policy/compliance, disputes/pitches, then verify hires (promoted from the
-// old recruitment footnote).
-const BIZ_CARDS_PROOF = [
-  {
-    title: 'Credit the human in the loop',
-    description:
-      'Show how critical work was made, with a timestamped, verifiable record. Establish when it was created, and how AI was used. Rapidly share best practice.',
-  },
-  {
-    title: 'Prove policy and regulatory compliance',
-    description:
-      "Give clients and regulators a tamper-evident record of how your team's work was produced - clear evidence when questions arise about process or authorship.",
-  },
-  {
-    title: 'Settle disputes and win pitches',
-    description:
-      'Resolve billing or scope questions, and stand out in tenders, with a defensible record of who did what, and when.',
-  },
-  {
-    title: 'Fix hiring funnel',
-    description:
-      'Candidates work as normal for remote assessment, sharing a verified record of their process - preventing spam and enabling them to differentiate their application.',
+      'Aggregate, anonymised insight into how your students actually use AI - not what your policy assumes. Redesign assessment with evidence, not anecdote.',
   },
 ];
 
@@ -112,7 +98,7 @@ const BIZ_APPLICATIONS: {
       'Optimise AI use across the business by understanding where it is working well and where it is not.',
       'Eliminate subscriptions for applications no one uses by understanding which tools staff are actually using.',
       'Streamline recruitment by reducing spam and understanding how applications have been constructed.',
-      'Improve efficiency for staff by giving them a tool that lets them search their entire workflow history instantly — find any document, message, or webpage seen previously or worked on.',
+      'Improve efficiency for staff by giving them a tool that lets them search their entire workflow history instantly - find any document, message, or webpage seen previously or worked on.',
       'Support PI insurance negotiations by maintaining a defensible workflow audit trail.',
     ],
   },
@@ -131,7 +117,7 @@ const BIZ_APPLICATIONS: {
     subtitle:
       'Useful for anyone engaging contractors, creative agencies, law firms, distributed teams, and clients buying AI-assisted deliverables.',
     bullets: [
-      'Catch AI hallucinations, errors, and unsupported claims before they reach a client — by seeing where AI was used in a deliverable and whether it was checked.',
+      'Catch AI hallucinations, errors, and unsupported claims before they reach a client - by seeing where AI was used in a deliverable and whether it was checked.',
       'Understand how a piece of work came together: which collaborators shaped which parts, and where the thinking happened.',
       'Run honest retrospectives on a real record of how work was produced, rather than reconstructed memory.',
       'Build a clearer working relationship with contractors: they show their workings, you have a shared basis for trusting the output.',
@@ -140,10 +126,11 @@ const BIZ_APPLICATIONS: {
 ];
 
 const EDU_BULLETS = [
+  'Opt-in for students - no mandate, no surveillance',
+  'No detection - verifiable process evidence, not accusations',
   'Direct line to engineering during the pilot',
-  'Staff training & report interpretation',
-  'No detection - verifiable process evidence',
-  'Anonymised institutional insight on AI use',
+  'Anonymised institutional insight on student AI use',
+  'Staff training and report interpretation included',
 ];
 
 function CardGrid({
@@ -201,24 +188,36 @@ function EducatorsPanel() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow className="text-blue mb-5">What it&apos;s used for</Eyebrow>
             <h2 className="font-display text-[1.7rem] sm:text-[2.5rem] leading-[1.1] text-cream">
-              Four places <em className="italic">Workings</em> replaces detection guesswork.
+              Four questions detection can&apos;t answer.
             </h2>
           </div>
           <CardGrid cards={EDU_CARDS} cols="sm:grid-cols-2 lg:grid-cols-4" />
         </div>
       </section>
 
-      <section className="surface-cream px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
+      {/* Human Moment — quiet cream section, deliberate whitespace. The
+          headline lands at thesis-defence intensity; the line beneath is
+          the promise. No CTA, no decoration — the silence is the design. */}
+      <section className="surface-cream px-4 sm:px-6 lg:px-8 py-32 sm:py-40">
+        <div className="max-w-[42rem] mx-auto text-center">
+          <h2 className="font-display text-[1.55rem] sm:text-[2.1rem] md:text-[2.5rem] leading-[1.2] text-navy">
+            You just finished your thesis. Now you&apos;re being accused of using AI to write it.
+          </h2>
+        </div>
+      </section>
+
+      <section className="surface-cream px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
         <div className="max-w-5xl mx-auto">
           <div className="surface-blue rounded-[28px] px-8 py-12 sm:px-12 sm:py-14 grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-12 items-center text-white">
             <div>
               <Eyebrow className="text-white/70 mb-3">Pilot with us</Eyebrow>
               <h3 className="font-display text-[1.5rem] sm:text-[1.95rem] leading-[1.1] mb-4">
-                Run a pilot with your faculty this semester.
+                Run a pilot this semester - without adding to your team&apos;s workload.
               </h3>
               <p className="text-white/85 leading-relaxed mb-6 max-w-[56ch]">
-                We work with academic-integrity teams, faculty, and IT to deploy <em className="italic">Workings</em> to
-                specific cohorts or assessments. Pilots typically run a semester and include staff training.
+                We work with academic-integrity teams, faculty, and IT to deploy{' '}
+                <em className="italic">Workings</em> to specific cohorts or assessments. Most pilots run a semester,
+                are opt-in for students, and don&apos;t require changes to your existing assessment design.
               </p>
               <a
                 href="mailto:universities@workings.io?subject=Pilot%20enquiry"
@@ -248,38 +247,15 @@ function EducatorsPanel() {
 function BusinessesPanel() {
   return (
     <>
-      {/* Dark half: section header + the four benefit cards. This is the
-          "Proof of the work" side of the headline; only the front half
-          stays dark. */}
-      <section className="surface-navy px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
+      {/* Applications matrix — navy section providing the dark "proof of the
+          work" contrast for the businesses flow. White cards sit on navy as
+          elevated panels; long bullet lists stay readable on a light surface.
+          Four grouped use-case clusters in a 2x2 grid on md+; each carries a
+          subtitle line listing typical audiences. */}
+      <section className="surface-navy px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-14 sm:pb-16">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <Eyebrow className="text-blue mb-5">Proof, not assurances</Eyebrow>
-            <h2 className="font-display text-[1.7rem] sm:text-[2.5rem] leading-[1.1] text-cream">
-              Find the balance of privacy &amp; transparency with your team.
-            </h2>
-          </div>
-
-          <div>
-            <Eyebrow className="text-cream/55 mb-6">What you can prove</Eyebrow>
-            <CardGrid cards={BIZ_CARDS_PROOF} cols="sm:grid-cols-2 lg:grid-cols-4" surface="navy" />
-            {/* Everyday-utility caption — sits directly under the cards as a
-                centred product-utility note. */}
-            <p className="mt-10 sm:mt-12 text-cream/65 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto text-center">
-              Day-to-day: instantly search your entire workflow history to find any message, page, or document you
-              saw. Generate timelapse or process summaries to share with colleagues.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Applications matrix — uses cream-200 tonal shift to denote a new
-          section. Four grouped use-case clusters in a 2x2 grid on md+;
-          each carries a subtitle line listing typical audiences. */}
-      <section className="surface-cream px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-14 sm:pb-16 bg-cream-200">
-        <div className="max-w-6xl mx-auto">
-          <Eyebrow className="text-mute mb-5">Applications</Eyebrow>
-          <p className="font-display text-[1.4rem] sm:text-[1.8rem] leading-snug text-navy max-w-3xl mb-14 sm:mb-16">
+          <Eyebrow className="text-blue mb-5">Applications</Eyebrow>
+          <p className="font-display text-[1.4rem] sm:text-[1.8rem] leading-snug text-cream max-w-3xl mb-14 sm:mb-16">
             The cryptographically sealed body of evidence of how work is made has a wide range of applications for
             business.
           </p>
@@ -426,7 +402,9 @@ export default function InstitutionsPage() {
                 <h1 className="font-display text-[2.4rem] sm:text-6xl text-navy leading-[1.04] mb-6 max-w-[16ch] mx-auto">
                   {hero.title}
                 </h1>
-                <p className="text-base sm:text-lg text-mute max-w-xl mx-auto leading-relaxed mb-8">{hero.sub}</p>
+                <div className="text-base sm:text-lg text-mute max-w-xl mx-auto leading-relaxed mb-8 space-y-4">
+                  {hero.sub}
+                </div>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Button href={hero.ctaHref} variant="blue" withArrow>
                     {hero.ctaLabel}

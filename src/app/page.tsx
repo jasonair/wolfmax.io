@@ -34,17 +34,18 @@ function HeroSection() {
           {...reveal(0.87)}
           transition={{ delay: 0.87, duration: 0.7 }}
         >
-          Capture your <em className="italic">Workings</em>.
+          Show how you did it.
           <br />
-          A private, tamper-evident record to prove how the work was made.
+          Human, AI or both.
         </motion.h1>
 
         <motion.p
           className="text-base sm:text-lg text-mute max-w-2xl mx-auto leading-relaxed mb-9"
           {...reveal(1.0)}
         >
-          Review your process locally, search instantly, share verifiable reports &amp; reels, protect your IP. Show
-          whether the work was human, AI, or both.
+          Privately capture your tamper-evident <em className="italic">Workings</em>.
+          <br />
+          Review in private or verify with any audience.
         </motion.p>
 
         <motion.div {...reveal(1.13)} className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -92,7 +93,7 @@ function EarlyAccess() {
         <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-10 mx-auto max-w-[14ch]">
           Capture your <em className="italic">Workings</em>.
         </h2>
-        <div className="flex justify-center">
+        <div id="signup-target" className="flex justify-center">
           <Button variant="peach" withArrow onClick={open} className="!text-base !px-8 !py-4">
             Join the waitlist
           </Button>
