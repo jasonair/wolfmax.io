@@ -14,7 +14,7 @@ const audiences: {
 }[] = [
   {
     eyebrow: 'Individuals',
-    title: <em className="italic">Prove your work is yours.</em>,
+    title: 'Prove your work is yours.',
     description:
       'For writers, designers, developers, inventors, students, and anyone whose authorship matters when it counts.',
     cta: 'Explore for individuals',
@@ -22,7 +22,7 @@ const audiences: {
   },
   {
     eyebrow: 'Educators',
-    title: <em className="italic">Detection asks the wrong question.</em>,
+    title: 'Detection asks the wrong question.',
     description:
       'Verifiable process evidence that supports assessment redesign, without compromising student privacy.',
     cta: 'Explore for educators',
@@ -30,7 +30,7 @@ const audiences: {
   },
   {
     eyebrow: 'Businesses',
-    title: <em className="italic">Know what your AI is actually doing.</em>,
+    title: 'Know what your AI is actually doing.',
     description:
       'Privacy-first insight into where AI is adding value to your work, and where human judgement still matters.',
     cta: 'Explore for business',

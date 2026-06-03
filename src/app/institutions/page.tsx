@@ -247,47 +247,57 @@ function EducatorsPanel() {
 function BusinessesPanel() {
   return (
     <>
-      {/* Applications matrix — navy section providing the dark "proof of the
-          work" contrast for the businesses flow. White cards sit on navy as
-          elevated panels; long bullet lists stay readable on a light surface.
-          Four grouped use-case clusters in a 2x2 grid on md+; each carries a
-          subtitle line listing typical audiences. */}
-      <section className="surface-navy px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-14 sm:pb-16">
+      {/* Applications — reworked from the dense navy card grid into a calm
+          editorial index on the standard cream surface. No dark band, no boxed
+          cards: each use-case cluster is a ledger row anchored by a ghosted
+          serif index numeral and separated by hairline rules. A top hairline
+          marks the seam from the cream hero above. Keeps the long bullet lists
+          readable without four high-contrast white slabs competing for the
+          eye. */}
+      <section className="surface-cream border-t border-navy/10 px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-16 sm:pb-20">
         <div className="max-w-6xl mx-auto">
-          <Eyebrow className="text-blue mb-5">Applications</Eyebrow>
-          <p className="font-display text-[1.4rem] sm:text-[1.8rem] leading-snug text-cream max-w-3xl mb-14 sm:mb-16">
-            The cryptographically sealed body of evidence of how work is made has a wide range of applications for
-            business.
-          </p>
+          <div className="max-w-3xl mb-16 sm:mb-20">
+            <Eyebrow className="text-blue mb-5">Applications</Eyebrow>
+            <h2 className="font-display text-[1.7rem] sm:text-[2.3rem] leading-[1.14] text-navy">
+              The cryptographically sealed body of evidence of how work is made has a wide range of applications for
+              business.
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
-            {BIZ_APPLICATIONS.map((group) => (
-              <div
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16">
+            {BIZ_APPLICATIONS.map((group, idx) => (
+              <motion.div
                 key={group.title}
-                className="group flex h-full flex-col rounded-[22px] bg-white border border-navy/10 p-7 sm:p-9"
+                className="group border-t border-navy/12 pt-8 sm:pt-9 pb-10 sm:pb-12"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: (idx % 2) * 0.08, duration: 0.5, ease: 'easeOut' }}
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="h-[3px] w-9 rounded-full bg-blue shrink-0 transition-all duration-300 group-hover:w-12" />
-                  <span className="h-px flex-1 bg-navy/10 transition-colors group-hover:bg-blue/40" />
-                </div>
-                <h3 className="font-display text-[1.3rem] sm:text-[1.5rem] leading-[1.15] text-navy mb-3">
+                <span className="block font-display text-[2rem] sm:text-[2.3rem] leading-none text-navy/20 tabular-nums mb-4 transition-colors duration-300 group-hover:text-blue/50">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <h3 className="font-display text-[1.4rem] sm:text-[1.65rem] leading-[1.12] text-navy mb-3">
                   {group.title}
                 </h3>
-                <p className="text-mute/80 text-sm leading-relaxed italic mb-6 pb-6 border-b border-navy/8">
+                <p className="text-mute/90 text-sm leading-relaxed italic mb-7 max-w-[46ch]">
                   {group.subtitle}
                 </p>
-                <ul className="space-y-3.5">
+                <ul className="space-y-4 max-w-[52ch]">
                   {group.bullets.map((bullet, i) => (
                     <li
                       key={i}
-                      className="flex gap-3 text-mute text-sm sm:text-[0.95rem] leading-relaxed"
+                      className="flex gap-3.5 text-mute text-sm sm:text-[0.95rem] leading-relaxed"
                     >
-                      <span aria-hidden="true" className="mt-[0.5rem] h-1.5 w-1.5 rounded-full bg-blue/70 shrink-0" />
+                      <span
+                        aria-hidden="true"
+                        className="mt-[0.6rem] h-px w-3 bg-blue/60 shrink-0"
+                      />
                       <span>{bullet}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
