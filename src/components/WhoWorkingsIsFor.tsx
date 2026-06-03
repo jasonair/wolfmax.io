@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { Section } from './Section';
+import { Annotate } from './Annotate';
 
 const audiences: {
   eyebrow: string;
@@ -91,7 +92,11 @@ export function WhoWorkingsIsFor() {
           Who <em className="italic">Workings</em> is for
         </>
       }
-      title="Wherever authorship matters."
+      title={
+        <>
+          Wherever <Annotate variant="underline">authorship</Annotate> matters.
+        </>
+      }
       intro={
         <>
           Authorship isn&apos;t only contested in one place. The student defending their thesis, the company

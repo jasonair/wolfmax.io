@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Section } from './Section';
+import { Annotate } from './Annotate';
 
 const steps = [
   {
@@ -60,7 +61,12 @@ export function HowItWorks() {
       surface="navy"
       id="how-it-works"
       eyebrow="How it works"
-      title="Three steps to prove your work is yours."
+      title={
+        <>
+          Three steps to prove your work is{' '}
+          <Annotate variant="circle">yours</Annotate>.
+        </>
+      }
       intro="Run it, work as you always have, and turn your process into a record you can rely on."
     >
       <div className="mt-16 sm:mt-20 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-6 lg:gap-4 items-stretch">

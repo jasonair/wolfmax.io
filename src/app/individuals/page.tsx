@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Eyebrow } from '@/components/Eyebrow';
 import { Button } from '@/components/Button';
+import { Annotate } from '@/components/Annotate';
 import { useWaitlist } from '@/components/waitlist/WaitlistProvider';
 
 const works = [
@@ -78,7 +79,8 @@ export default function IndividualsPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow className="text-blue mb-5">For people who make things</Eyebrow>
             <h2 className="font-display text-[2rem] sm:text-[3rem] leading-[1.08] text-cream">
-              Four kinds of work. One kind of proof.
+              Four kinds of work. One kind of{' '}
+              <Annotate variant="circle">proof.</Annotate>
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Section } from './Section';
+import { Annotate } from './Annotate';
 
 type Feature = { title: string; description: string };
 
@@ -66,7 +67,12 @@ export function PrivacySection() {
       surface="navy"
       id="security"
       eyebrow="Privacy & security"
-      title="We can't see your work. Neither can anyone else."
+      title={
+        <>
+          We can&apos;t see your work. Neither can{' '}
+          <Annotate variant="underline-double">anyone else</Annotate>.
+        </>
+      }
       intro={
         <>
           Local-first, zero-knowledge, sealed against forgery. Built not just for today&apos;s threats,
