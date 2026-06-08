@@ -13,7 +13,7 @@ export default function NotFound() {
         404
       </h1>
 
-      <p className="text-xl text-mute max-w-sm mb-12 leading-relaxed">
+      <p className="font-subtitle text-xl text-mute max-w-sm mb-12 leading-relaxed">
         We couldn&apos;t find that page. It may have moved or never existed.
       </p>
 

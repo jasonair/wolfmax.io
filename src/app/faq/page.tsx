@@ -27,7 +27,7 @@ export default function FaqPage() {
       <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-12 text-center">
         <Eyebrow className="text-mute mb-4">Questions &amp; answers</Eyebrow>
         <h1 className="font-display text-5xl sm:text-6xl text-navy leading-[1.04] mb-6">FAQ</h1>
-        <p className="text-base sm:text-lg text-mute max-w-xl mx-auto">
+        <p className="font-subtitle text-base sm:text-lg text-mute max-w-xl mx-auto">
           Everything you need to know about Workings - how it works, who it&apos;s for, and how we handle your data.
         </p>
       </section>

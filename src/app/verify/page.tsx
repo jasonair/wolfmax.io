@@ -48,7 +48,7 @@ export default function VerifyPage() {
         <h1 className="font-display text-5xl sm:text-6xl text-navy leading-[1.04] mb-6">
           Verify a <em className="italic">Workings</em> report.
         </h1>
-        <p className="text-base sm:text-lg text-mute max-w-xl mx-auto">
+        <p className="font-subtitle text-base sm:text-lg text-mute max-w-xl mx-auto">
           Anyone can verify a report is genuine. Enter the report ID to confirm its authenticity, integrity, and the
           creative process behind it.
         </p>

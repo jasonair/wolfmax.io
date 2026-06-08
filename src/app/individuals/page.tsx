@@ -58,7 +58,7 @@ export default function IndividualsPage() {
           <h1 className="font-display text-[2.4rem] sm:text-6xl text-navy leading-[1.04] mb-6">
             Record your process, protect your work.
           </h1>
-          <p className="text-base sm:text-lg text-mute max-w-xl mx-auto leading-relaxed mb-8">
+          <p className="font-subtitle text-base sm:text-lg text-mute max-w-xl mx-auto leading-relaxed mb-8">
             For students, writers, creators, inventors and anyone whose authorship matters. Capture how you work -
             privately, on your device - and share verifiable proof when it counts.
           </p>

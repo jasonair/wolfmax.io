@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Newsreader, Manrope, JetBrains_Mono } from "next/font/google";
+import { Newsreader, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -24,10 +25,24 @@ const newsreader = Newsreader({
   axes: ["opsz"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
+const jetbrainsMono = localFont({
+  src: "../../public/fonts/JetBrainsMono-Medium.ttf",
   variable: "--font-jetbrains",
   display: "swap",
+  weight: "500",
+});
+
+const recklessNeue = localFont({
+  src: "../../public/fonts/RecklessNeue-Regular.otf",
+  variable: "--font-reckless",
+  display: "swap",
+});
+
+const manropeLight = localFont({
+  src: "../../public/fonts/Manrope-Regular.ttf",
+  variable: "--font-manrope-light",
+  display: "swap",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -78,7 +93,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${manrope.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
+      className={`${manrope.variable} ${newsreader.variable} ${jetbrainsMono.variable} ${recklessNeue.variable} ${manropeLight.variable}`}
     >
       <body className="antialiased">
         <JsonLd data={siteGraph} />

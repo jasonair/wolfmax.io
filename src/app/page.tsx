@@ -40,7 +40,7 @@ function HeroSection() {
         </motion.h1>
 
         <motion.p
-          className="text-base sm:text-lg text-mute max-w-2xl mx-auto leading-relaxed mb-9"
+          className="font-subtitle text-base sm:text-lg text-mute max-w-2xl mx-auto leading-relaxed mb-9"
           {...reveal(1.0)}
         >
           Privately capture your tamper-evident <em className="italic">Workings</em>.
