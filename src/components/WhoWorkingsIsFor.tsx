@@ -67,13 +67,13 @@ function AudienceCard({
     >
       <Link
         href={item.href}
-        className="card-on-cream group flex h-full min-h-[320px] flex-col p-8 sm:p-9"
+        className="card-on-navy group flex h-full min-h-[320px] flex-col p-8 sm:p-9"
       >
         <span className="eyebrow text-blue mb-4">{item.eyebrow}</span>
-        <h3 className="font-display text-[1.4rem] sm:text-[1.65rem] leading-[1.1] text-navy mb-3.5">
+        <h3 className="font-display text-[1.4rem] sm:text-[1.65rem] leading-[1.1] text-cream mb-3.5">
           {item.title}
         </h3>
-        <p className="text-mute text-sm sm:text-[0.95rem] leading-relaxed mb-auto">{item.description}</p>
+        <p className="text-cream/65 text-sm sm:text-[0.95rem] leading-relaxed mb-auto">{item.description}</p>
         <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blue">
           {item.cta} <Arrow />
         </span>
@@ -85,7 +85,7 @@ function AudienceCard({
 export function WhoWorkingsIsFor() {
   return (
     <Section
-      surface="cream"
+      surface="navy"
       id="who-its-for"
       eyebrow={
         <>

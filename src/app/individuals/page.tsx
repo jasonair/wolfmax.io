@@ -26,7 +26,7 @@ const works = [
   {
     title: 'Inventors',
     description:
-      'Your invention documented from first idea to final design. Prove the human contribution behind it, and exactly when it happened - both critical for patent applications in the new AI era.',
+      'Your invention documented from first idea to final design. Prove the human contribution behind it, and exactly when it happened - both critical for patent applications and copyright protection in the new AI era.',
   },
 ];
 
@@ -140,7 +140,7 @@ export default function IndividualsPage() {
       {/* Cross-links */}
       <section className="surface-navy px-4 sm:px-6 lg:px-8 pt-16 pb-24">
         <div className="max-w-3xl mx-auto">
-          <Eyebrow className="text-cream/55 text-center block mb-8">Also for organisations</Eyebrow>
+          <Eyebrow className="text-cream/55 text-center block mb-8">Also for institutions</Eyebrow>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {crossLinks.map((c) => (
               <Link

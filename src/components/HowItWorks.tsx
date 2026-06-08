@@ -32,15 +32,15 @@ const steps = [
 function StepCard({ step, index }: { step: (typeof steps)[number]; index: number }) {
   return (
     <motion.div
-      className="card-on-navy p-8 sm:p-10 h-full"
+      className="card-on-cream p-8 sm:p-10 h-full"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ delay: index * 0.12, duration: 0.6, ease: 'easeOut' }}
     >
       <span className="font-display text-5xl sm:text-6xl text-blue leading-none block mb-8">{step.number}</span>
-      <h3 className="text-xl sm:text-2xl font-semibold text-cream mb-3 leading-snug">{step.title}</h3>
-      <p className="text-cream/65 text-sm sm:text-base leading-relaxed">{step.description}</p>
+      <h3 className="text-xl sm:text-2xl font-semibold text-navy mb-3 leading-snug">{step.title}</h3>
+      <p className="text-mute text-sm sm:text-base leading-relaxed">{step.description}</p>
     </motion.div>
   );
 }
@@ -58,8 +58,8 @@ function Connector() {
 export function HowItWorks() {
   return (
     <Section
-      surface="navy"
-      id="how-it-works"
+      surface="cream"
+      id="process"
       eyebrow="How it works"
       title={
         <>
