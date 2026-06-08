@@ -48,7 +48,6 @@ export const timeline: TimelineEntry[] = [
     title: 'Rich searchable history',
     description:
       'A richer record of your work across more of the tools you use, plus passkey sign-in and an added privacy lock - with broad reliability and performance gains across Windows and macOS.',
-    highlighted: true,
   },
   {
     type: 'NEWS',

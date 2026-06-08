@@ -45,7 +45,7 @@ const integrity: Feature[] = [
 function FeatureCard({ item, index }: { item: Feature; index: number }) {
   return (
     <motion.div
-      className="card-on-navy group p-7 sm:p-8 h-full"
+      className="card-on-cream group p-7 sm:p-8 h-full"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -53,10 +53,10 @@ function FeatureCard({ item, index }: { item: Feature; index: number }) {
     >
       <div className="flex items-center gap-4 mb-6">
         <span className="h-[3px] w-9 rounded-full bg-blue transition-all duration-300 group-hover:w-12" />
-        <span className="h-px flex-1 bg-cream/12 transition-colors group-hover:bg-blue/40" />
+        <span className="h-px flex-1 bg-navy/10 transition-colors group-hover:bg-blue/40" />
       </div>
-      <h3 className="text-[1.4rem] font-bold text-cream mb-3 leading-[1.15] tracking-tight">{item.title}</h3>
-      <p className="text-cream/65 text-sm leading-relaxed">{item.description}</p>
+      <h3 className="text-[1.4rem] font-bold text-navy mb-3 leading-[1.15] tracking-tight">{item.title}</h3>
+      <p className="text-mute text-sm leading-relaxed">{item.description}</p>
     </motion.div>
   );
 }
@@ -64,13 +64,13 @@ function FeatureCard({ item, index }: { item: Feature; index: number }) {
 export function PrivacySection() {
   return (
     <Section
-      surface="navy"
+      surface="cream"
       id="security"
       eyebrow="Privacy & security"
       title={
         <>
-          We can&apos;t see your work. Neither can{' '}
-          <Annotate variant="underline-double">anyone else</Annotate>.
+          We can&apos;t see your work. You choose what to share, and with{' '}
+          <Annotate variant="underline-double" nudge={0.12}>whom</Annotate>.
         </>
       }
       intro={
@@ -80,14 +80,14 @@ export function PrivacySection() {
         </>
       }
     >
-      <p className="eyebrow text-cream/55 text-center mt-16 mb-6">Privacy</p>
+      <p className="eyebrow text-mute text-center mt-16 mb-6">Privacy</p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
         {privacy.map((item, i) => (
           <FeatureCard key={item.title} item={item} index={i} />
         ))}
       </div>
 
-      <p className="eyebrow text-cream/55 text-center mt-12 mb-6">Integrity &amp; durability</p>
+      <p className="eyebrow text-mute text-center mt-12 mb-6">Integrity &amp; durability</p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
         {integrity.map((item, i) => (
           <FeatureCard key={item.title} item={item} index={i} />

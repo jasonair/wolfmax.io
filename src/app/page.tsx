@@ -6,6 +6,7 @@ import { Button } from '@/components/Button';
 import { Wave } from '@/components/Wave';
 import { Squiggle } from '@/components/Squiggle';
 import { HowItWorks } from '@/components/HowItWorks';
+import { WorkingsIsDifferent } from '@/components/WorkingsIsDifferent';
 import { WhoWorkingsIsFor } from '@/components/WhoWorkingsIsFor';
 import { PrivacySection } from '@/components/PrivacySection';
 import { useWaitlist } from '@/components/waitlist/WaitlistProvider';
@@ -108,6 +109,7 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
+      <WorkingsIsDifferent />
       <HowItWorks />
       <WhoWorkingsIsFor />
       <PrivacySection />
