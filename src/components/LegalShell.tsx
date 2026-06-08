@@ -19,7 +19,7 @@ export function LegalShell({ eyebrow, title, meta, note, lead, children }: Legal
           {note && <p className="mt-4 text-sm text-mute [&_a]:text-blue [&_a]:underline [&_a]:underline-offset-2">{note}</p>}
         </header>
 
-        {lead && <p className="text-lg text-navy leading-relaxed mb-10">{lead}</p>}
+        {lead && <p className="font-subtitle text-lg text-navy leading-relaxed mb-10">{lead}</p>}
 
         <div className="prose prose-lg max-w-none prose-headings:font-display prose-headings:font-normal prose-headings:text-navy prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mb-4 prose-p:text-mute prose-p:leading-relaxed prose-li:text-mute prose-a:text-blue prose-strong:text-navy prose-code:text-navy prose-code:font-mono">
           {children}

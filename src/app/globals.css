@@ -90,10 +90,18 @@ section[id] {
 /*  Serif display headline rhythm                                      */
 /* ------------------------------------------------------------------ */
 .font-display {
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family: var(--font-reckless), ui-serif, Georgia, serif;
+  font-weight: 400;
   line-height: 1.04;
   letter-spacing: -0.018em;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Subtitle / intro body copy                                         */
+/* ------------------------------------------------------------------ */
+.font-subtitle {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 400;
 }
 
 /* ------------------------------------------------------------------ */

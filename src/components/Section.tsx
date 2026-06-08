@@ -48,7 +48,7 @@ export function Section({
               </h2>
             )}
             {intro && (
-              <p className={`mt-5 text-[1.02rem] leading-relaxed ${introColor[surface]} ${centered ? "mx-auto" : ""} max-w-[52ch]`}>
+              <p className={`font-subtitle mt-5 text-[1.02rem] leading-relaxed ${introColor[surface]} ${centered ? "mx-auto" : ""} max-w-[52ch]`}>
                 {intro}
               </p>
             )}

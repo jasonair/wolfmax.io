@@ -40,7 +40,7 @@ function StepCard({ step, index }: { step: (typeof steps)[number]; index: number
     >
       <span className="font-display text-5xl sm:text-6xl text-blue leading-none block mb-8">{step.number}</span>
       <h3 className="text-xl sm:text-2xl font-semibold text-navy mb-3 leading-snug">{step.title}</h3>
-      <p className="text-mute text-sm sm:text-base leading-relaxed">{step.description}</p>
+      <p className="font-subtitle text-mute text-sm sm:text-base leading-relaxed">{step.description}</p>
     </motion.div>
   );
 }

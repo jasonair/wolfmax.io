@@ -159,7 +159,7 @@ function TimelineRow({ entry }: { entry: TimelineEntry }) {
         <h3 className="font-display text-lg sm:text-xl text-navy leading-snug mb-1.5">
           {entry.title}
         </h3>
-        <p className="text-mute text-sm sm:text-[0.95rem] leading-relaxed">
+        <p className="font-subtitle text-mute text-sm sm:text-[0.95rem] leading-relaxed">
           {entry.description}
         </p>
       </article>
@@ -195,7 +195,7 @@ function BlogPanel({ posts }: { posts: Post[] }) {
         <h2 className="font-display text-xl sm:text-2xl text-navy mb-3">
           Long-form writing from the Workings team
         </h2>
-        <p className="text-mute text-sm sm:text-base leading-relaxed">
+        <p className="font-subtitle text-mute text-sm sm:text-base leading-relaxed">
           Our blog launches alongside public beta - essays on authorship, AI in education,
           the technical work behind process recording, and what we&apos;re learning from
           university pilots. Subscribe via the{' '}
@@ -243,7 +243,7 @@ function BlogPanel({ posts }: { posts: Post[] }) {
                   {post.title}
                 </h2>
 
-                <p className="text-mute text-base leading-relaxed mb-8 line-clamp-3 flex-1">
+                <p className="font-subtitle text-mute text-base leading-relaxed mb-8 line-clamp-3 flex-1">
                   {post.description}
                 </p>
 

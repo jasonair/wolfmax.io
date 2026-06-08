@@ -389,7 +389,7 @@ export default function InstitutionsPage() {
                 <h1 className="font-display text-[2.4rem] sm:text-6xl text-navy leading-[1.04] mb-6 max-w-[16ch] mx-auto">
                   {hero.title}
                 </h1>
-                <div className="text-base sm:text-lg text-mute max-w-xl mx-auto leading-relaxed mb-8 space-y-4">
+                <div className="font-subtitle text-base sm:text-lg text-mute max-w-xl mx-auto leading-relaxed mb-8 space-y-4">
                   {hero.sub}
                 </div>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -21,11 +21,11 @@ export const timeline: TimelineEntry[] = [
       'Workings opens to a wider release, with planned university trials in the UK and Australia.',
   },
   {
-    type: 'UPCOMING',
+    type: 'NEWS',
     date: 'June 2026',
     title: 'London-based creative agency pilot',
     description:
-      'Our first pilot goes live with London-based creative agency, putting Workings to work in a real creative studio.',
+      'Our first pilot is live with a London-based creative agency, putting Workings to work in a real creative studio.',
   },
   {
     type: 'NEWS',
