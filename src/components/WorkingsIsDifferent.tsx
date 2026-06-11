@@ -3,33 +3,67 @@
 import { motion } from 'framer-motion';
 import { Logo } from './Logo';
 
-const CENTRE = 250;
-const R_IN = 138;
-const R_OUT = 188;
-const SEGMENT_GAP_DEG = 8;
-const ARROW_SPAN_DEG = 11;
-const ARROW_PROTRUDE = 16;
+const C = 250;          // SVG centre
+const R_IN  = 160;      // inner ring radius — larger = more centre space
+const R_OUT = 212;      // outer ring radius
+const R_MID = (R_IN + R_OUT) / 2; // where the tip converges (186)
+const GAP   = 9;        // degrees of gap between segments
+const HEAD  = 18;       // degrees the arrowhead spans
+const FLARE = 16;       // px each side beyond arc width at arrowhead base
+const N     = 14;       // polygon steps for smooth arrowhead curves
 
 const SEGMENTS = [
-  { startDeg: -90 + SEGMENT_GAP_DEG / 2, endDeg: 0 - SEGMENT_GAP_DEG / 2, fill: '#2c4fd1' },
-  { startDeg: 0 + SEGMENT_GAP_DEG / 2, endDeg: 90 - SEGMENT_GAP_DEG / 2, fill: '#4470eb' },
-  { startDeg: 90 + SEGMENT_GAP_DEG / 2, endDeg: 180 - SEGMENT_GAP_DEG / 2, fill: '#7a96ff' },
-  { startDeg: 180 + SEGMENT_GAP_DEG / 2, endDeg: 270 - SEGMENT_GAP_DEG / 2, fill: '#b3c5ff' },
+  { id: 'a', s: -90 + GAP / 2, e:   0 - GAP / 2, color: '#2c4fd1' },
+  { id: 'b', s:   0 + GAP / 2, e:  90 - GAP / 2, color: '#4470eb' },
+  { id: 'c', s:  90 + GAP / 2, e: 180 - GAP / 2, color: '#7a96ff' },
+  { id: 'd', s: 180 + GAP / 2, e: 270 - GAP / 2, color: '#b3c5ff' },
 ];
 
+function pt(r: number, deg: number): [number, number] {
+  const rad = (deg * Math.PI) / 180;
+  return [C + r * Math.cos(rad), C + r * Math.sin(rad)];
+}
+
+function f(n: number) { return n.toFixed(2); }
+
 function buildPath(startDeg: number, endDeg: number): string {
-  const polar = (r: number, deg: number): [number, number] => {
-    const rad = (deg * Math.PI) / 180;
-    return [CENTRE + r * Math.cos(rad), CENTRE + r * Math.sin(rad)];
-  };
-  const baseAngle = endDeg - ARROW_SPAN_DEG;
-  const [x1, y1] = polar(R_OUT, startDeg);
-  const [x2, y2] = polar(R_OUT, baseAngle);
-  const [xt, yt] = polar(R_OUT + ARROW_PROTRUDE, endDeg);
-  const [x4, y4] = polar(R_IN, baseAngle);
-  const [x5, y5] = polar(R_IN, startDeg);
-  const f = (n: number) => n.toFixed(2);
-  return `M${f(x1)} ${f(y1)} A${R_OUT} ${R_OUT} 0 0 1 ${f(x2)} ${f(y2)} L${f(xt)} ${f(yt)} L${f(x4)} ${f(y4)} A${R_IN} ${R_IN} 0 0 0 ${f(x5)} ${f(y5)} Z`;
+  const hs = endDeg - HEAD;           // arrowhead base angle
+  const RO = R_OUT + FLARE;           // flared outer radius
+  const RI = R_IN  - FLARE;           // flared inner radius
+
+  // Named points
+  const [ax, ay] = pt(R_OUT, startDeg); // outer arc start
+  const [bx, by] = pt(R_OUT, hs);       // outer arc body end
+  const [cx, cy] = pt(RO,    hs);       // outer flare (notch corner)
+  const [dx, dy] = pt(RI,    hs);       // inner flare (notch corner)
+  const [ex, ey] = pt(R_IN,  hs);       // inner arc body start
+  const [fx2, fy2] = pt(R_IN, startDeg); // inner arc start
+
+  // Outer arrowhead curve: (RO, hs) → (R_MID, endDeg)
+  const outerCurve = Array.from({ length: N }, (_, i) => {
+    const t = (i + 1) / N;
+    const [x, y] = pt(RO + (R_MID - RO) * t, hs + HEAD * t);
+    return `L${f(x)} ${f(y)}`;
+  }).join(' ');
+
+  // Inner arrowhead curve: (R_MID, endDeg) → (RI, hs)
+  const innerCurve = Array.from({ length: N }, (_, i) => {
+    const t = (N - 1 - i) / N;
+    const [x, y] = pt(RI + (R_MID - RI) * t, hs + HEAD * t);
+    return `L${f(x)} ${f(y)}`;
+  }).join(' ');
+
+  return [
+    `M${f(ax)} ${f(ay)}`,
+    `A${R_OUT} ${R_OUT} 0 0 1 ${f(bx)} ${f(by)}`, // outer arc (CW)
+    `L${f(cx)} ${f(cy)}`,                           // flare out (notch)
+    outerCurve,                                      // taper to tip
+    innerCurve,                                      // taper back from tip
+    `L${f(dx)} ${f(dy)}`,                           // flare end already here — step to arc
+    `L${f(ex)} ${f(ey)}`,                           // step back to R_IN
+    `A${R_IN} ${R_IN} 0 0 0 ${f(fx2)} ${f(fy2)}`,  // inner arc (CCW)
+    'Z',
+  ].join(' ');
 }
 
 const LABEL = 'font-subtitle text-[1.05rem] sm:text-[1.2rem] font-semibold text-cream leading-tight';
@@ -41,7 +75,7 @@ export function WorkingsIsDifferent() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14 sm:mb-16">
           <p className="eyebrow text-blue mb-5">Properly Private</p>
-          <h2 className="font-display text-[2rem] sm:text-[3rem] leading-[1.06] text-cream max-w-[22ch] mx-auto">
+          <h2 className="font-display text-[2rem] sm:text-[3rem] leading-[1.08] text-cream max-w-[22ch] mx-auto">
             <em className="italic">Workings</em> is different.
           </h2>
         </div>
@@ -51,19 +85,32 @@ export function WorkingsIsDifferent() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="mx-auto grid w-full max-w-[760px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center justify-items-center gap-x-4 gap-y-6 sm:gap-x-8 sm:gap-y-8"
+          className="mx-auto grid w-full max-w-[820px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center justify-items-center gap-x-2 gap-y-4 sm:gap-x-4 sm:gap-y-6"
         >
           <div />
           <div className={`${LABEL} text-center`}>Collect rich data</div>
           <div />
 
-          <div className={`${LABEL} justify-self-end text-right max-w-[160px] sm:max-w-[180px]`}>
+          <div className={`${LABEL} justify-self-end text-center max-w-[120px] sm:max-w-[140px]`}>
             Verifiable authorship
           </div>
-          <div className="relative aspect-square w-[240px] sm:w-[320px] md:w-[380px]">
-            <svg viewBox="-10 -10 520 520" className="absolute inset-0 h-full w-full" aria-hidden="true">
-              {SEGMENTS.map((s, i) => (
-                <path key={i} d={buildPath(s.startDeg, s.endDeg)} fill={s.fill} />
+
+          <div className="relative aspect-square w-[260px] sm:w-[360px] md:w-[440px]">
+            <svg viewBox="0 0 500 500" className="absolute inset-0 h-full w-full" aria-hidden="true">
+              <defs>
+                {SEGMENTS.map(seg => {
+                  const [x1, y1] = pt(R_MID, seg.s);
+                  const [x2, y2] = pt(R_MID, seg.e);
+                  return (
+                    <linearGradient key={seg.id} id={`g-${seg.id}`} x1={f(x1)} y1={f(y1)} x2={f(x2)} y2={f(y2)} gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor={seg.color} stopOpacity="0" />
+                      <stop offset="100%" stopColor={seg.color} stopOpacity="1" />
+                    </linearGradient>
+                  );
+                })}
+              </defs>
+              {SEGMENTS.map(seg => (
+                <path key={seg.id} d={buildPath(seg.s, seg.e)} fill={`url(#g-${seg.id})`} />
               ))}
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -71,6 +118,7 @@ export function WorkingsIsDifferent() {
               <span className="eyebrow text-cream/55 mt-2 text-[0.6rem] sm:text-[0.7rem]">the way you work</span>
             </div>
           </div>
+
           <div className={`${LABEL} justify-self-start text-left max-w-[160px] sm:max-w-[180px]`}>
             In total privacy
           </div>
