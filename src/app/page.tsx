@@ -80,7 +80,8 @@ function WMark() {
 function EarlyAccess() {
   const { open } = useWaitlist();
   return (
-    <section id="early-access" className="surface-navy px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+    <section id="early-access" className="surface-cream pt-4 sm:pt-6">
+      <div className="surface-navy rounded-t-[5rem] px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -101,6 +102,7 @@ function EarlyAccess() {
         </div>
         <Squiggle className="w-full max-w-2xl h-8 mx-auto mt-16 text-blue opacity-55" draw />
       </motion.div>
+      </div>
     </section>
   );
 }

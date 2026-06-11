@@ -80,7 +80,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="surface-navy border-t border-cream/10">
+    <footer className="surface-navy">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr] sm:gap-8">
           {/* Brand column */}

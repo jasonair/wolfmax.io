@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { Eyebrow } from '@/components/Eyebrow';
 import { Button } from '@/components/Button';
-import { Annotate } from '@/components/Annotate';
+
 
 type Tab = 'educators' | 'businesses';
 
@@ -179,7 +179,7 @@ function EducatorsPanel() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <Eyebrow className="text-blue mb-5">What it&apos;s used for</Eyebrow>
             <h2 className="font-display text-[1.7rem] sm:text-[2.5rem] leading-[1.1] text-cream">
-              Four questions <Annotate variant="underline" nudge={0.1}>detection</Annotate> can&apos;t answer.
+              Four questions detection can&apos;t answer.
             </h2>
           </div>
           <CardGrid cards={EDU_CARDS} cols="sm:grid-cols-2 lg:grid-cols-4" />

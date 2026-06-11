@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Section } from './Section';
-import { Annotate } from './Annotate';
+
 
 type Feature = { title: string; description: string };
 
@@ -69,8 +69,7 @@ export function PrivacySection() {
       eyebrow="Privacy & security"
       title={
         <>
-          We can&apos;t see your work. You choose what to share, and with{' '}
-          <Annotate variant="underline-double" nudge={0.12}>whom</Annotate>.
+          We can&apos;t see your work. You choose what to share, and with whom.
         </>
       }
       intro={
