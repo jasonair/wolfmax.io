@@ -51,6 +51,7 @@ export function PrivacySection() {
       surface="cream"
       id="security"
       eyebrow="Privacy & security"
+      className="!pt-12 sm:!pt-16"
       title="We can't see your work. You choose what to share, and with whom."
       intro="Local-first, zero-knowledge, tamper-evident - the architecture behind the record."
     >
