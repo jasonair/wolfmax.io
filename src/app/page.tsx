@@ -7,8 +7,9 @@ import { Wave } from '@/components/Wave';
 import { Squiggle } from '@/components/Squiggle';
 import { HowItWorks } from '@/components/HowItWorks';
 import { WorkingsIsDifferent } from '@/components/WorkingsIsDifferent';
-import { WhoWorkingsIsFor } from '@/components/WhoWorkingsIsFor';
 import { PrivacySection } from '@/components/PrivacySection';
+import { VerifierSection } from '@/components/VerifierSection';
+import { AudienceSignpost } from '@/components/AudienceSignpost';
 import { useWaitlist } from '@/components/waitlist/WaitlistProvider';
 import { useIntroReady } from '@/lib/useIntroReady';
 
@@ -35,18 +36,18 @@ function HeroSection() {
           {...reveal(0.87)}
           transition={{ delay: 0.87, duration: 0.7 }}
         >
-          Show how you did it.
+          Asked if you did it?
           <br />
-          Human, AI or both.
+          Show your <em className="italic">workings</em>.
         </motion.h1>
 
         <motion.p
           className="font-subtitle text-base sm:text-lg text-mute max-w-2xl mx-auto leading-relaxed mb-9"
           {...reveal(1.0)}
         >
-          Privately capture your tamper-evident <em className="italic">Workings</em>.
+          A private, tamper-evident record of how your work was made - human, AI, or both.
           <br />
-          Review in private or verify with any audience.
+          Review in private, verify with anyone.
         </motion.p>
 
         <motion.div {...reveal(1.13)} className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -92,6 +93,7 @@ function EarlyAccess() {
         <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-8 text-blue">
           <WMark />
         </div>
+        <p className="eyebrow text-cream/55 mb-5">Piloting with Pangaea creative agency</p>
         <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-10 mx-auto max-w-[14ch]">
           Capture your <em className="italic">Workings</em>.
         </h2>
@@ -113,8 +115,9 @@ export default function Home() {
       <HeroSection />
       <WorkingsIsDifferent />
       <HowItWorks />
-      <WhoWorkingsIsFor />
       <PrivacySection />
+      <VerifierSection />
+      <AudienceSignpost />
       <EarlyAccess />
     </main>
   );

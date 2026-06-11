@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { Eyebrow } from '@/components/Eyebrow';
 import { Button } from '@/components/Button';
 
-
 type Tab = 'educators' | 'businesses';
 
 const HERO: Record<Tab, { eyebrow: string; title: string; sub: ReactNode; ctaHref: string; ctaLabel: string; meta: string }> = {

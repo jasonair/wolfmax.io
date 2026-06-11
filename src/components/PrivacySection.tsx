@@ -3,42 +3,26 @@
 import { motion } from 'framer-motion';
 import { Section } from './Section';
 
-
 type Feature = { title: string; description: string };
 
-const privacy: Feature[] = [
+// Three cards: architecture (local-first + zero-knowledge merged), control
+// (picks up the "you choose what to share" half of the headline), integrity
+// (boring precision: SHA-512, chained, externally anchored).
+const features: Feature[] = [
   {
-    title: 'Local-first, encrypted',
+    title: 'Private by architecture',
     description:
-      'Everything runs and stays on your device, encrypted with keys only you hold. No one else can read it - including us.',
+      "Everything runs and stays on your device, encrypted with keys only you hold. We never see your raw content - there's nothing on our side to hand over.",
   },
   {
-    title: 'You stay in control',
+    title: "You're in control",
     description:
-      'Decide what to share, when, and with whom. Wipe your data or your whole account whenever you want. Nothing leaves, and nothing lingers, without your say-so.',
-  },
-  {
-    title: 'Zero-knowledge architecture',
-    description:
-      "We're built so we never see your raw content. Even the aggregate insights organisations rely on are computed without exposing what's underneath.",
-  },
-];
-
-const integrity: Feature[] = [
-  {
-    title: 'Sealed against future AI forgery',
-    description:
-      "Sealed the moment it's made, a record can't be forged after the fact. However good future AI gets at faking human work, it can't reach back.",
+      'Share, redact, or wipe everything whenever you choose. Nothing leaves, and nothing lingers, without your say-so.',
   },
   {
     title: 'Tamper-evident',
     description:
-      "Every record is cryptographically chained - altering even a single detail breaks the chain and is immediately detectable. A record either verifies intact, or it doesn't verify.",
-  },
-  {
-    title: 'Quantum-strong hashing',
-    description:
-      'Every record is hashed with SHA-512, a standard strong enough to stay secure even against quantum computers.',
+      "SHA-512 hashing, cryptographically chained records, externally anchored timestamps. A genuine record verifies. A doctored one can't.",
   },
 ];
 
@@ -67,28 +51,11 @@ export function PrivacySection() {
       surface="cream"
       id="security"
       eyebrow="Privacy & security"
-      title={
-        <>
-          We can&apos;t see your work. You choose what to share, and with whom.
-        </>
-      }
-      intro={
-        <>
-          Local-first, zero-knowledge, sealed against forgery. Built not just for today&apos;s threats,
-          but for what comes after.
-        </>
-      }
+      title="We can't see your work. You choose what to share, and with whom."
+      intro="Local-first, zero-knowledge, tamper-evident - the architecture behind the record."
     >
-      <p className="eyebrow text-mute text-center mt-16 mb-6">Privacy</p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-        {privacy.map((item, i) => (
-          <FeatureCard key={item.title} item={item} index={i} />
-        ))}
-      </div>
-
-      <p className="eyebrow text-mute text-center mt-12 mb-6">Integrity &amp; durability</p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-        {integrity.map((item, i) => (
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+        {features.map((item, i) => (
           <FeatureCard key={item.title} item={item} index={i} />
         ))}
       </div>

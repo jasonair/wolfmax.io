@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { Section } from './Section';
 
-
 const steps = [
   {
     number: '01',
@@ -19,7 +18,7 @@ const steps = [
     number: '02',
     title: 'Record your process, privately',
     description:
-      "Captures your process locally. Only an anonymous fingerprint leaves, never your work. Alter it later and the fingerprint won't match.",
+      'It records your screen and keystrokes while you work - locally, encrypted, only when you choose. Nothing leaves your device but an anonymous fingerprint.',
   },
   {
     number: '03',
@@ -61,12 +60,8 @@ export function HowItWorks() {
       surface="cream"
       id="process"
       eyebrow="How it works"
-      title={
-        <>
-          Three steps to prove your work is yours.
-        </>
-      }
-      intro="Run it, work as you always have, and turn your process into a record you can rely on."
+      title="Three steps to evidence of how your work was made."
+      intro="Run it, work as you always have, and turn your process into a record anyone can independently verify."
     >
       <div className="mt-16 sm:mt-20 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-6 lg:gap-4 items-stretch">
         <StepCard step={steps[0]} index={0} />

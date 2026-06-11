@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Eyebrow } from '@/components/Eyebrow';
 import { Button } from '@/components/Button';
-
 import { useWaitlist } from '@/components/waitlist/WaitlistProvider';
 
 const works = [
