@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { Section } from './Section';
-import { Annotate } from './Annotate';
 
 const steps = [
   {
@@ -19,7 +18,7 @@ const steps = [
     number: '02',
     title: 'Record your process, privately',
     description:
-      "Yes - it records your screen and keystrokes while you work. Locally, encrypted, only while you choose. It's your notebook, not anyone's camera. An anonymous fingerprint is all that leaves the device.",
+      'It records your screen and keystrokes while you work - locally, encrypted, only when you choose. Nothing leaves your device but an anonymous fingerprint.',
   },
   {
     number: '03',
@@ -61,13 +60,7 @@ export function HowItWorks() {
       surface="cream"
       id="process"
       eyebrow="How it works"
-      title={
-        <>
-          Three steps to{' '}
-          <Annotate variant="underline">evidence</Annotate>{' '}
-          of how your work was made.
-        </>
-      }
+      title="Three steps to evidence of how your work was made."
       intro="Run it, work as you always have, and turn your process into a record anyone can independently verify."
     >
       <div className="mt-16 sm:mt-20 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-6 lg:gap-4 items-stretch">

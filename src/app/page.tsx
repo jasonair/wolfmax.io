@@ -28,24 +28,26 @@ function HeroSection() {
     <section className="surface-cream relative overflow-hidden pt-36 pb-56 sm:pt-44 sm:pb-64 px-4 sm:px-6 lg:px-8">
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <motion.div {...reveal(0.75, 16)}>
-          <Eyebrow className="text-mute mb-6">Show your workings</Eyebrow>
+          <Eyebrow className="text-mute mb-6">The way you work</Eyebrow>
         </motion.div>
 
         <motion.h1
-          className="font-display text-[2rem] sm:text-5xl md:text-[3.6rem] text-navy mb-7 mx-auto max-w-[24ch] leading-[1.08]"
+          className="font-display text-[2.4rem] sm:text-6xl md:text-[4.4rem] text-navy mb-7 mx-auto max-w-[18ch]"
           {...reveal(0.87)}
           transition={{ delay: 0.87, duration: 0.7 }}
         >
-          When someone asks &ldquo;did you really write this?&rdquo;
+          Asked if you did it?
           <br />
-          Have the answer.
+          Show your <em className="italic">workings</em>.
         </motion.h1>
 
         <motion.p
           className="text-base sm:text-lg text-mute max-w-2xl mx-auto leading-relaxed mb-9"
           {...reveal(1.0)}
         >
-          Privately capture a tamper-evident record of how your work was made - human, AI, or both.
+          A private, tamper-evident record of how your work was made - human, AI, or both.
+          <br />
+          Review in private, verify with anyone.
         </motion.p>
 
         <motion.div {...reveal(1.13)} className="flex flex-col sm:flex-row items-center justify-center gap-4">

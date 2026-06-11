@@ -2,29 +2,27 @@
 
 import { motion } from 'framer-motion';
 import { Section } from './Section';
-import { Annotate } from './Annotate';
 
 type Feature = { title: string; description: string };
 
-// Tightened to three cards (was 3+3). Drops the "You stay in control" /
-// "Sealed against future AI forgery" / "Quantum-strong hashing" framings in
-// favour of boring precision: SHA-512, chained, externally anchored. The
-// tamper-evident card absorbs the integrity specifics.
+// Three cards: architecture (local-first + zero-knowledge merged), control
+// (picks up the "you choose what to share" half of the headline), integrity
+// (boring precision: SHA-512, chained, externally anchored).
 const features: Feature[] = [
   {
-    title: 'Local-first, encrypted',
+    title: 'Private by architecture',
     description:
-      'Runs and stays on your device, encrypted with keys only you hold. Nothing leaves without your say-so.',
+      "Everything runs and stays on your device, encrypted with keys only you hold. We never see your raw content - there's nothing on our side to hand over.",
   },
   {
-    title: 'Zero-knowledge architecture',
+    title: "You're in control",
     description:
-      "We never see your raw content. Even the aggregate insights organisations rely on are computed without exposing what's underneath.",
+      'Share, redact, or wipe everything whenever you choose. Nothing leaves, and nothing lingers, without your say-so.',
   },
   {
     title: 'Tamper-evident',
     description:
-      "SHA-512 hashing, cryptographically chained records, externally anchored timestamps. Alter a single detail and the chain breaks - the report either verifies intact, or it doesn't.",
+      "SHA-512 hashing, cryptographically chained records, externally anchored timestamps. A genuine record verifies. A doctored one can't.",
   },
 ];
 
@@ -53,12 +51,7 @@ export function PrivacySection() {
       surface="cream"
       id="security"
       eyebrow="Privacy & security"
-      title={
-        <>
-          We can&apos;t see your work. You choose what to share, and with{' '}
-          <Annotate variant="underline-double" nudge={0.12}>whom</Annotate>.
-        </>
-      }
+      title="We can't see your work. You choose what to share, and with whom."
       intro="Local-first, zero-knowledge, tamper-evident - the architecture behind the record."
     >
       <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
