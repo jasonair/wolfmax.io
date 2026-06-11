@@ -6,6 +6,8 @@ import { Section } from './Section';
 const steps = [
   {
     number: '01',
+    icon: '/images/step-install.svg',
+    iconAlt: 'Workings app running on a desktop',
     title: (
       <>
         Install &amp; run <em className="italic">Workings</em>
@@ -16,12 +18,16 @@ const steps = [
   },
   {
     number: '02',
+    icon: '/images/step-record.svg',
+    iconAlt: 'A recording locked privately on your device',
     title: 'Record your process, privately',
     description:
       'It records your screen and keystrokes while you work - locally, encrypted, only when you choose. Nothing leaves your device but an anonymous fingerprint.',
   },
   {
     number: '03',
+    icon: '/images/step-generate.svg',
+    iconAlt: 'A verified report generated from your record',
     title: 'Generate what you need',
     description:
       'Turn your record into a report, a summary, or a timelapse - all independently verifiable. Review & redact privately, share what you choose.',
@@ -37,7 +43,9 @@ function StepCard({ step, index }: { step: (typeof steps)[number]; index: number
       viewport={{ once: true, amount: 0.3 }}
       transition={{ delay: index * 0.12, duration: 0.6, ease: 'easeOut' }}
     >
-      <span className="font-display text-5xl sm:text-6xl text-blue leading-none block mb-8">{step.number}</span>
+      <span className="font-display text-5xl sm:text-6xl text-blue leading-none block mb-6">{step.number}</span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={step.icon} alt={step.iconAlt} className="h-20 w-auto mb-6" />
       <h3 className="text-xl sm:text-2xl font-semibold text-navy mb-3 leading-snug">{step.title}</h3>
       <p className="font-subtitle text-mute text-sm sm:text-base leading-relaxed">{step.description}</p>
     </motion.div>
