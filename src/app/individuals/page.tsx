@@ -135,8 +135,8 @@ export default function IndividualsPage() {
         </div>
       </section>
 
-      {/* Cross-links */}
-      <section className="surface-navy px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+      {/* Cross-links — rounded top opens the bottom navy region that runs into the footer */}
+      <section className="surface-navy rounded-t-[5rem] px-4 sm:px-6 lg:px-8 pt-16 pb-24">
         <div className="max-w-3xl mx-auto">
           <Eyebrow className="text-cream/55 text-center block mb-8">Also for institutions</Eyebrow>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

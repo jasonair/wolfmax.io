@@ -111,8 +111,8 @@ export default function VerifyPage() {
         </div>
       </section>
 
-      {/* What verification proves */}
-      <section className="surface-navy px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      {/* What verification proves — rounded top opens the bottom navy region that runs into the footer */}
+      <section className="surface-navy rounded-t-[5rem] px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <Eyebrow className="text-blue mb-3">What verification proves</Eyebrow>

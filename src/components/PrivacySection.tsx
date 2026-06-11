@@ -26,10 +26,37 @@ const features: Feature[] = [
   },
 ];
 
+// Full-bleed decorative wave that bands across the navy block, behind the
+// content (clipped by the rounded corners). Rendered as a fixed-height
+// background so the image keeps its natural proportions: `top`/`height` (px)
+// pin it to a fixed vertical position, while `cover` lets it bleed past the
+// block's sides and crop horizontally as the viewport narrows — never
+// squashing the wave.
+const WAVE = { src: '/images/wave-02.png' };
+
+function WaveDecoration() {
+  return (
+    <div
+      aria-hidden
+      // Fixed vertical band (top/height in px) so the wave keeps its natural
+      // proportions and holds position. On mobile the title wraps taller and
+      // the intro→cards gap is tight, so the band sits higher and shorter to
+      // clear the cards; from sm up it drops to its full-size position.
+      className="pointer-events-none select-none absolute inset-x-0 z-0 top-[255px] h-[250px] min-[480px]:top-[310px] sm:top-[298px] sm:h-[450px]"
+      style={{
+        backgroundImage: `url(${WAVE.src})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+      }}
+    />
+  );
+}
+
 function FeatureCard({ item, index }: { item: Feature; index: number }) {
   return (
     <motion.div
-      className="card-on-cream group p-7 sm:p-8 h-full"
+      className="card-on-navy group p-7 sm:p-8 h-full"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -37,10 +64,10 @@ function FeatureCard({ item, index }: { item: Feature; index: number }) {
     >
       <div className="flex items-center gap-4 mb-6">
         <span className="h-[3px] w-9 rounded-full bg-blue transition-all duration-300 group-hover:w-12" />
-        <span className="h-px flex-1 bg-navy/10 transition-colors group-hover:bg-blue/40" />
+        <span className="h-px flex-1 bg-cream/15 transition-colors group-hover:bg-blue/40" />
       </div>
-      <h3 className="text-[1.4rem] font-bold text-navy mb-3 leading-[1.15] tracking-tight">{item.title}</h3>
-      <p className="text-mute text-sm leading-relaxed">{item.description}</p>
+      <h3 className="text-[1.4rem] font-bold text-cream mb-3 leading-[1.15] tracking-tight">{item.title}</h3>
+      <p className="text-cream/65 text-sm leading-relaxed">{item.description}</p>
     </motion.div>
   );
 }
@@ -48,14 +75,15 @@ function FeatureCard({ item, index }: { item: Feature; index: number }) {
 export function PrivacySection() {
   return (
     <Section
-      surface="cream"
+      contained
+      surface="navy"
       id="security"
       eyebrow="Privacy & security"
-      className="!pt-12 sm:!pt-16"
       title="We can't see your work. You choose what to share, and with whom."
       intro="Local-first, zero-knowledge, tamper-evident - the architecture behind the record."
+      decoration={<WaveDecoration />}
     >
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+      <div className="mt-[130px] sm:mt-[178px] grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
         {features.map((item, i) => (
           <FeatureCard key={item.title} item={item} index={i} />
         ))}

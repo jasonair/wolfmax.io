@@ -173,15 +173,17 @@ function CardGrid({
 function EducatorsPanel() {
   return (
     <>
-      <section className="surface-navy px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <Eyebrow className="text-blue mb-5">What it&apos;s used for</Eyebrow>
-            <h2 className="font-display text-[1.7rem] sm:text-[2.5rem] leading-[1.1] text-cream">
-              Four questions detection can&apos;t answer.
-            </h2>
+      <section className="surface-cream px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="surface-navy rounded-[5rem] px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <Eyebrow className="text-blue mb-5">What it&apos;s used for</Eyebrow>
+              <h2 className="font-display text-[1.7rem] sm:text-[2.5rem] leading-[1.1] text-cream">
+                Four questions detection can&apos;t answer.
+              </h2>
+            </div>
+            <CardGrid cards={EDU_CARDS} cols="sm:grid-cols-2 lg:grid-cols-4" />
           </div>
-          <CardGrid cards={EDU_CARDS} cols="sm:grid-cols-2 lg:grid-cols-4" />
         </div>
       </section>
 

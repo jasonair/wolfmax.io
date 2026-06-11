@@ -16,6 +16,7 @@ interface SectionProps {
   contained?: boolean;
   className?: string;
   containerClassName?: string;
+  decoration?: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -29,6 +30,7 @@ export function Section({
   contained = false,
   className = "",
   containerClassName = "",
+  decoration,
   children,
 }: SectionProps) {
   const hasHeader = eyebrow || title || intro;
@@ -57,8 +59,9 @@ export function Section({
   if (contained) {
     return (
       <section id={id} className={`surface-cream py-4 sm:py-6 ${className}`}>
-        <div className="surface-navy rounded-[5rem] mx-4 sm:mx-6 lg:mx-8 py-24 sm:py-32">
-          <div className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${containerClassName}`}>
+        <div className="surface-navy relative overflow-hidden rounded-[5rem] mx-4 sm:mx-6 lg:mx-8 py-24 sm:py-32">
+          {decoration}
+          <div className={`relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${containerClassName}`}>
             {header}
             {children}
           </div>

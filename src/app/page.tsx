@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 import { Eyebrow } from '@/components/Eyebrow';
 import { Button } from '@/components/Button';
 import { Wave } from '@/components/Wave';
-import { Squiggle } from '@/components/Squiggle';
 import { HowItWorks } from '@/components/HowItWorks';
 import { WorkingsIsDifferent } from '@/components/WorkingsIsDifferent';
 import { PrivacySection } from '@/components/PrivacySection';
-import Link from 'next/link';
+import { VerifierSection } from '@/components/VerifierSection';
+import { AudienceSignpost } from '@/components/AudienceSignpost';
 import { useWaitlist } from '@/components/waitlist/WaitlistProvider';
 import { useIntroReady } from '@/lib/useIntroReady';
 
@@ -77,95 +77,31 @@ function WMark() {
   );
 }
 
-const alsoForLinks = [
-  { question: 'Running a course?', label: 'For educators', href: '/institutions#educators' },
-  { question: 'Running a team?', label: 'For businesses', href: '/institutions#businesses' },
-];
-
 function EarlyAccess() {
   const { open } = useWaitlist();
   return (
     <section id="early-access" className="surface-cream pt-4 sm:pt-6">
-      <div className="surface-navy rounded-t-[5rem] px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-24 sm:pb-32">
-        <div className="max-w-6xl mx-auto">
-
-          {/* Independently verifiable */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <p className="eyebrow text-blue mb-5">Independently verifiable</p>
-            <h2 className="font-display text-[2rem] sm:text-[3rem] leading-[1.08] text-cream">
-              Anyone can check a <em className="italic">Workings</em> report.
-            </h2>
-            <p className="font-subtitle mt-5 text-[1.02rem] leading-relaxed text-cream/70 mx-auto max-w-[52ch]">
-              No account. No access to your private record. A report either verifies intact, or it doesn&apos;t.
-            </p>
-            <div className="mt-10">
-              <Button href="/verify" variant="ghost-cream" withArrow>
-                Open the verifier
-              </Button>
-            </div>
-          </motion.div>
-
-          {/* Also for */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="mt-20 sm:mt-24 max-w-3xl mx-auto"
-          >
-            <p className="eyebrow text-cream/55 text-center mb-6 sm:mb-8">Also for</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              {alsoForLinks.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="group flex items-center justify-between rounded-2xl border border-cream/12 bg-white/[0.04] px-6 py-5 transition-colors hover:border-blue hover:bg-white/[0.07]"
-                >
-                  <span>
-                    <span className="block text-cream/60 text-sm">{l.question}</span>
-                    <span className="mt-1 block font-semibold text-cream text-base sm:text-lg">{l.label}</span>
-                  </span>
-                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-blue transition-transform group-hover:translate-x-0.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Divider */}
-          <div className="mt-20 sm:mt-24 border-t border-cream/10" />
-
-          {/* Piloting / waitlist CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="max-w-2xl mx-auto text-center mt-20 sm:mt-24"
-          >
-            <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-8 text-blue">
-              <WMark />
-            </div>
-            <p className="eyebrow text-cream/55 mb-5">Piloting with Pangaea creative agency</p>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-10 mx-auto max-w-[14ch]">
-              Capture your <em className="italic">Workings</em>.
-            </h2>
-            <div id="signup-target" className="flex justify-center">
-              <Button variant="peach" withArrow onClick={open} className="!text-base !px-8 !py-4">
-                Join the waitlist
-              </Button>
-            </div>
-            <Squiggle className="w-full max-w-2xl h-8 mx-auto mt-16 text-blue opacity-55" draw />
-          </motion.div>
-
-        </div>
+      <div className="surface-navy rounded-t-[5rem] px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="max-w-2xl mx-auto text-center"
+        >
+          <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-8 text-blue">
+            <WMark />
+          </div>
+          <p className="eyebrow text-cream/55 mb-5">Piloting with Pangaea creative agency</p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-10 mx-auto max-w-[14ch]">
+            Capture your <em className="italic">Workings</em>.
+          </h2>
+          <div id="signup-target" className="flex justify-center">
+            <Button variant="peach" withArrow onClick={open} className="!text-base !px-8 !py-4">
+              Join the waitlist
+            </Button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -178,6 +114,8 @@ export default function Home() {
       <WorkingsIsDifferent />
       <HowItWorks />
       <PrivacySection />
+      <VerifierSection />
+      <AudienceSignpost />
       <EarlyAccess />
     </main>
   );

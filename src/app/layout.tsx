@@ -109,8 +109,14 @@ export default function RootLayout({
         {gaId && <Analytics gaId={gaId} />}
         <WaitlistProvider>
           <Navbar />
-          {children}
-          <Footer />
+          {/* Cap the whole page at the design width and centre it; cream body
+              shows beyond on ultra-wide screens (a matted column). --stage is
+              the capped width the footer waves scale against so they freeze
+              past 1728px instead of stretching. */}
+          <div className="mx-auto max-w-[1728px] [--stage:min(100vw,1728px)]">
+            {children}
+            <Footer />
+          </div>
         </WaitlistProvider>
         <CookieConsent />
       </body>

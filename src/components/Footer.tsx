@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
 import { COOKIE_PREFS_EVENT } from './CookieConsent';
 
@@ -65,7 +66,28 @@ function FooterLink({ item }: { item: FooterItem }) {
   );
 }
 
+// Decorative footer waves. Sized against --stage (= min(100vw, 1728px), set on
+// the page wrapper) so the composition scales with viewport width up to the
+// 1728px cap, then freezes instead of stretching. The numbers are percentages
+// of --stage (tuned at 1728px / footer height 850px): `width` sizes each wave;
+// `top`/`left` anchor it relative to the footer's top-centre. Wave-01 sits
+// higher, bleeding up into the CTA above.
+const WAVES = [
+  { src: '/images/wave-01.png', width: 166, top: -13.11, left: -6.25 },
+  { src: '/images/wave-02.png', width: 166, top: 3.13, left: -17.82 },
+];
+
+// Pages whose final section is already a navy block flush above the footer
+// (it carries the rounded top instead, so the footer stays flat to avoid a
+// cream notch at the navy-on-navy seam). The homepage's EarlyAccess block does
+// the same. Everywhere else the footer itself is the top of the navy region,
+// so it gets the rounded top.
+const TRAILING_NAVY = new Set(['/individuals', '/verify']);
+
 export function Footer() {
+  const pathname = usePathname();
+  const showWaves = pathname === '/';
+  const roundedTop = pathname !== '/' && !TRAILING_NAVY.has(pathname);
   // Easter egg: three quick clicks on the divider dot.
   const clicks = useRef(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -80,8 +102,30 @@ export function Footer() {
   };
 
   return (
-    <footer className="surface-navy">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+    <footer className={`surface-navy relative overflow-x-clip ${roundedTop ? 'rounded-t-[5rem]' : ''}`}>
+      {/* Decorative waves — homepage only */}
+      {showWaves && WAVES.map((w) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={w.src}
+          aria-hidden
+          src={w.src}
+          alt=""
+          className="pointer-events-none select-none absolute"
+          style={{
+            width: `calc(var(--stage) * ${w.width / 100})`,
+            maxWidth: 'none',
+            left: `calc(50% + var(--stage) * ${w.left / 100})`,
+            transform: 'translateX(-50%)',
+            top: `calc(var(--stage) * ${w.top / 100})`,
+          }}
+        />
+      ))}
+
+      {/* Wave stage — only needed on homepage where the waves render */}
+      {showWaves && <div className="h-[calc(var(--stage)*0.3)]" />}
+
+      <div className={`relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 sm:pb-16 ${roundedTop ? 'pt-16 sm:pt-20' : ''}`}>
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr] sm:gap-8">
           {/* Brand column */}
           <div className="col-span-2 sm:col-span-3 lg:col-span-1">
