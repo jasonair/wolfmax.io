@@ -7,8 +7,9 @@ import { Wave } from '@/components/Wave';
 import { Squiggle } from '@/components/Squiggle';
 import { HowItWorks } from '@/components/HowItWorks';
 import { WorkingsIsDifferent } from '@/components/WorkingsIsDifferent';
-import { WhoWorkingsIsFor } from '@/components/WhoWorkingsIsFor';
 import { PrivacySection } from '@/components/PrivacySection';
+import { VerifierSection } from '@/components/VerifierSection';
+import { AudienceSignpost } from '@/components/AudienceSignpost';
 import { useWaitlist } from '@/components/waitlist/WaitlistProvider';
 import { useIntroReady } from '@/lib/useIntroReady';
 
@@ -27,26 +28,24 @@ function HeroSection() {
     <section className="surface-cream relative overflow-hidden pt-36 pb-56 sm:pt-44 sm:pb-64 px-4 sm:px-6 lg:px-8">
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <motion.div {...reveal(0.75, 16)}>
-          <Eyebrow className="text-mute mb-6">The way you work</Eyebrow>
+          <Eyebrow className="text-mute mb-6">Show your workings</Eyebrow>
         </motion.div>
 
         <motion.h1
-          className="font-display text-[2.4rem] sm:text-6xl md:text-[4.4rem] text-navy mb-7 mx-auto max-w-[18ch]"
+          className="font-display text-[2rem] sm:text-5xl md:text-[3.6rem] text-navy mb-7 mx-auto max-w-[24ch] leading-[1.08]"
           {...reveal(0.87)}
           transition={{ delay: 0.87, duration: 0.7 }}
         >
-          Show how you did it.
+          When someone asks &ldquo;did you really write this?&rdquo;
           <br />
-          Human, AI or both.
+          Have the answer.
         </motion.h1>
 
         <motion.p
           className="text-base sm:text-lg text-mute max-w-2xl mx-auto leading-relaxed mb-9"
           {...reveal(1.0)}
         >
-          Privately capture your tamper-evident <em className="italic">Workings</em>.
-          <br />
-          Review in private or verify with any audience.
+          Privately capture a tamper-evident record of how your work was made - human, AI, or both.
         </motion.p>
 
         <motion.div {...reveal(1.13)} className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -91,6 +90,7 @@ function EarlyAccess() {
         <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-8 text-blue">
           <WMark />
         </div>
+        <p className="eyebrow text-cream/55 mb-5">Piloting with Pangaea creative agency</p>
         <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-10 mx-auto max-w-[14ch]">
           Capture your <em className="italic">Workings</em>.
         </h2>
@@ -111,8 +111,9 @@ export default function Home() {
       <HeroSection />
       <WorkingsIsDifferent />
       <HowItWorks />
-      <WhoWorkingsIsFor />
       <PrivacySection />
+      <VerifierSection />
+      <AudienceSignpost />
       <EarlyAccess />
     </main>
   );

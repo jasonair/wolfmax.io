@@ -19,7 +19,7 @@ const steps = [
     number: '02',
     title: 'Record your process, privately',
     description:
-      "Captures your process locally. Only an anonymous fingerprint leaves, never your work. Alter it later and the fingerprint won't match.",
+      "Yes - it records your screen and keystrokes while you work. Locally, encrypted, only while you choose. It's your notebook, not anyone's camera. An anonymous fingerprint is all that leaves the device.",
   },
   {
     number: '03',
@@ -63,11 +63,12 @@ export function HowItWorks() {
       eyebrow="How it works"
       title={
         <>
-          Three steps to prove your work is{' '}
-          <Annotate variant="circle">yours</Annotate>.
+          Three steps to{' '}
+          <Annotate variant="underline">evidence</Annotate>{' '}
+          of how your work was made.
         </>
       }
-      intro="Run it, work as you always have, and turn your process into a record you can rely on."
+      intro="Run it, work as you always have, and turn your process into a record anyone can independently verify."
     >
       <div className="mt-16 sm:mt-20 grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-6 lg:gap-4 items-stretch">
         <StepCard step={steps[0]} index={0} />
